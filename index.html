@@ -7,405 +7,822 @@
 <meta name="description" content="Kiet Anh Nguyen — Multimedia Communication, visual storytelling and social impact.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
-:root{--bg:#080808;--paper:#f0eadf;--muted:#aaa39a;--line:rgba(240,234,223,.24);--cream:#e9dfcf;--ink:#17120f;--burgundy:#69252a;--max:1380px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--paper);font-family:"DM Sans",Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}img,video{display:block;max-width:100%}.container{width:min(var(--max),calc(100% - 72px));margin:auto}
-.nav{position:absolute;top:0;left:0;width:100%;z-index:20;display:flex;justify-content:space-between;padding:26px 36px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.navlinks{display:flex;gap:28px;color:#ddd}
-.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#111}.hero-media{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.30) 48%,rgba(0,0,0,.94)),url("assets/award-team.jpg") center 45%/cover no-repeat;transform:scale(1.02)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.62),transparent 67%)}.hero-content{position:relative;z-index:2;padding-bottom:8vh}.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#bbb;margin-bottom:22px}.hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(68px,12vw,178px);line-height:.78;letter-spacing:-.055em;margin:0 0 28px;max-width:1100px}.hero h1 span{display:block;font-family:"DM Sans";font-size:.22em;line-height:1.1;letter-spacing:.02em;margin-top:32px;font-weight:400;max-width:560px}.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:40px}.scroll{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999}.statement{max-width:430px;font-size:16px;line-height:1.6}
-.section{padding:125px 0}.section-head{display:flex;align-items:center;gap:22px;margin-bottom:58px}.section-num{font-size:11px;letter-spacing:.2em;color:var(--muted)}.rule{height:1px;background:var(--line);flex:1}.section-title{font-family:"Playfair Display";font-weight:400;font-size:clamp(50px,7vw,105px);line-height:.9;letter-spacing:-.04em;margin:0}
-.about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:9vw;align-items:center}.portrait{min-height:620px;background:url("assets/screening-emotion.jpg") center/cover;position:relative}.portrait:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.6))}.portrait small{position:absolute;z-index:2;left:20px;bottom:18px;letter-spacing:.14em;text-transform:uppercase}.about-copy .lead{font-family:"Playfair Display";font-size:clamp(30px,4vw,58px);line-height:1.08;margin:0 0 32px}.about-copy p{color:#c3beb5;line-height:1.8;max-width:520px}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:35px}.meta span{border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
-.feature{background:var(--cream);color:var(--ink);overflow:hidden}.feature .section-num{color:#756d64}.feature .rule{background:rgba(23,18,15,.2)}.feature-top{display:grid;grid-template-columns:1.25fr .75fr;gap:6vw;align-items:end}.film-title{font-family:"Playfair Display";font-size:clamp(58px,9vw,130px);line-height:.8;letter-spacing:-.055em;font-weight:400;margin:0}.film-copy{font-size:14px;line-height:1.8;color:#554d46;max-width:470px}.poster-composition{position:relative;min-height:850px;margin-top:65px}.poster{position:absolute;width:min(42%,530px);left:5%;top:0;z-index:3;box-shadow:0 25px 80px rgba(0,0,0,.28)}.emotion{position:absolute;width:58%;height:540px;right:0;top:170px;object-fit:cover}.quote{position:absolute;left:39%;bottom:10px;z-index:4;width:55%;font-family:"Playfair Display";font-size:clamp(36px,5vw,72px);line-height:1.02;letter-spacing:-.035em}
 
-.recognition{background:#101010}.recognition-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}.recognition-grid img{width:100%;height:100%;object-fit:cover}.rec-main{min-height:650px}.rec-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}.rec-caption{margin-top:26px;display:flex;justify-content:space-between;gap:30px;align-items:start}.rec-caption h3{font-family:"Playfair Display";font-weight:400;font-size:clamp(35px,4vw,60px);margin:0}.rec-caption p{max-width:420px;color:#aaa;line-height:1.7;font-size:13px}
-.origin-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:8vw}.origin-statement{font-family:"Playfair Display";font-size:clamp(40px,5.5vw,78px);line-height:1.02;letter-spacing:-.04em}.origin-copy{color:#b8b2aa;line-height:1.75;max-width:470px;margin-top:30px}.origin-photo{height:650px;width:100%;object-fit:cover}
-.projects{background:#e8e1d5;color:#111}.projects .section-num{color:#6f6a63}.projects .rule{background:#aaa}.project{display:grid;grid-template-columns:80px 1.1fr .9fr 80px;gap:28px;align-items:center;padding:30px 0;border-top:1px solid rgba(17,17,17,.2)}.project:last-child{border-bottom:1px solid rgba(17,17,17,.2)}.project h3{font-family:"Playfair Display";font-size:clamp(28px,3.4vw,48px);font-weight:400;margin:0}.project p{font-size:13px;color:#555}.project-arrow{text-align:right;font-size:22px}
-.next{min-height:78vh;display:flex;align-items:center;background:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.4)),url("assets/award-stage.jpg") center/cover}.next h2{font-family:"Playfair Display";font-size:clamp(58px,9vw,130px);font-weight:400;line-height:.9;letter-spacing:-.05em;margin:0 0 40px}.next p{font-size:16px;line-height:1.8;color:#d0cbc2;max-width:610px}
-.contact{padding:90px 0 35px}.contact-top{display:flex;justify-content:space-between;gap:40px;align-items:end}.contact h2{font-family:"Playfair Display";font-size:clamp(65px,10vw,145px);font-weight:400;line-height:.8;letter-spacing:-.06em;margin:0}.links{display:flex;gap:25px;flex-wrap:wrap;font-size:12px;letter-spacing:.14em;text-transform:uppercase}.links a{color:#bdb8b0}.footer{border-top:1px solid var(--line);margin-top:90px;padding:22px 0;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#777}.reveal{opacity:1;transform:none}
-
-.miraculous{background:#0b0b0b;overflow:hidden}
-.mm-intro{display:grid;grid-template-columns:.85fr 1.15fr;gap:8vw;align-items:end;margin-bottom:70px}
-.mm-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#aaa;margin-bottom:18px}
-.mm-title{font-family:"Playfair Display";font-size:clamp(58px,8vw,118px);font-weight:400;line-height:.84;letter-spacing:-.05em;margin:0}
-.mm-copy{color:#bdb7ae;line-height:1.8;max-width:520px}
-.mm-gallery{position:relative;min-height:930px}
-.mm-gallery img{position:absolute;object-fit:cover;box-shadow:0 20px 55px rgba(0,0,0,.28)}
-.mm-studio{left:0;top:0;width:61%;height:500px}
-.mm-outdoor{right:0;top:170px;width:43%;height:390px}
-.mm-graduation{left:18%;bottom:0;width:55%;height:410px}
-.mm-label{position:absolute;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#aaa}
-.mm-label.one{left:0;top:515px}
-.mm-label.two{right:0;top:575px}
-.mm-label.three{left:18%;bottom:-26px}
-.mm-bridge{margin-top:105px;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:start}
-.mm-bridge-quote{font-family:"Playfair Display";font-size:clamp(38px,5vw,72px);line-height:1.04;letter-spacing:-.035em}
-.mm-bridge p{color:#aaa;line-height:1.8;max-width:480px}
-
-.flying{background:#121110;overflow:hidden}
-.fh-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;align-items:end;margin-bottom:56px}
-.fh-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#aaa;margin-bottom:18px}
-.fh-title{font-family:"Playfair Display";font-size:clamp(58px,8vw,118px);font-weight:400;line-height:.84;letter-spacing:-.05em;margin:0}
-.fh-copy{color:#bdb7ae;line-height:1.8;max-width:560px}
-.trip{padding:42px 0 72px;border-top:1px solid var(--line)}
-.trip-head{display:grid;grid-template-columns:.7fr 1.3fr;gap:6vw;align-items:start;margin-bottom:26px}
-.trip-meta{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8f897f;margin-bottom:14px}
-.trip h3{font-family:"Playfair Display";font-size:clamp(34px,4vw,62px);font-weight:400;line-height:1;margin:0}
-.trip p{color:#aaa;line-height:1.75;max-width:560px;margin:0}
-.trip-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:18px;grid-auto-rows:240px}
-.trip-grid img{width:100%;height:100%;object-fit:cover}
-.trip-grid .a{grid-row:span 2}
-.trip-grid .d{grid-column:1 / span 2}
-.trip-grid.small{grid-template-columns:1.05fr .95fr;grid-auto-rows:230px}
-.trip-grid.small .a{grid-row:span 2}
-
-
-.culture{background:#17110f;color:#f2eadf;overflow:hidden}
-.culture-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;align-items:end;margin-bottom:54px}
-.culture-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#b29d88;margin-bottom:18px}
-.culture-title{font-family:"Playfair Display";font-size:clamp(58px,8vw,118px);font-weight:400;line-height:.84;letter-spacing:-.05em;margin:0}
-.culture-copy{color:#c7bfb5;line-height:1.8;max-width:560px}
-.culture-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;grid-auto-rows:280px}
-.culture-layout img{width:100%;height:100%;object-fit:cover}
-.culture-layout .large{grid-row:span 2}
-.culture-caption{margin-top:30px;display:grid;grid-template-columns:.95fr 1.05fr;gap:7vw}
-.culture-caption h3{font-family:"Playfair Display";font-weight:400;font-size:clamp(34px,4.2vw,62px);line-height:1;margin:0}
-.culture-caption p{margin:0;color:#aaa;line-height:1.8;max-width:560px}
-
-.tien{background:#0d0d0d;color:#f1ebdf;overflow:hidden}
-.tien-intro{display:grid;grid-template-columns:.92fr 1.08fr;gap:8vw;align-items:end;margin-bottom:54px}
-.tien-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#a99e91;margin-bottom:18px}
-.tien-title{font-family:"Playfair Display";font-size:clamp(58px,8vw,118px);font-weight:400;line-height:.84;letter-spacing:-.05em;margin:0}
-.tien-copy{color:#c5beb5;line-height:1.8;max-width:560px}
-.tien-layout{display:grid;grid-template-columns:1.18fr .82fr;gap:18px;align-items:stretch}
-.tien-layout img{width:100%;height:100%;object-fit:cover}
-.tien-main{min-height:650px}
-.tien-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}
-.tien-caption{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:start}
-.tien-caption h3{font-family:"Playfair Display";font-weight:400;font-size:clamp(34px,4.2vw,62px);line-height:1;margin:0}
-.tien-caption p{margin:0;color:#aaa;line-height:1.8;max-width:560px}
-
-
-/* ---------- V12 coordinated scene motion ---------- */
-:root{--radius:22px}
-
-/* All visual media uses rounded corners, but keeps varied aspect ratios */
-img,.portrait,.poster,.emotion,.recognition-grid img,.mm-gallery img,.culture-layout img,.tien-layout img,.carousel-card img{border-radius:var(--radius)}
-
-.flight-chapter{position:relative;isolation:isolate;--title-y:0px;--copy-y:0px;--media-y:0px;--scene-alpha:1}
-.motion-title,.motion-copy,.motion-media{will-change:transform,opacity;transition:transform .16s linear,opacity .16s linear}
-.motion-title{position:relative;z-index:18;transform:translate3d(0,var(--title-y),0);opacity:var(--scene-alpha)}
-.motion-copy{position:relative;z-index:17;transform:translate3d(0,var(--copy-y),0);opacity:var(--scene-alpha)}
-.motion-media{position:relative;z-index:14;transform:translate3d(0,var(--media-y),0);opacity:calc(.90 + (var(--scene-alpha) * .10))}
-
-/* Plane lives between media and text: it can cross imagery but never blocks copy */
-.flight-layer{position:fixed;inset:0;width:100vw;height:100vh;z-index:15;pointer-events:none;overflow:visible;opacity:0;transition:opacity .16s linear}
-.flight-guide{fill:none;stroke:transparent;stroke-width:0}
-.flight-trail{fill:none;stroke:rgba(242,235,224,.84);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:6 13}
-#paperPlane{filter:drop-shadow(0 5px 10px rgba(0,0,0,.34));transform-box:fill-box;transform-origin:center}
-.plane-body{fill:#f4eee3;stroke:#806f62;stroke-width:1.2}
-
-/* Section dividers participate in the same scene rhythm */
-.section-head .rule{transform-origin:left center;transform:scaleX(var(--rule-scale,1));transition:transform .18s linear}
-
-/* Horizontal photo story for image-heavy projects */
-.carousel-wrap{position:relative;margin-top:28px}
-.carousel{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 8vw 18px 0;cursor:grab;overscroll-behavior-inline:contain}
-.carousel::-webkit-scrollbar{display:none}.carousel.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
-.carousel-card{flex:0 0 min(72vw,760px);scroll-snap-align:start;margin:0}.carousel-card.portrait-card{flex-basis:min(42vw,450px)}
-.carousel-card img{width:100%;height:auto;max-height:72vh;object-fit:contain;background:#0b0b0b;box-shadow:0 16px 40px rgba(0,0,0,.24)}
-.carousel-card figcaption{padding-top:10px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#8f897f}
-.carousel-controls{display:flex;justify-content:flex-end;gap:10px;margin-top:7px}.carousel-btn{width:42px;height:42px;border-radius:999px;border:1px solid rgba(240,234,223,.25);background:rgba(255,255,255,.035);color:var(--paper);cursor:pointer;font-size:17px}.carousel-btn:hover{background:rgba(255,255,255,.1)}
-
-/* Gentle scene continuity rather than independent fade-ins */
-.flight-chapter .container{transition:filter .25s ease}
-.flight-chapter:not(.flight-active) .container{filter:saturate(.96)}
-
-@media(max-width:900px){
-  .carousel-card{flex-basis:84vw}.carousel-card.portrait-card{flex-basis:68vw}
-  .flight-trail{stroke-width:1.8}
+:root{
+  --bg:#080808;
+  --paper:#f2ede4;
+  --muted:#aaa39a;
+  --cream:#ece3d5;
+  --ink:#181411;
+  --burgundy:#341719;
+  --line:rgba(242,237,228,.18);
+  --radius:22px;
+  --max:1180px;
 }
-@media(max-width:640px){
-  :root{--radius:17px}
-  .carousel-card,.carousel-card.portrait-card{flex-basis:88vw}
-  #paperPlane{opacity:.82}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--paper);
+  font-family:"DM Sans",Arial,sans-serif;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit}
+.container{width:min(var(--max),calc(100% - 180px));margin:auto;position:relative;z-index:30}
+.chapter{position:relative;isolation:isolate;overflow:hidden}
+.section{padding:140px 0}
+.eyebrow,.kicker{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)
+}
+.section-head{display:flex;align-items:center;gap:18px;margin-bottom:54px}
+.section-num{font-size:10px;letter-spacing:.22em;color:#837d74;min-width:28px}
+.rule{height:1px;background:var(--line);flex:1;transform-origin:left}
+.section-title{
+  margin:0;font-family:"Playfair Display",Georgia,serif;font-weight:400;
+  font-size:clamp(48px,6.3vw,94px);line-height:.9;letter-spacing:-.045em
+}
+.copy{font-size:15px;line-height:1.8;color:#bdb7ae}
+.rounded{border-radius:var(--radius);overflow:hidden}
+.media-frame{border-radius:var(--radius);overflow:hidden;background:#111}
+.media-frame img{width:100%;height:100%;object-fit:cover}
+.ratio-43{aspect-ratio:4/3}.ratio-34{aspect-ratio:3/4}.ratio-32{aspect-ratio:3/2}
+.ratio-169{aspect-ratio:16/9}.ratio-23{aspect-ratio:2/3}.ratio-poster{aspect-ratio:181/256}
+
+/* ---------- fixed paper-plane journey ---------- */
+.flight-overlay{
+  position:fixed;inset:0;z-index:25;pointer-events:none;overflow:hidden;
+}
+.paper-plane{
+  position:absolute;left:0;top:0;width:46px;height:46px;
+  transform-origin:center;will-change:transform,opacity;
+  filter:drop-shadow(0 5px 12px rgba(0,0,0,.35));
+}
+.paper-plane svg{width:100%;height:100%;overflow:visible}
+.trail-dot{
+  position:absolute;left:0;top:0;width:5px;height:5px;border-radius:50%;
+  background:rgba(242,237,228,.82);
+  transform:translate(-50%,-50%);
+  will-change:transform,opacity;
+  box-shadow:0 0 10px rgba(255,255,255,.08);
+}
+
+/* ---------- nav ---------- */
+.nav{
+  position:absolute;z-index:60;top:0;left:0;width:100%;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:26px 36px;font-size:11px;letter-spacing:.14em;text-transform:uppercase
+}
+.navlinks{display:flex;gap:28px;color:rgba(255,255,255,.7)}
+.nav a:hover{color:white}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;align-items:flex-end;background:#111}
+.hero-media{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.26) 45%,rgba(0,0,0,.94)),
+    url("assets/award-team.jpg") center 45%/cover no-repeat;
+  will-change:transform;
+}
+.hero:after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(0,0,0,.63),rgba(0,0,0,.04) 68%)
+}
+.hero-inner{padding-bottom:8vh;position:relative;z-index:30}
+.hero h1{
+  font-family:"Playfair Display",Georgia,serif;font-weight:400;
+  font-size:clamp(70px,12vw,174px);line-height:.78;letter-spacing:-.055em;
+  margin:0 0 28px;max-width:1050px
+}
+.hero h1 span{
+  display:block;font-family:"DM Sans",Arial,sans-serif;
+  font-size:.22em;line-height:1.15;letter-spacing:.015em;
+  margin-top:30px;max-width:560px
+}
+.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:48px}
+.hero-bottom p{max-width:430px;margin:0;font-size:15px;line-height:1.7;color:#d4cec5}
+.scroll-note{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9a948d}
+
+/* ---------- about: split ---------- */
+.about{background:#090909}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:11vw;align-items:center}
+.about-photo{aspect-ratio:3/2}
+.about-photo img{object-position:center 42%}
+.about-lead{
+  font-family:"Playfair Display",Georgia,serif;font-size:clamp(32px,4.3vw,58px);
+  line-height:1.07;letter-spacing:-.025em;margin:0 0 28px
+}
+.about-copy p{max-width:520px;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:30px}
+.meta span{
+  border:1px solid var(--line);border-radius:999px;
+  padding:9px 12px;font-size:9px;letter-spacing:.12em;text-transform:uppercase
+}
+
+/* ---------- film: cream reveal ---------- */
+.film{background:var(--cream);color:var(--ink)}
+.film .rule{background:rgba(24,20,17,.2)}
+.film .section-num,.film .kicker{color:#766f67}
+.film-head{
+  display:grid;grid-template-columns:1.3fr .7fr;gap:7vw;align-items:end
+}
+.film-title{
+  font-family:"Playfair Display",Georgia,serif;font-size:clamp(58px,8vw,118px);
+  font-weight:400;line-height:.82;letter-spacing:-.055em;margin:0
+}
+.film-copy{color:#5d554d;max-width:450px;margin:0;font-size:14px;line-height:1.8}
+.film-stage{
+  position:relative;display:grid;grid-template-columns:.62fr 1.38fr;
+  gap:44px;align-items:end;margin-top:70px;min-height:760px
+}
+.poster-wrap{width:min(100%,440px);justify-self:end;align-self:start}
+.poster-wrap img{width:100%;height:100%;object-fit:cover}
+.screen-wrap{margin-top:150px}
+.screen-wrap img{width:100%;height:100%;object-fit:cover}
+.film-quote{
+  position:absolute;left:37%;bottom:2%;
+  width:min(62%,720px);z-index:4;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(34px,4.6vw,66px);line-height:1.03;letter-spacing:-.035em
+}
+.film-link{
+  display:inline-flex;margin-top:28px;padding:12px 16px;border:1px solid rgba(24,20,17,.24);
+  border-radius:999px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#423a34
+}
+
+/* ---------- recognition: stacked editorial ---------- */
+.recognition{background:#0d0d0d}
+.recognition-grid{
+  display:grid;grid-template-columns:1.45fr .55fr;gap:18px;align-items:start
+}
+.recognition-main img{width:100%;height:100%;object-fit:cover}
+.recognition-side{display:grid;gap:18px}
+.recognition-side .portrait{aspect-ratio:3/4}
+.recognition-side .landscape{aspect-ratio:4/3}
+.recognition-caption{
+  margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:start
+}
+.recognition-caption h3{
+  margin:0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(38px,4.2vw,62px);line-height:1
+}
+.recognition-caption p{margin:0}
+
+/* ---------- miraculous: photographic sequence ---------- */
+.miraculous{background:#11110f}
+.mm-intro{display:grid;grid-template-columns:.85fr 1.15fr;gap:8vw;align-items:end}
+.mm-title{
+  margin:14px 0 0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(56px,7.5vw,108px);line-height:.84;letter-spacing:-.05em
+}
+.mm-copy{max-width:530px;margin:0}
+.mm-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:68px;align-items:start}
+.mm-card img{width:100%;height:100%;object-fit:cover}
+.mm-card:nth-child(2){margin-top:90px}
+.mm-wide{grid-column:1 / span 2;width:78%;justify-self:center;margin-top:6px}
+.mm-bridge{
+  margin-top:80px;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:start
+}
+.mm-bridge h3{
+  margin:0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(36px,4.6vw,66px);line-height:1.04
+}
+.mm-bridge p{margin:0}
+
+/* ---------- flying heart: edge-peek carousel ---------- */
+.flying{background:#10120f}
+.flying-intro{display:grid;grid-template-columns:.85fr 1.15fr;gap:8vw;align-items:end}
+.flying-title{
+  margin:14px 0 0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(56px,7.5vw,108px);line-height:.84;letter-spacing:-.05em
+}
+.flying-copy{margin:0;max-width:540px}
+.trip{padding-top:58px;margin-top:58px;border-top:1px solid var(--line)}
+.trip-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:6vw;align-items:start;margin-bottom:30px}
+.trip h3{
+  margin:10px 0 0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(36px,4vw,60px);line-height:1
+}
+.trip-head p{margin:0;max-width:550px}
+.carousel-shell{position:relative}
+.carousel-track{
+  display:flex;align-items:stretch;gap:18px;overflow-x:auto;
+  scroll-snap-type:x mandatory;scrollbar-width:none;
+  padding:0 12vw 4px 0;cursor:grab;overscroll-behavior-x:contain
+}
+.carousel-track::-webkit-scrollbar{display:none}
+.carousel-track.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.slide{
+  flex:0 0 auto;height:clamp(330px,56vh,560px);
+  scroll-snap-align:start;position:relative;border-radius:var(--radius);overflow:hidden;background:#171717
+}
+.slide.landscape{aspect-ratio:4/3}
+.slide.portrait{aspect-ratio:3/4}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:45px 18px 15px;
+  background:linear-gradient(transparent,rgba(0,0,0,.65));
+  font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:white
+}
+.carousel-arrow{
+  position:absolute;z-index:5;top:50%;transform:translateY(-50%);
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.34);
+  background:rgba(8,8,8,.52);backdrop-filter:blur(7px);
+  color:white;display:grid;place-items:center;cursor:pointer
+}
+.carousel-arrow.prev{left:14px}.carousel-arrow.next{right:14px}
+.carousel-arrow:hover{background:rgba(8,8,8,.78)}
+
+/* ---------- culture: portrait rhythm ---------- */
+.cham{background:var(--burgundy)}
+.culture-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;align-items:end}
+.culture-title{
+  margin:14px 0 0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(56px,7.4vw,106px);line-height:.84;letter-spacing:-.05em
+}
+.culture-copy{margin:0;max-width:550px;color:#d1c7be}
+.portrait-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start;margin-top:68px
+}
+.portrait-card{aspect-ratio:2/3}
+.portrait-card:nth-child(2),.portrait-card:nth-child(4){margin-top:70px}
+.portrait-card img{width:100%;height:100%;object-fit:cover}
+.culture-caption{
+  margin-top:70px;display:grid;grid-template-columns:1fr 1fr;gap:8vw
+}
+.culture-caption h3{
+  margin:0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(34px,4.2vw,60px);line-height:1.03
+}
+.culture-caption p{margin:0;color:#c7bdb4}
+
+/* ---------- tien: live heritage gallery ---------- */
+.tien{background:#0c0c0c}
+.tien-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;align-items:end}
+.tien-title{
+  margin:14px 0 0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(56px,7.4vw,106px);line-height:.84;letter-spacing:-.05em
+}
+.tien-copy{margin:0;max-width:550px}
+.tien-grid{
+  display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:68px;align-items:start
+}
+.tien-main{aspect-ratio:4/3}
+.tien-side{display:grid;gap:18px}
+.tien-side .land{aspect-ratio:3/2}.tien-side .port{aspect-ratio:3/4}
+.tien-grid img{width:100%;height:100%;object-fit:cover}
+.tien-caption{
+  margin-top:60px;display:grid;grid-template-columns:1fr 1fr;gap:8vw
+}
+.tien-caption h3{
+  margin:0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(34px,4.2vw,60px);line-height:1.03
+}
+.tien-caption p{margin:0}
+
+/* ---------- visual project index ---------- */
+.projects{background:var(--cream);color:var(--ink)}
+.projects .rule{background:rgba(24,20,17,.18)}
+.projects .section-num{color:#766f67}
+.project-index{position:relative}
+.project-row{
+  display:grid;grid-template-columns:60px 1.2fr .8fr 40px;gap:24px;align-items:center;
+  padding:27px 0;border-top:1px solid rgba(24,20,17,.18);cursor:default
+}
+.project-row:last-child{border-bottom:1px solid rgba(24,20,17,.18)}
+.project-row .n{font-size:10px;color:#756e67}
+.project-row h3{
+  margin:0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(28px,3.1vw,44px);line-height:1
+}
+.project-row p{margin:0;font-size:12px;color:#625b54}
+.project-row .arrow{text-align:right;font-size:20px}
+.project-preview{
+  position:absolute;z-index:4;right:5%;top:10%;
+  width:min(330px,28vw);opacity:0;transform:translateY(12px) rotate(2deg);
+  pointer-events:none;transition:opacity .22s ease,transform .3s ease
+}
+.project-preview.show{opacity:1;transform:translateY(0) rotate(0)}
+.project-preview .media-frame{box-shadow:0 20px 50px rgba(0,0,0,.2)}
+
+/* ---------- landing / what next ---------- */
+.next{
+  min-height:86vh;display:flex;align-items:center;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.38)),
+    url("assets/award-stage.jpg") center/cover no-repeat;
+}
+.next h2{
+  margin:14px 0 34px;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(64px,9vw,128px);line-height:.88;letter-spacing:-.055em
+}
+.next p{max-width:600px;margin:0;font-size:16px;line-height:1.8;color:#d8d1c8}
+
+/* ---------- contact: stillness after journey ---------- */
+.contact{background:#080808;padding:100px 0 34px}
+.contact-top{display:flex;justify-content:space-between;gap:50px;align-items:end}
+.contact h2{
+  margin:12px 0 0;font-family:"Playfair Display";font-weight:400;
+  font-size:clamp(64px,9vw,132px);line-height:.84;letter-spacing:-.055em
+}
+.links{display:flex;gap:24px;flex-wrap:wrap;font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+.links a{color:#b8b2aa}.links a:hover{color:white}
+.footer{
+  margin-top:90px;padding-top:22px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:30px;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#777
+}
+
+/* ---------- responsive ---------- */
+@media(max-width:1000px){
+  .container{width:calc(100% - 96px)}
+  .portrait-strip{grid-template-columns:repeat(2,1fr)}
+  .portrait-card:nth-child(2),.portrait-card:nth-child(4){margin-top:35px}
+}
+@media(max-width:760px){
+  :root{--radius:16px}
+  .container{width:calc(100% - 36px)}
+  .nav{padding:20px 18px}.navlinks{display:none}
+  .paper-plane{width:34px;height:34px}
+  .trail-dot{width:4px;height:4px;opacity:.55}
+  .section{padding:90px 0}
+  .about-grid,.film-head,.recognition-caption,.mm-intro,.mm-bridge,
+  .flying-intro,.trip-head,.culture-intro,.culture-caption,.tien-intro,
+  .tien-caption{grid-template-columns:1fr}
+  .film-stage{grid-template-columns:1fr;min-height:auto;gap:22px}
+  .poster-wrap{justify-self:start;width:68%}
+  .screen-wrap{margin-top:0}
+  .film-quote{position:static;width:auto;margin-top:28px}
+  .recognition-grid,.tien-grid{grid-template-columns:1fr}
+  .recognition-side{grid-template-columns:1fr 1fr}
+  .recognition-side .portrait,.recognition-side .landscape{aspect-ratio:4/3}
+  .mm-grid{grid-template-columns:1fr}
+  .mm-card:nth-child(2){margin-top:0}.mm-wide{grid-column:auto;width:100%}
+  .portrait-strip{grid-template-columns:1fr 1fr}
+  .slide{height:54vh;max-height:430px}
+  .carousel-track{padding-right:16vw}
+  .project-row{grid-template-columns:36px 1fr 24px}
+  .project-row p{grid-column:2}.project-row .arrow{grid-column:3;grid-row:1}
+  .project-preview{display:none}
+  .contact-top,.hero-bottom{display:block}
+  .hero-bottom p{margin-top:30px}
+  .links{margin-top:40px}
+  .footer{display:block;line-height:2}
 }
 @media(prefers-reduced-motion:reduce){
-  .flight-layer{display:none}.motion-title,.motion-copy,.motion-media,.section-head .rule{transform:none!important;opacity:1!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .flight-overlay{display:none}
+  *{transition:none!important;animation:none!important}
 }
-
-@media(max-width:800px){.fh-intro,.trip-head,.culture-intro,.culture-caption,.tien-intro,.tien-caption{grid-template-columns:1fr}.trip-grid,.trip-grid.small,.culture-layout,.tien-layout{grid-template-columns:1fr;grid-auto-rows:auto}.trip-grid .a,.trip-grid .d,.trip-grid.small .a,.culture-layout .large,.tien-main{grid-row:auto;grid-column:auto}.tien-side{grid-template-rows:auto;grid-template-columns:1fr;gap:18px}.mm-intro,.mm-bridge{grid-template-columns:1fr}.mm-gallery{min-height:860px}.mm-studio{width:86%;height:330px}.mm-outdoor{width:62%;height:270px;top:285px}.mm-graduation{width:76%;height:300px;left:5%;bottom:0}.mm-label.one{top:342px}.mm-label.two{top:565px}.mm-label.three{left:5%}.container{width:calc(100% - 36px)}.nav{padding:20px 18px}.navlinks{display:none}.hero-content{padding-bottom:48px}.hero h1{font-size:clamp(64px,19vw,115px)}.hero-bottom{display:block}.statement{margin-top:30px}.section{padding:85px 0}.section-head{margin-bottom:38px}.about-grid,.feature-top,.recognition-grid,.origin-grid{grid-template-columns:1fr}.portrait{min-height:470px}.poster-composition{min-height:790px}.poster{width:67%;left:0}.emotion{width:76%;height:390px;top:350px}.quote{left:10%;bottom:0;width:88%}.rec-caption,.contact-top{display:block}.rec-caption p{margin-top:20px}.rec-main{min-height:auto}.rec-side{grid-template-rows:auto}.origin-photo{height:480px}.project{grid-template-columns:40px 1fr 30px;gap:12px}.project p{grid-column:2}.project-arrow{grid-column:3;grid-row:1}.links{margin-top:40px}.footer{display:block;line-height:2}}
 </style>
 </head>
 <body>
 
-<svg class="flight-layer" id="flightLayer" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
-  <path id="flightGuide" class="flight-guide" d="M800 -80 C760 180 340 180 430 420 C520 660 820 650 650 1080"/>
-  <path id="flightTrail" class="flight-trail" d="M800 -80 C760 180 340 180 430 420 C520 660 820 650 650 1080"/>
-  <g id="paperPlane">
-    <path class="plane-body" d="M0 4 L38 16 L15 23 L10 40 Z"/>
-    <path d="M15 23 L38 16 L11 30 Z" fill="none" stroke="#806f62" stroke-width="1.5"/>
-  </g>
-</svg>
+<div class="flight-overlay" id="flightOverlay" aria-hidden="true">
+  <div id="trailDots"></div>
+  <div class="paper-plane" id="paperPlane">
+    <svg viewBox="0 0 48 48">
+      <path d="M4 8 L43 20 L20 27 L14 43 Z" fill="#f4eee4" stroke="#786a5d" stroke-width="1.1"/>
+      <path d="M20 27 L43 20 L15 34" fill="none" stroke="#786a5d" stroke-width="1.3"/>
+    </svg>
+  </div>
+</div>
 
-<header class="nav"><a href="#">KIET ANH NGUYEN</a><nav class="navlinks"><a href="#about">About</a><a href="#film">Film</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav></header>
+<header class="nav">
+  <a href="#intro">KIET ANH NGUYEN</a>
+  <nav class="navlinks">
+    <a href="#about">About</a>
+    <a href="#film">Film</a>
+    <a href="#community">Community</a>
+    <a href="#culture">Culture</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-<section class="hero flight-chapter" data-flight="intro"><div class="hero-media"></div><div class="container hero-content"><div class="eyebrow">Multimedia Communication · Storytelling · Social Impact</div><h1 class="motion-title">Stories<span>can change the way we see people.</span></h1><div class="hero-bottom motion-copy"><div class="scroll">Scroll to explore ↓</div><p class="statement">A personal archive of films, photography, community projects, and the stories that shaped how I see communication.</p></div></div></section>
+<main>
+<section class="hero chapter" id="intro" data-scene="hero" data-motion="hero">
+  <div class="hero-media motion-bg"></div>
+  <div class="container hero-inner">
+    <div class="eyebrow">Multimedia Communication · Storytelling · Social Impact</div>
+    <h1 class="motion-title">Stories<span>can change the way we see people.</span></h1>
+    <div class="hero-bottom">
+      <div class="scroll-note">Scroll to follow the journey ↓</div>
+      <p class="motion-copy">A personal archive of films, photography, community projects, and the stories that shaped how I see communication.</p>
+    </div>
+  </div>
+</section>
 
-<section class="section flight-chapter" id="about" data-flight="about"><div class="container"><div class="section-head"><span class="section-num">01</span><div class="rule"></div><h2 class="section-title motion-title">About me</h2></div><div class="about-grid reveal motion-media"><div class="portrait"><small>Storytelling through lived moments</small></div><div class="about-copy"><p class="lead">I explore how storytelling can create empathy and turn awareness into action.</p><p>I am a Multimedia Communication student interested in visual storytelling, social impact, community work, and cultural projects. My work often begins with listening: to people, to their everyday experiences, and to the stories that are easy to overlook.</p><div class="meta"><span>Visual Storytelling</span><span>Social Impact</span><span>Community</span><span>Culture</span></div></div></div></div></section>
+<section class="section about chapter" id="about" data-scene="about" data-motion="split">
+  <div class="container">
+    <div class="section-head"><span class="section-num">01</span><div class="rule"></div><h2 class="section-title motion-title">About me</h2></div>
+    <div class="about-grid">
+      <div class="media-frame about-photo motion-media"><img src="assets/screening-emotion.jpg" alt="A screening moment connected to Kiet's storytelling work"></div>
+      <div class="about-copy motion-copy">
+        <p class="about-lead">I explore how storytelling can create empathy and turn awareness into action.</p>
+        <p class="copy">I am a Multimedia Communication student interested in visual storytelling, social impact, community work, and cultural projects. My work often begins with listening: to people, to their everyday experiences, and to the stories that are easy to overlook.</p>
+        <div class="meta"><span>Visual Storytelling</span><span>Social Impact</span><span>Community</span><span>Culture</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="section feature flight-chapter" id="film" data-flight="film"><div class="container"><div class="section-head"><span class="section-num">02</span><div class="rule"></div><span style="font-size:12px;letter-spacing:.18em;text-transform:uppercase">Featured story</span></div><div class="feature-top reveal"><h2 class="film-title motion-title">The Window<br>Without a Horizon</h2><p class="film-copy motion-copy"><strong>Cửa Sổ Không Có Đường Chân Trời</strong><br><br>A short film inspired by my experience meeting children with cancer, exploring their everyday lives, dreams, and the people who care for them.<br><br><span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7b7168">Film link will be added later.</span></p></div><div class="poster-composition reveal motion-media"><img class="poster" src="assets/film-poster.jpg" alt="The Window Without a Horizon film poster"><img class="emotion" src="assets/screening-emotion.jpg" alt="Emotional moment during the film screening"><div class="quote">“Before seeing their illness, I wanted people to see the children.”</div></div></div></section>
+<section class="section film chapter" id="film" data-scene="film" data-motion="film">
+  <div class="container">
+    <div class="section-head"><span class="section-num">02</span><div class="rule"></div><span class="kicker">Featured story</span></div>
+    <div class="film-head">
+      <h2 class="film-title motion-title">The Window<br>Without a Horizon</h2>
+      <p class="film-copy motion-copy"><strong>Cửa Sổ Không Có Đường Chân Trời</strong><br><br>A short film inspired by my experience meeting children with cancer, exploring their everyday lives, dreams, and the people who care for them.</p>
+    </div>
+    <div class="film-stage">
+      <div class="media-frame ratio-poster poster-wrap motion-item"><img src="assets/film-poster.jpg" alt="The Window Without a Horizon film poster"></div>
+      <div class="media-frame ratio-32 screen-wrap motion-item"><img src="assets/screening-emotion.jpg" alt="Emotional moment during the film screening"></div>
+      <div class="film-quote motion-copy">“Before seeing their illness, I wanted people to see the children.”</div>
+    </div>
+    <span class="film-link">Film link will be added later ↗</span>
+  </div>
+</section>
 
+<section class="section recognition chapter" data-scene="recognition" data-motion="stack">
+  <div class="container">
+    <div class="section-head"><span class="section-num">03</span><div class="rule"></div><h2 class="section-title motion-title">Recognition</h2></div>
+    <div class="recognition-grid motion-media">
+      <div class="media-frame ratio-32 recognition-main motion-item"><img src="assets/award-stage.jpg" alt="Best Short Film recognition on stage"></div>
+      <div class="recognition-side">
+        <div class="media-frame portrait motion-item"><img src="assets/award-guests.jpg" alt="Film team and guests with poster and award"></div>
+        <div class="media-frame landscape motion-item"><img src="assets/award-team.jpg" alt="Film team with awards"></div>
+      </div>
+    </div>
+    <div class="recognition-caption">
+      <h3 class="motion-title">Best Short Film</h3>
+      <p class="copy motion-copy">Recognition is part of the film’s journey, but not the center of it. The story and the people behind it remain the reason the work matters to me.</p>
+    </div>
+  </div>
+</section>
 
-<section class="section recognition flight-chapter" data-flight="recognition"><div class="container"><div class="section-head"><span class="section-num">03</span><div class="rule"></div><h2 class="section-title motion-title">Recognition</h2></div><div class="recognition-grid reveal motion-media"><img class="rec-main" src="assets/award-stage.jpg" alt="Best Short Film recognition"><div class="rec-side"><img src="assets/award-team.jpg" alt="Film team with awards"><img src="assets/award-guests.jpg" alt="Film team and guests with poster and award"></div></div><div class="rec-caption reveal motion-copy"><h3>Best Short Film</h3><p>Recognition is presented here as part of the film's journey rather than the center of the story.</p></div></div></section>
-
-<section class="section miraculous flight-chapter" id="miraculous" data-flight="miraculous">
-<div class="container">
-  <div class="section-head"><span class="section-num">04</span><div class="rule"></div><h2 class="section-title">Where it started</h2></div>
-  <div class="mm-intro reveal">
-    <div>
-      <div class="mm-kicker">Miraculous Moments · Khoảnh Khắc Diệu Kỳ</div>
+<section class="section miraculous chapter" data-scene="miraculous" data-motion="collage">
+  <div class="container">
+    <div class="section-head"><span class="section-num">04</span><div class="rule"></div><span class="kicker">Miraculous Moments · Khoảnh Khắc Diệu Kỳ</span></div>
+    <div class="mm-intro">
       <h2 class="mm-title motion-title">A story before the film.</h2>
+      <p class="copy mm-copy motion-copy">Miraculous Moments began with a volunteering experience where I met pediatric cancer survivors, listened to their stories, and shared moments of creativity and joy. Through photography, the children were not simply subjects of a story — they were making images of their own.</p>
     </div>
-    <p class="mm-copy motion-copy">Miraculous Moments began with a volunteering experience where I met pediatric cancer survivors, listened to their stories, and shared moments of creativity and joy. Through photography, the children were not simply subjects of a story — they were making images of their own.</p>
+    <div class="mm-grid motion-media">
+      <div class="media-frame ratio-32 mm-card motion-item"><img src="assets/miraculous-studio.jpg" alt="Miraculous Moments studio photography session"></div>
+      <div class="media-frame ratio-32 mm-card motion-item"><img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography activity"></div>
+      <div class="media-frame ratio-169 mm-card mm-wide motion-item"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments photography class graduation"></div>
+    </div>
+    <div class="mm-bridge">
+      <h3 class="motion-title">Before seeing their illness, I wanted people to see the children.</h3>
+      <p class="copy motion-copy">That experience later shaped <em>The Window Without a Horizon</em> and made me think more seriously about the responsibility of communication: not only how we tell a story, but how we choose to see the person inside it.</p>
+    </div>
   </div>
-  <div class="mm-gallery reveal motion-media">
-    <img class="mm-studio" src="assets/miraculous-studio.jpg" alt="Miraculous Moments photography studio session">
-    <span class="mm-label one">01 / Learning together</span>
-    <img class="mm-outdoor" src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography activity">
-    <span class="mm-label two">02 / Taking the camera outside</span>
-    <img class="mm-graduation" src="assets/miraculous-graduation.jpg" alt="Miraculous Moments photography class graduation">
-    <span class="mm-label three">03 / Graduation day</span>
-  </div>
-  <div class="mm-bridge reveal motion-copy">
-    <div class="mm-bridge-quote">Before seeing their illness, I wanted people to see the children.</div>
-    <p>That experience stayed with me. It later shaped <em>The Window Without a Horizon</em> and made me think more seriously about the responsibility of communication: not only how we tell a story, but how we choose to see the person inside it.</p>
-  </div>
-</div>
 </section>
 
+<section class="section flying chapter" id="community" data-scene="flying" data-motion="horizontal">
+  <div class="container">
+    <div class="section-head"><span class="section-num">05</span><div class="rule"></div><span class="kicker">Flying Heart · Volunteer work</span></div>
+    <div class="flying-intro">
+      <h2 class="flying-title motion-title">Field notes from the road.</h2>
+      <p class="copy flying-copy motion-copy">Flying Heart brought me closer to community work on the ground: long roads, preparation, meeting families and children, and helping create small moments of care.</p>
+    </div>
 
-<section class="section flying flight-chapter" id="flying-heart" data-flight="community">
-<div class="container">
-  <div class="section-head"><span class="section-num">05</span><div class="rule"></div><h2 class="section-title">Flying Heart</h2></div>
-  <div class="fh-intro reveal">
-    <div>
-      <div class="fh-kicker">Volunteer work · Community outreach</div>
-      <h2 class="fh-title motion-title">Field notes from the road.</h2>
+    <div class="trip">
+      <div class="trip-head">
+        <div><span class="kicker">Đắk Lắk · Outreach trip</span><h3>Meeting people where they are.</h3></div>
+        <p class="copy">A field journal of preparation, presence, and the people we met along the way.</p>
+      </div>
+      <div class="carousel-shell motion-media">
+        <button class="carousel-arrow prev" aria-label="Previous">←</button>
+        <div class="carousel-track" data-carousel>
+          <figure class="slide portrait"><img src="assets/flying-daklak-1.jpg" alt="Mother carrying a sleeping child"><figcaption>01 / On the road</figcaption></figure>
+          <figure class="slide portrait"><img src="assets/flying-daklak-2.jpg" alt="Children receiving support"><figcaption>02 / Meeting families</figcaption></figure>
+          <figure class="slide landscape"><img src="assets/flying-daklak-3.jpg" alt="Preparing donated goods"><figcaption>03 / Preparing support</figcaption></figure>
+          <figure class="slide landscape"><img src="assets/flying-daklak-4.jpg" alt="Volunteer team with children"><figcaption>04 / Together on site</figcaption></figure>
+          <figure class="slide landscape"><img src="assets/flying-daklak-5.jpg" alt="Kiet with children"><figcaption>05 / Small encounters</figcaption></figure>
+          <figure class="slide landscape"><img src="assets/flying-daklak-6.jpg" alt="Flying Heart group photo"><figcaption>06 / Community</figcaption></figure>
+        </div>
+        <button class="carousel-arrow next" aria-label="Next">→</button>
+      </div>
     </div>
-    <p class="fh-copy motion-copy">Flying Heart is part of my journey as a volunteer. These trips brought me closer to community work on the ground, from meeting families and children to helping prepare and distribute gifts. I keep them here not as achievements, but as lived moments that continue shaping how I think about care, presence, and social impact.</p>
-  </div>
 
-  <div class="trip reveal">
-    <div class="trip-head">
-      <div>
-        <div class="trip-meta">Đắk Lắk · Outreach trip</div>
-        <h3>Meeting people where they are.</h3>
+    <div class="trip">
+      <div class="trip-head">
+        <div><span class="kicker">Đồng Nai · Mid-Autumn outreach</span><h3>A crowded night of celebration.</h3></div>
+        <p class="copy">A different rhythm: fuller, louder, and more festive, with gifts and a shared Mid-Autumn gathering for children and families.</p>
       </div>
-      <p>This trip to Đắk Lắk carried the spirit of a field journal: small encounters, long roads, shared effort, and the quiet reality behind community outreach. The photos move between preparation, presence, and the people we met along the way.</p>
-    </div>
-    <div class="carousel-wrap motion-media">
-      <div class="carousel" data-carousel>
-        <figure class="carousel-card portrait-card"><img src="assets/flying-daklak-1.jpg" alt="Volunteer outreach in Dak Lak with a mother carrying a sleeping child"><figcaption>01 / On the road</figcaption></figure>
-        <figure class="carousel-card portrait-card"><img src="assets/flying-daklak-2.jpg" alt="Children receiving support during the Dak Lak trip"><figcaption>02 / Meeting families</figcaption></figure>
-        <figure class="carousel-card"><img src="assets/flying-daklak-3.jpg" alt="Kiet volunteering with donated goods during the Dak Lak trip"><figcaption>03 / Preparing support</figcaption></figure>
-        <figure class="carousel-card"><img src="assets/flying-daklak-4.jpg" alt="Flying Heart volunteer team with children during the Dak Lak trip"><figcaption>04 / Together on site</figcaption></figure>
-        <figure class="carousel-card"><img src="assets/flying-daklak-5.jpg" alt="Kiet with children during community outreach in Dak Lak"><figcaption>05 / Small encounters</figcaption></figure>
-        <figure class="carousel-card"><img src="assets/flying-daklak-6.jpg" alt="Flying Heart group photo with children and support packages in Dak Lak"><figcaption>06 / Community</figcaption></figure>
+      <div class="carousel-shell motion-media">
+        <button class="carousel-arrow prev" aria-label="Previous">←</button>
+        <div class="carousel-track" data-carousel>
+          <figure class="slide landscape"><img src="assets/flying-dongnai-1.jpg" alt="Mid-Autumn community gathering"><figcaption>01 / Gathering</figcaption></figure>
+          <figure class="slide portrait"><img src="assets/flying-dongnai-2.jpg" alt="Children during the outreach"><figcaption>02 / Shared celebration</figcaption></figure>
+          <figure class="slide landscape"><img src="assets/flying-dongnai-3.jpg" alt="Gift bags prepared for children"><figcaption>03 / Gifts prepared</figcaption></figure>
+        </div>
+        <button class="carousel-arrow next" aria-label="Next">→</button>
       </div>
-      <div class="carousel-controls"><button class="carousel-btn prev" aria-label="Previous image">←</button><button class="carousel-btn next" aria-label="Next image">→</button></div>
-    </div>
-  </div>
-
-  <div class="trip reveal">
-    <div class="trip-head">
-      <div>
-        <div class="trip-meta">Đồng Nai · Mid-Autumn outreach</div>
-        <h3>A crowded night of celebration.</h3>
-      </div>
-      <p>The Đồng Nai trip felt different: fuller, louder, and more festive. With Mid-Autumn activities, gifts, and a large gathering of children, the focus shifted toward creating a shared moment of joy while still holding onto the values of care and connection.</p>
-    </div>
-    <div class="carousel-wrap motion-media">
-      <div class="carousel" data-carousel>
-        <figure class="carousel-card"><img src="assets/flying-dongnai-1.jpg" alt="Crowded Mid-Autumn community event in Dong Nai"><figcaption>01 / Mid-Autumn gathering</figcaption></figure>
-        <figure class="carousel-card portrait-card"><img src="assets/flying-dongnai-2.jpg" alt="Children gathering during the Mid-Autumn outreach event in Dong Nai"><figcaption>02 / Shared celebration</figcaption></figure>
-        <figure class="carousel-card"><img src="assets/flying-dongnai-3.jpg" alt="Gift bags prepared for children during the Dong Nai outreach trip"><figcaption>03 / Gifts prepared</figcaption></figure>
-      </div>
-      <div class="carousel-controls"><button class="carousel-btn prev" aria-label="Previous image">←</button><button class="carousel-btn next" aria-label="Next image">→</button></div>
     </div>
   </div>
-</div>
 </section>
 
-
-<section class="section culture flight-chapter" id="cham-viet-phuc" data-flight="cultureA">
-<div class="container">
-  <div class="section-head"><span class="section-num">06</span><div class="rule"></div><h2 class="section-title">Chạm Việt Phục</h2></div>
-  <div class="culture-intro reveal">
-    <div>
-      <div class="culture-kicker">Cultural project · Workshop & exhibition</div>
+<section class="section cham chapter" id="culture" data-scene="cham" data-motion="portraits">
+  <div class="container">
+    <div class="section-head"><span class="section-num">06</span><div class="rule"></div><span class="kicker">Chạm Việt Phục · Workshop & exhibition</span></div>
+    <div class="culture-intro">
       <h2 class="culture-title motion-title">Bringing heritage closer.</h2>
+      <p class="culture-copy motion-copy">A student-led cultural project inviting people to engage with Vietnamese traditional clothing through display, conversation, and participation.</p>
     </div>
-    <p class="culture-copy motion-copy">Chạm Việt Phục was a student-led cultural project that invited people to engage with Vietnamese traditional clothing in a more approachable way. I joined as part of the organizing effort and contributed through concept support, content direction, and on-site interaction during the event.</p>
+    <div class="portrait-strip motion-media">
+      <div class="media-frame portrait-card motion-item"><img src="assets/cham-1.jpg" alt="Traditional costume display"></div>
+      <div class="media-frame portrait-card motion-item"><img src="assets/cham-2.jpg" alt="Kiet speaking with a participant"></div>
+      <div class="media-frame portrait-card motion-item"><img src="assets/cham-3.jpg" alt="On-site styling and preparation"></div>
+      <div class="media-frame portrait-card motion-item"><img src="assets/cham-4.jpg" alt="Interactive activity area"></div>
+    </div>
+    <div class="culture-caption">
+      <h3 class="motion-title">Culture becomes more meaningful when people can step into it.</h3>
+      <p class="copy motion-copy">What mattered most was creating a space where people could ask, listen, and participate — not simply look at cultural artifacts from a distance.</p>
+    </div>
   </div>
-  <div class="culture-layout reveal motion-media">
-    <img class="large" src="assets/cham-1.jpg" alt="Traditional costume display at Cham Viet Phuc">
-    <img src="assets/cham-2.jpg" alt="Kiet in traditional attire speaking with a participant at Cham Viet Phuc">
-    <img src="assets/cham-3.jpg" alt="On-site preparation and styling at Cham Viet Phuc">
-    <img src="assets/cham-4.jpg" alt="Interactive activity area at Cham Viet Phuc">
-  </div>
-  <div class="culture-caption reveal motion-copy">
-    <h3>Culture becomes more meaningful when people can step into it.</h3>
-    <p>What mattered most to me was not only presenting cultural artifacts, but creating a space where people could ask, listen, and participate. That experience strengthened my interest in cultural communication and in designing activities that help heritage feel lived, shared, and relevant to young audiences.</p>
-  </div>
-</div>
 </section>
 
-
-<section class="section tien flight-chapter" id="tien-thuong-tuan-du" data-flight="cultureB">
-<div class="container">
-  <div class="section-head"><span class="section-num">07</span><div class="rule"></div><h2 class="section-title">Tiên Thường Tuần Du</h2></div>
-  <div class="tien-intro reveal">
-    <div>
-      <div class="tien-kicker">Cultural project · Community participation</div>
+<section class="section tien chapter" data-scene="tien" data-motion="gallery">
+  <div class="container">
+    <div class="section-head"><span class="section-num">07</span><div class="rule"></div><span class="kicker">Tiên Thường Tuần Du · Cultural participation</span></div>
+    <div class="tien-intro">
       <h2 class="tien-title motion-title">Tradition in motion.</h2>
+      <p class="copy tien-copy motion-copy">A cultural space where costume, performance, and community participation came together. I joined as a volunteer and experienced heritage as something carried by people, not kept behind glass.</p>
     </div>
-    <p class="tien-copy motion-copy">Tiên Thường Tuần Du was another cultural space where I took part as a volunteer, supporting activities that brought together performance, costume, and community interaction. What drew me to this project was how culture could be experienced not as something distant, but as something alive, shared, and carried by people.</p>
-  </div>
-  <div class="tien-layout reveal motion-media">
-    <img class="tien-main" src="assets/tien-2.jpg" alt="Group photo at Tien Thuong Tuan Du cultural booth">
-    <div class="tien-side">
-      <img src="assets/tien-1.jpg" alt="Participants in traditional attire at Tien Thuong Tuan Du">
-      <img src="assets/tien-3.jpg" alt="Cultural participants posing together during Tien Thuong Tuan Du">
+    <div class="tien-grid motion-media">
+      <div class="media-frame tien-main motion-item"><img src="assets/tien-2.jpg" alt="Cultural group photo at Tien Thuong Tuan Du"></div>
+      <div class="tien-side">
+        <div class="media-frame land motion-item"><img src="assets/tien-1.jpg" alt="Participants in traditional attire"></div>
+        <div class="media-frame port motion-item"><img src="assets/tien-3.jpg" alt="Cultural participants posing together"></div>
+      </div>
+    </div>
+    <div class="tien-caption">
+      <h3 class="motion-title">Heritage becomes stronger when it is practiced together.</h3>
+      <p class="copy motion-copy">These events showed me how cultural projects can become spaces for participation, conversation, and connection across identities and traditions.</p>
     </div>
   </div>
-  <div class="tien-caption reveal motion-copy">
-    <h3>Projects like this taught me that heritage becomes stronger when it is practiced together.</h3>
-    <p>Beyond documentation, I was interested in the atmosphere these events created: people meeting across regions, identities, and traditions. As a volunteer, I saw how cultural projects can become spaces for participation, conversation, and connection — and that is a direction I hope to keep exploring in my work.</p>
-  </div>
-</div>
 </section>
 
-<section class="section projects flight-chapter" id="projects" data-flight="archive"><div class="container"><div class="section-head"><span class="section-num">08</span><div class="rule"></div><h2 class="section-title motion-title">Selected projects</h2></div><div class="project reveal"><div>01</div><h3>Miraculous Moments</h3><p>Community · Photography · Social Impact</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>02</div><h3>The Window Without a Horizon</h3><p>Short Film · Screenwriting · Social Impact</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>03</div><h3>Flying Heart</h3><p>Volunteer Work · Community Outreach</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>04</div><h3>Chạm Việt Phục</h3><p>Cultural Heritage · Youth Advocacy</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>05</div><h3>Tiên Thường Tuần Du</h3><p>Cultural Heritage · Community Event</p><div class="project-arrow">↗</div></div></div></section>
+<section class="section projects chapter" id="projects" data-scene="projects" data-motion="index">
+  <div class="container">
+    <div class="section-head"><span class="section-num">08</span><div class="rule"></div><h2 class="section-title motion-title">Selected projects</h2></div>
+    <div class="project-index">
+      <div class="project-preview" id="projectPreview"><div class="media-frame ratio-43"><img id="projectPreviewImg" src="assets/miraculous-outdoor.jpg" alt=""></div></div>
+      <div class="project-row motion-item" data-preview="assets/miraculous-outdoor.jpg"><div class="n">01</div><h3>Miraculous Moments</h3><p>Community · Photography · Social Impact</p><div class="arrow">↗</div></div>
+      <div class="project-row motion-item" data-preview="assets/film-poster.jpg"><div class="n">02</div><h3>The Window Without a Horizon</h3><p>Short Film · Screenwriting · Social Impact</p><div class="arrow">↗</div></div>
+      <div class="project-row motion-item" data-preview="assets/flying-daklak-4.jpg"><div class="n">03</div><h3>Flying Heart</h3><p>Volunteer Work · Community Outreach</p><div class="arrow">↗</div></div>
+      <div class="project-row motion-item" data-preview="assets/cham-2.jpg"><div class="n">04</div><h3>Chạm Việt Phục</h3><p>Cultural Heritage · Youth Advocacy</p><div class="arrow">↗</div></div>
+      <div class="project-row motion-item" data-preview="assets/tien-2.jpg"><div class="n">05</div><h3>Tiên Thường Tuần Du</h3><p>Cultural Heritage · Community Event</p><div class="arrow">↗</div></div>
+    </div>
+  </div>
+</section>
 
-<section class="next flight-chapter" data-flight="next"><div class="container reveal"><div class="eyebrow">09 / What's next</div><h2 class="motion-title">Awareness.<br>Understanding.<br>Action.</h2><p class="motion-copy">I want to keep exploring how communication can turn awareness into understanding, and understanding into meaningful action. This direction will continue through my graduation project and the next stage of Miraculous Moments.</p></div></section>
+<section class="next chapter" data-scene="next" data-motion="landing">
+  <div class="container">
+    <div class="eyebrow">09 / What's next</div>
+    <h2 class="motion-title">Awareness.<br>Understanding.<br>Action.</h2>
+    <p class="motion-copy">I want to keep exploring how communication can turn awareness into understanding, and understanding into meaningful action. This direction will continue through my graduation project and the next stage of Miraculous Moments.</p>
+  </div>
+</section>
 
-<section class="contact" id="contact"><div class="container"><div class="contact-top reveal"><div><div class="eyebrow">10 / Find me elsewhere</div><h2>Let's connect.</h2></div><div class="links"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a><a href="mailto:your@email.com">Email</a></div></div><div class="footer"><span>© 2026 Kiet Anh Nguyen</span><span>Multimedia Communication · Storytelling · Social Impact</span></div></div></section>
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-top">
+      <div><div class="eyebrow">10 / Find me elsewhere</div><h2>Let's connect.</h2></div>
+      <div class="links"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a><a href="mailto:your@email.com">Email</a></div>
+    </div>
+    <div class="footer"><span>© 2026 Kiet Anh Nguyen</span><span>Multimedia Communication · Storytelling · Social Impact</span></div>
+  </div>
+</section>
+</main>
 
 <script>
-const clamp=(v,min=0,max=1)=>Math.min(Math.max(v,min),max);
-const smoothstep=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
-
-/* Each chapter has its own invisible flight path. All paths begin above and end below. */
-const FLIGHT_PATHS={
-  intro:'M820 -90 C820 140 650 210 470 255 C270 305 300 500 560 560 C790 615 810 790 610 1090',
-  about:'M160 -90 C210 160 440 175 560 310 C680 445 590 610 370 650 C185 685 220 865 470 1090',
-  film:'M850 -90 C790 155 600 205 520 345 C430 505 570 635 790 650 C925 660 845 855 610 1090',
-  recognition:'M170 -90 C160 160 360 235 590 260 C820 285 845 470 685 555 C515 645 280 660 320 865 C345 960 455 1020 565 1090',
-  miraculous:'M835 -90 C830 170 665 225 455 270 C255 315 280 515 560 565 C815 610 785 805 520 1090',
-  community:'M120 -90 C170 160 415 205 640 260 C875 318 880 500 625 565 C365 635 230 760 390 1090',
-  cultureA:'M860 -90 C815 160 650 205 500 330 C340 465 400 600 690 630 C865 650 830 835 585 1090',
-  cultureB:'M145 -90 C160 160 360 230 585 300 C820 370 790 545 555 595 C300 650 275 825 510 1090',
-  archive:'M820 -90 C790 165 595 230 425 310 C245 395 315 585 650 625 C835 645 815 855 590 1090',
-  next:'M160 -90 C180 190 430 245 645 330 C850 410 820 600 590 675 C390 740 445 920 790 1090'
-};
-
-const layer=document.getElementById('flightLayer');
-const guide=document.getElementById('flightGuide');
-const trail=document.getElementById('flightTrail');
+const clamp=(v,a=0,b=1)=>Math.min(Math.max(v,a),b);
+const lerp=(a,b,t)=>a+(b-a)*t;
+const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
+const chapters=[...document.querySelectorAll('.chapter')];
 const plane=document.getElementById('paperPlane');
-const chapters=[...document.querySelectorAll('[data-flight]')];
-let activeScene='';
-let pathLength=0;
-let ticking=false;
+const overlay=document.getElementById('flightOverlay');
+const dotsHost=document.getElementById('trailDots');
 
-function setScene(scene){
-  if(scene===activeScene)return;
-  activeScene=scene;
-  const d=FLIGHT_PATHS[scene]||FLIGHT_PATHS.intro;
-  guide.setAttribute('d',d);
-  trail.setAttribute('d',d);
-  pathLength=guide.getTotalLength();
+/* continuous key points: mostly side/top/bottom safe corridors */
+const POINTS=[
+  {x:.89,y:.18}, // hero
+  {x:.90,y:.76}, // about
+  {x:.12,y:.84}, // film
+  {x:.08,y:.20}, // recognition
+  {x:.92,y:.14}, // miraculous
+  {x:.94,y:.78}, // flying
+  {x:.10,y:.84}, // cham
+  {x:.08,y:.20}, // tien
+  {x:.92,y:.16}, // projects
+  {x:.91,y:.78}, // next
+  {x:.54,y:1.12} // leave before contact
+];
+
+/* control points keep crossings near top/bottom gutters */
+const CONTROLS=[
+  [{x:.96,y:.34},{x:.95,y:.61}],                         // hero->about right edge
+  [{x:.94,y:.90},{x:.20,y:.92}],                         // about->film along bottom
+  [{x:.05,y:.68},{x:.04,y:.34}],                         // film->recognition left edge
+  [{x:.18,y:.08},{x:.82,y:.07}],                         // recognition->miraculous top
+  [{x:.96,y:.30},{x:.97,y:.62}],                         // miraculous->flying right
+  [{x:.94,y:.91},{x:.18,y:.92}],                         // flying->cham bottom
+  [{x:.05,y:.70},{x:.04,y:.35}],                         // cham->tien left
+  [{x:.20,y:.07},{x:.81,y:.07}],                         // tien->projects top
+  [{x:.97,y:.32},{x:.96,y:.62}],                         // projects->next right
+  [{x:.88,y:.92},{x:.66,y:1.03}]                         // next->exit
+];
+
+function bezier(p0,c1,c2,p1,t){
+  const u=1-t;
+  return {
+    x:u*u*u*p0.x+3*u*u*t*c1.x+3*u*t*t*c2.x+t*t*t*p1.x,
+    y:u*u*u*p0.y+3*u*u*t*c1.y+3*u*t*t*c2.y+t*t*t*p1.y
+  };
+}
+function bezierDerivative(p0,c1,c2,p1,t){
+  const u=1-t;
+  return {
+    x:3*u*u*(c1.x-p0.x)+6*u*t*(c2.x-c1.x)+3*t*t*(p1.x-c2.x),
+    y:3*u*u*(c1.y-p0.y)+6*u*t*(c2.y-c1.y)+3*t*t*(p1.y-c2.y)
+  };
 }
 
-function currentChapter(){
-  const y=window.scrollY+window.innerHeight*.5;
-  let chosen=chapters[0];
-  let best=Infinity;
-  for(const section of chapters){
-    const top=section.offsetTop;
-    const bottom=top+section.offsetHeight;
-    if(y>=top && y<=bottom)return section;
-    const dist=y<top?top-y:y-bottom;
-    if(dist<best){best=dist;chosen=section;}
+/* short dotted trail made from recent screen positions */
+const trail=[];
+const dotEls=[];
+for(let i=0;i<24;i++){
+  const d=document.createElement('span');
+  d.className='trail-dot';
+  dotsHost.appendChild(d);
+  dotEls.push(d);
+}
+let lastPoint=null;
+function updateTrail(x,y){
+  if(!lastPoint || Math.hypot(x-lastPoint.x,y-lastPoint.y)>7){
+    trail.push({x,y});
+    if(trail.length>24)trail.shift();
+    lastPoint={x,y};
   }
-  return chosen;
+  dotEls.forEach((el,i)=>{
+    const idx=trail.length-1-i;
+    if(idx<0){el.style.opacity=0;return}
+    const p=trail[idx];
+    const fade=(1-i/24)*.9;
+    el.style.transform=`translate(${p.x}px,${p.y}px) translate(-50%,-50%)`;
+    el.style.opacity=String(fade);
+    el.style.scale=String(.72+fade*.35);
+  });
 }
 
-function updateScene(){
-  const section=currentChapter();
-  if(!section){ticking=false;return;}
-  const scene=section.dataset.flight;
-  setScene(scene);
+/* chapter-linked layout choreography */
+function animateChapter(sec,p){
+  const enter=smooth(.02,.28,p);
+  const exit=smooth(.80,.98,p);
+  const title=sec.querySelector('.motion-title');
+  const copy=sec.querySelector('.motion-copy');
+  const media=sec.querySelector('.motion-media');
+  const items=[...sec.querySelectorAll('.motion-item')];
+  const type=sec.dataset.motion;
 
-  chapters.forEach(s=>s.classList.toggle('flight-active',s===section));
+  const op=1-exit*.30;
 
-  const rect=section.getBoundingClientRect();
-  const viewportCenter=window.innerHeight*.5;
-  const absoluteCenter=viewportCenter-rect.top;
-  const p=clamp(absoluteCenter/Math.max(rect.height,1));
+  if(title){
+    let x=0,y=(1-enter)*42,rot=0,scale=1;
+    if(type==='split')x=(1-enter)*34;
+    if(type==='film')x=-(1-enter)*58;
+    if(type==='horizontal')x=-(1-enter)*70;
+    if(type==='portraits')y=(1-enter)*54;
+    if(type==='index')x=-(1-enter)*46;
+    if(type==='landing')scale=.94+.06*enter;
+    title.style.transform=`translate3d(${x}px,${y-exit*18}px,0) rotate(${rot}deg) scale(${scale})`;
+    title.style.opacity=String(.25+.75*enter);
+  }
+  if(copy){
+    let x=0,y=(1-enter)*34;
+    if(type==='split')x=-(1-enter)*28;
+    if(type==='film')x=(1-enter)*44;
+    if(type==='horizontal')x=(1-enter)*60;
+    copy.style.transform=`translate3d(${x}px,${y-exit*12}px,0)`;
+    copy.style.opacity=String(.10+.90*enter);
+  }
+  if(media){
+    let x=0,y=(1-enter)*56,scale=.97+.03*enter;
+    if(type==='horizontal')x=(1-enter)*76;
+    media.style.transform=`translate3d(${x}px,${y}px,0) scale(${scale})`;
+    media.style.opacity=String(.20+.80*enter);
+  }
 
-  /* Plane and trail share exactly the same progress. */
-  const len=p*pathLength;
-  const pt=guide.getPointAtLength(len);
-  const pt2=guide.getPointAtLength(Math.min(len+3,pathLength));
-  const angle=Math.atan2(pt2.y-pt.y,pt2.x-pt.x)*180/Math.PI;
-  const bank=Math.sin(p*Math.PI*4)*3.5;
-  const planeScale=window.innerWidth<640?.72:.92;
-  plane.setAttribute('transform',`translate(${pt.x-18} ${pt.y-18}) rotate(${angle+bank}) scale(${planeScale})`);
+  items.forEach((el,i)=>{
+    const e=smooth(.08+i*.055,.38+i*.055,p);
+    const ex=smooth(.86,.99,p);
+    let x=0,y=(1-e)*44,rot=0;
+    if(type==='collage'){y=(1-e)*(i%2?68:42);rot=(1-e)*(i%2?2.3:-2.2)}
+    if(type==='portraits'){y=(1-e)*(i%2?88:48)}
+    if(type==='stack'){x=(1-e)*(i%2?48:-30);y=(1-e)*28}
+    if(type==='gallery'){x=(1-e)*(i%2?44:-34);y=(1-e)*34}
+    if(type==='index'){x=(1-e)*(i%2?38:-38);y=0}
+    el.style.transform=`translate3d(${x}px,${y-ex*10}px,0) rotate(${rot}deg)`;
+    el.style.opacity=String(.16+.84*e);
+  });
 
-  /* No line exists ahead of the plane. Only a short segment behind it survives. */
-  const trailLen=Math.min(pathLength*.16,170);
-  const start=Math.max(len-trailLen,0);
-  const visible=Math.max(len-start,1);
-  trail.style.strokeDasharray=`${visible} ${pathLength}`;
-  trail.style.strokeDashoffset=String(-start);
+  const rule=sec.querySelector('.rule');
+  if(rule)rule.style.transform=`scaleX(${Math.max(.04,enter)})`;
 
-  /* Hide plane/trail near scene boundaries so the next path can enter cleanly. */
-  const inFade=smoothstep(.015,.09,p);
-  const outFade=1-smoothstep(.91,.985,p);
-  const layerAlpha=clamp(Math.min(inFade,outFade));
-  layer.style.opacity=String(.82*layerAlpha);
+  if(type==='hero'){
+    const bg=sec.querySelector('.motion-bg');
+    if(bg)bg.style.transform=`scale(${1.035-p*.018}) translateY(${p*10}px)`;
+  }
+}
 
-  /* Text/media respond to the same p: headings lead, copy follows, images lag. */
-  const centered=p-.5;
-  section.style.setProperty('--title-y',`${-centered*34}px`);
-  section.style.setProperty('--copy-y',`${-centered*20}px`);
-  section.style.setProperty('--media-y',`${-centered*48}px`);
-  const sceneAlpha=.82+.18*Math.sin(Math.PI*p);
-  section.style.setProperty('--scene-alpha',sceneAlpha.toFixed(3));
-  section.style.setProperty('--rule-scale',String(.25+.75*smoothstep(.08,.4,p)));
+/* edge-peek carousel: drag/swipe + overlay controls; no autoplay */
+document.querySelectorAll('.carousel-shell').forEach(shell=>{
+  const track=shell.querySelector('[data-carousel]');
+  const prev=shell.querySelector('.prev');
+  const next=shell.querySelector('.next');
+  const step=()=>Math.min(track.clientWidth*.72,760);
+  prev.addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
+  next.addEventListener('click',()=>track.scrollBy({left:step(),behavior:'smooth'}));
+
+  let down=false,startX=0,startScroll=0;
+  track.addEventListener('pointerdown',e=>{
+    down=true;startX=e.clientX;startScroll=track.scrollLeft;
+    track.classList.add('dragging');track.setPointerCapture(e.pointerId);
+  });
+  track.addEventListener('pointermove',e=>{
+    if(!down)return;
+    track.scrollLeft=startScroll-(e.clientX-startX);
+  });
+  const stop=()=>{down=false;track.classList.remove('dragging')};
+  track.addEventListener('pointerup',stop);
+  track.addEventListener('pointercancel',stop);
+});
+
+/* project index preview */
+const preview=document.getElementById('projectPreview');
+const previewImg=document.getElementById('projectPreviewImg');
+document.querySelectorAll('.project-row').forEach(row=>{
+  row.addEventListener('mouseenter',()=>{
+    previewImg.src=row.dataset.preview;
+    preview.classList.add('show');
+  });
+  row.addEventListener('mouseleave',()=>preview.classList.remove('show'));
+});
+
+/* scroll master: one progress source drives plane + content */
+let ticking=false;
+function update(){
+  const vh=window.innerHeight,vw=window.innerWidth;
+  const focusY=window.scrollY+vh*.48;
+  const tops=chapters.map(s=>s.offsetTop);
+  const nextSection=document.querySelector('.next');
+  const contact=document.querySelector('.contact');
+
+  /* animate every chapter from its own local progress */
+  chapters.forEach(sec=>{
+    const r=sec.getBoundingClientRect();
+    const p=clamp((vh*.82-r.top)/(r.height+vh*.60));
+    animateChapter(sec,p);
+  });
+
+  /* locate current continuous path segment */
+  let i=0;
+  for(let k=0;k<chapters.length-1;k++){
+    if(focusY>=tops[k])i=k;
+    if(focusY<tops[k+1])break;
+  }
+  i=Math.min(i,POINTS.length-2);
+  const startY=tops[i];
+  const endY=(i<chapters.length-1?tops[i+1]:contact.offsetTop);
+  const t=clamp((focusY-startY)/Math.max(endY-startY,1));
+
+  const pos=bezier(POINTS[i],CONTROLS[i][0],CONTROLS[i][1],POINTS[i+1],t);
+  const der=bezierDerivative(POINTS[i],CONTROLS[i][0],CONTROLS[i][1],POINTS[i+1],t);
+  const x=pos.x*vw,y=pos.y*vh;
+  const angle=Math.atan2(der.y*vh,der.x*vw)*180/Math.PI;
+
+  /* disappear only after landing/What’s Next, before Contact */
+  const fadeStart=nextSection.offsetTop+nextSection.offsetHeight*.62;
+  const fadeEnd=contact.offsetTop;
+  const fade=1-smooth(fadeStart,fadeEnd,focusY);
+  overlay.style.opacity=String(fade);
+
+  plane.style.transform=`translate(${x-23}px,${y-23}px) rotate(${angle}deg)`;
+  updateTrail(x,y);
 
   ticking=false;
 }
-
-function requestScene(){if(!ticking){requestAnimationFrame(updateScene);ticking=true}}
-window.addEventListener('scroll',requestScene,{passive:true});
-window.addEventListener('resize',requestScene);
-window.addEventListener('load',requestScene);
-
-/* Image-heavy areas: manual editorial carousel, no competing auto-motion. */
-document.querySelectorAll('.carousel-wrap').forEach(wrap=>{
-  const track=wrap.querySelector('[data-carousel]');
-  const prev=wrap.querySelector('.prev');
-  const next=wrap.querySelector('.next');
-  const step=()=>Math.min(track.clientWidth*.82,760);
-  prev.addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
-  next.addEventListener('click',()=>track.scrollBy({left:step(),behavior:'smooth'}));
-  let down=false,startX=0,startScroll=0;
-  track.addEventListener('pointerdown',e=>{down=true;startX=e.clientX;startScroll=track.scrollLeft;track.classList.add('dragging');track.setPointerCapture(e.pointerId)});
-  track.addEventListener('pointermove',e=>{if(down)track.scrollLeft=startScroll-(e.clientX-startX)});
-  const stop=()=>{down=false;track.classList.remove('dragging')};
-  track.addEventListener('pointerup',stop);track.addEventListener('pointercancel',stop);
+function requestUpdate(){
+  if(!ticking){requestAnimationFrame(update);ticking=true}
+}
+update();
+window.addEventListener('scroll',requestUpdate,{passive:true});
+window.addEventListener('resize',()=>{
+  trail.length=0;lastPoint=null;requestUpdate()
 });
-
-updateScene();
 </script>
-</body></html>
+</body>
+</html>
