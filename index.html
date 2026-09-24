@@ -19,7 +19,7 @@
 .origin-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:8vw}.origin-statement{font-family:"Playfair Display";font-size:clamp(40px,5.5vw,78px);line-height:1.02;letter-spacing:-.04em}.origin-copy{color:#b8b2aa;line-height:1.75;max-width:470px;margin-top:30px}.origin-photo{height:650px;width:100%;object-fit:cover}
 .projects{background:#e8e1d5;color:#111}.projects .section-num{color:#6f6a63}.projects .rule{background:#aaa}.project{display:grid;grid-template-columns:80px 1.1fr .9fr 80px;gap:28px;align-items:center;padding:30px 0;border-top:1px solid rgba(17,17,17,.2)}.project:last-child{border-bottom:1px solid rgba(17,17,17,.2)}.project h3{font-family:"Playfair Display";font-size:clamp(28px,3.4vw,48px);font-weight:400;margin:0}.project p{font-size:13px;color:#555}.project-arrow{text-align:right;font-size:22px}
 .next{min-height:78vh;display:flex;align-items:center;background:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.4)),url("assets/award-stage.jpg") center/cover}.next h2{font-family:"Playfair Display";font-size:clamp(58px,9vw,130px);font-weight:400;line-height:.9;letter-spacing:-.05em;margin:0 0 40px}.next p{font-size:16px;line-height:1.8;color:#d0cbc2;max-width:610px}
-.contact{padding:90px 0 35px}.contact-top{display:flex;justify-content:space-between;gap:40px;align-items:end}.contact h2{font-family:"Playfair Display";font-size:clamp(65px,10vw,145px);font-weight:400;line-height:.8;letter-spacing:-.06em;margin:0}.links{display:flex;gap:25px;flex-wrap:wrap;font-size:12px;letter-spacing:.14em;text-transform:uppercase}.links a{color:#bdb8b0}.footer{border-top:1px solid var(--line);margin-top:90px;padding:22px 0;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#777}.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}.reveal.visible{opacity:1;transform:none}
+.contact{padding:90px 0 35px}.contact-top{display:flex;justify-content:space-between;gap:40px;align-items:end}.contact h2{font-family:"Playfair Display";font-size:clamp(65px,10vw,145px);font-weight:400;line-height:.8;letter-spacing:-.06em;margin:0}.links{display:flex;gap:25px;flex-wrap:wrap;font-size:12px;letter-spacing:.14em;text-transform:uppercase}.links a{color:#bdb8b0}.footer{border-top:1px solid var(--line);margin-top:90px;padding:22px 0;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#777}.reveal{opacity:1;transform:none}
 
 .miraculous{background:#0b0b0b;overflow:hidden}
 .mm-intro{display:grid;grid-template-columns:.85fr 1.15fr;gap:8vw;align-items:end;margin-bottom:70px}
@@ -82,32 +82,91 @@
 .tien-caption h3{font-family:"Playfair Display";font-weight:400;font-size:clamp(34px,4.2vw,62px);line-height:1;margin:0}
 .tien-caption p{margin:0;color:#aaa;line-height:1.8;max-width:560px}
 
+
+/* ---------- V12 coordinated scene motion ---------- */
+:root{--radius:22px}
+
+/* All visual media uses rounded corners, but keeps varied aspect ratios */
+img,.portrait,.poster,.emotion,.recognition-grid img,.mm-gallery img,.culture-layout img,.tien-layout img,.carousel-card img{border-radius:var(--radius)}
+
+.flight-chapter{position:relative;isolation:isolate;--title-y:0px;--copy-y:0px;--media-y:0px;--scene-alpha:1}
+.motion-title,.motion-copy,.motion-media{will-change:transform,opacity;transition:transform .16s linear,opacity .16s linear}
+.motion-title{position:relative;z-index:18;transform:translate3d(0,var(--title-y),0);opacity:var(--scene-alpha)}
+.motion-copy{position:relative;z-index:17;transform:translate3d(0,var(--copy-y),0);opacity:var(--scene-alpha)}
+.motion-media{position:relative;z-index:14;transform:translate3d(0,var(--media-y),0);opacity:calc(.90 + (var(--scene-alpha) * .10))}
+
+/* Plane lives between media and text: it can cross imagery but never blocks copy */
+.flight-layer{position:fixed;inset:0;width:100vw;height:100vh;z-index:15;pointer-events:none;overflow:visible;opacity:0;transition:opacity .16s linear}
+.flight-guide{fill:none;stroke:transparent;stroke-width:0}
+.flight-trail{fill:none;stroke:rgba(242,235,224,.84);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:6 13}
+#paperPlane{filter:drop-shadow(0 5px 10px rgba(0,0,0,.34));transform-box:fill-box;transform-origin:center}
+.plane-body{fill:#f4eee3;stroke:#806f62;stroke-width:1.2}
+
+/* Section dividers participate in the same scene rhythm */
+.section-head .rule{transform-origin:left center;transform:scaleX(var(--rule-scale,1));transition:transform .18s linear}
+
+/* Horizontal photo story for image-heavy projects */
+.carousel-wrap{position:relative;margin-top:28px}
+.carousel{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 8vw 18px 0;cursor:grab;overscroll-behavior-inline:contain}
+.carousel::-webkit-scrollbar{display:none}.carousel.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.carousel-card{flex:0 0 min(72vw,760px);scroll-snap-align:start;margin:0}.carousel-card.portrait-card{flex-basis:min(42vw,450px)}
+.carousel-card img{width:100%;height:auto;max-height:72vh;object-fit:contain;background:#0b0b0b;box-shadow:0 16px 40px rgba(0,0,0,.24)}
+.carousel-card figcaption{padding-top:10px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#8f897f}
+.carousel-controls{display:flex;justify-content:flex-end;gap:10px;margin-top:7px}.carousel-btn{width:42px;height:42px;border-radius:999px;border:1px solid rgba(240,234,223,.25);background:rgba(255,255,255,.035);color:var(--paper);cursor:pointer;font-size:17px}.carousel-btn:hover{background:rgba(255,255,255,.1)}
+
+/* Gentle scene continuity rather than independent fade-ins */
+.flight-chapter .container{transition:filter .25s ease}
+.flight-chapter:not(.flight-active) .container{filter:saturate(.96)}
+
+@media(max-width:900px){
+  .carousel-card{flex-basis:84vw}.carousel-card.portrait-card{flex-basis:68vw}
+  .flight-trail{stroke-width:1.8}
+}
+@media(max-width:640px){
+  :root{--radius:17px}
+  .carousel-card,.carousel-card.portrait-card{flex-basis:88vw}
+  #paperPlane{opacity:.82}
+}
+@media(prefers-reduced-motion:reduce){
+  .flight-layer{display:none}.motion-title,.motion-copy,.motion-media,.section-head .rule{transform:none!important;opacity:1!important;transition:none!important}
+}
+
 @media(max-width:800px){.fh-intro,.trip-head,.culture-intro,.culture-caption,.tien-intro,.tien-caption{grid-template-columns:1fr}.trip-grid,.trip-grid.small,.culture-layout,.tien-layout{grid-template-columns:1fr;grid-auto-rows:auto}.trip-grid .a,.trip-grid .d,.trip-grid.small .a,.culture-layout .large,.tien-main{grid-row:auto;grid-column:auto}.tien-side{grid-template-rows:auto;grid-template-columns:1fr;gap:18px}.mm-intro,.mm-bridge{grid-template-columns:1fr}.mm-gallery{min-height:860px}.mm-studio{width:86%;height:330px}.mm-outdoor{width:62%;height:270px;top:285px}.mm-graduation{width:76%;height:300px;left:5%;bottom:0}.mm-label.one{top:342px}.mm-label.two{top:565px}.mm-label.three{left:5%}.container{width:calc(100% - 36px)}.nav{padding:20px 18px}.navlinks{display:none}.hero-content{padding-bottom:48px}.hero h1{font-size:clamp(64px,19vw,115px)}.hero-bottom{display:block}.statement{margin-top:30px}.section{padding:85px 0}.section-head{margin-bottom:38px}.about-grid,.feature-top,.recognition-grid,.origin-grid{grid-template-columns:1fr}.portrait{min-height:470px}.poster-composition{min-height:790px}.poster{width:67%;left:0}.emotion{width:76%;height:390px;top:350px}.quote{left:10%;bottom:0;width:88%}.rec-caption,.contact-top{display:block}.rec-caption p{margin-top:20px}.rec-main{min-height:auto}.rec-side{grid-template-rows:auto}.origin-photo{height:480px}.project{grid-template-columns:40px 1fr 30px;gap:12px}.project p{grid-column:2}.project-arrow{grid-column:3;grid-row:1}.links{margin-top:40px}.footer{display:block;line-height:2}}
 </style>
 </head>
 <body>
+
+<svg class="flight-layer" id="flightLayer" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+  <path id="flightGuide" class="flight-guide" d="M800 -80 C760 180 340 180 430 420 C520 660 820 650 650 1080"/>
+  <path id="flightTrail" class="flight-trail" d="M800 -80 C760 180 340 180 430 420 C520 660 820 650 650 1080"/>
+  <g id="paperPlane">
+    <path class="plane-body" d="M0 4 L38 16 L15 23 L10 40 Z"/>
+    <path d="M15 23 L38 16 L11 30 Z" fill="none" stroke="#806f62" stroke-width="1.5"/>
+  </g>
+</svg>
+
 <header class="nav"><a href="#">KIET ANH NGUYEN</a><nav class="navlinks"><a href="#about">About</a><a href="#film">Film</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav></header>
 
-<section class="hero"><div class="hero-media"></div><div class="container hero-content"><div class="eyebrow">Multimedia Communication · Storytelling · Social Impact</div><h1>Stories<span>can change the way we see people.</span></h1><div class="hero-bottom"><div class="scroll">Scroll to explore ↓</div><p class="statement">A personal archive of films, photography, community projects, and the stories that shaped how I see communication.</p></div></div></section>
+<section class="hero flight-chapter" data-flight="intro"><div class="hero-media"></div><div class="container hero-content"><div class="eyebrow">Multimedia Communication · Storytelling · Social Impact</div><h1 class="motion-title">Stories<span>can change the way we see people.</span></h1><div class="hero-bottom motion-copy"><div class="scroll">Scroll to explore ↓</div><p class="statement">A personal archive of films, photography, community projects, and the stories that shaped how I see communication.</p></div></div></section>
 
-<section class="section" id="about"><div class="container"><div class="section-head"><span class="section-num">01</span><div class="rule"></div><h2 class="section-title">About me</h2></div><div class="about-grid reveal"><div class="portrait"><small>Storytelling through lived moments</small></div><div class="about-copy"><p class="lead">I explore how storytelling can create empathy and turn awareness into action.</p><p>I am a Multimedia Communication student interested in visual storytelling, social impact, community work, and cultural projects. My work often begins with listening: to people, to their everyday experiences, and to the stories that are easy to overlook.</p><div class="meta"><span>Visual Storytelling</span><span>Social Impact</span><span>Community</span><span>Culture</span></div></div></div></div></section>
+<section class="section flight-chapter" id="about" data-flight="about"><div class="container"><div class="section-head"><span class="section-num">01</span><div class="rule"></div><h2 class="section-title motion-title">About me</h2></div><div class="about-grid reveal motion-media"><div class="portrait"><small>Storytelling through lived moments</small></div><div class="about-copy"><p class="lead">I explore how storytelling can create empathy and turn awareness into action.</p><p>I am a Multimedia Communication student interested in visual storytelling, social impact, community work, and cultural projects. My work often begins with listening: to people, to their everyday experiences, and to the stories that are easy to overlook.</p><div class="meta"><span>Visual Storytelling</span><span>Social Impact</span><span>Community</span><span>Culture</span></div></div></div></div></section>
 
-<section class="section feature" id="film"><div class="container"><div class="section-head"><span class="section-num">02</span><div class="rule"></div><span style="font-size:12px;letter-spacing:.18em;text-transform:uppercase">Featured story</span></div><div class="feature-top reveal"><h2 class="film-title">The Window<br>Without a Horizon</h2><p class="film-copy"><strong>Cửa Sổ Không Có Đường Chân Trời</strong><br><br>A short film inspired by my experience meeting children with cancer, exploring their everyday lives, dreams, and the people who care for them.<br><br><span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7b7168">Film link will be added later.</span></p></div><div class="poster-composition reveal"><img class="poster" src="assets/film-poster.jpg" alt="The Window Without a Horizon film poster"><img class="emotion" src="assets/screening-emotion.jpg" alt="Emotional moment during the film screening"><div class="quote">“Before seeing their illness, I wanted people to see the children.”</div></div></div></section>
+<section class="section feature flight-chapter" id="film" data-flight="film"><div class="container"><div class="section-head"><span class="section-num">02</span><div class="rule"></div><span style="font-size:12px;letter-spacing:.18em;text-transform:uppercase">Featured story</span></div><div class="feature-top reveal"><h2 class="film-title motion-title">The Window<br>Without a Horizon</h2><p class="film-copy motion-copy"><strong>Cửa Sổ Không Có Đường Chân Trời</strong><br><br>A short film inspired by my experience meeting children with cancer, exploring their everyday lives, dreams, and the people who care for them.<br><br><span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7b7168">Film link will be added later.</span></p></div><div class="poster-composition reveal motion-media"><img class="poster" src="assets/film-poster.jpg" alt="The Window Without a Horizon film poster"><img class="emotion" src="assets/screening-emotion.jpg" alt="Emotional moment during the film screening"><div class="quote">“Before seeing their illness, I wanted people to see the children.”</div></div></div></section>
 
 
-<section class="section recognition"><div class="container"><div class="section-head"><span class="section-num">03</span><div class="rule"></div><h2 class="section-title">Recognition</h2></div><div class="recognition-grid reveal"><img class="rec-main" src="assets/award-stage.jpg" alt="Best Short Film recognition"><div class="rec-side"><img src="assets/award-team.jpg" alt="Film team with awards"><img src="assets/award-guests.jpg" alt="Film team and guests with poster and award"></div></div><div class="rec-caption reveal"><h3>Best Short Film</h3><p>Recognition is presented here as part of the film's journey rather than the center of the story.</p></div></div></section>
+<section class="section recognition flight-chapter" data-flight="recognition"><div class="container"><div class="section-head"><span class="section-num">03</span><div class="rule"></div><h2 class="section-title motion-title">Recognition</h2></div><div class="recognition-grid reveal motion-media"><img class="rec-main" src="assets/award-stage.jpg" alt="Best Short Film recognition"><div class="rec-side"><img src="assets/award-team.jpg" alt="Film team with awards"><img src="assets/award-guests.jpg" alt="Film team and guests with poster and award"></div></div><div class="rec-caption reveal motion-copy"><h3>Best Short Film</h3><p>Recognition is presented here as part of the film's journey rather than the center of the story.</p></div></div></section>
 
-<section class="section miraculous" id="miraculous">
+<section class="section miraculous flight-chapter" id="miraculous" data-flight="miraculous">
 <div class="container">
   <div class="section-head"><span class="section-num">04</span><div class="rule"></div><h2 class="section-title">Where it started</h2></div>
   <div class="mm-intro reveal">
     <div>
       <div class="mm-kicker">Miraculous Moments · Khoảnh Khắc Diệu Kỳ</div>
-      <h2 class="mm-title">A story before the film.</h2>
+      <h2 class="mm-title motion-title">A story before the film.</h2>
     </div>
-    <p class="mm-copy">Miraculous Moments began with a volunteering experience where I met pediatric cancer survivors, listened to their stories, and shared moments of creativity and joy. Through photography, the children were not simply subjects of a story — they were making images of their own.</p>
+    <p class="mm-copy motion-copy">Miraculous Moments began with a volunteering experience where I met pediatric cancer survivors, listened to their stories, and shared moments of creativity and joy. Through photography, the children were not simply subjects of a story — they were making images of their own.</p>
   </div>
-  <div class="mm-gallery reveal">
+  <div class="mm-gallery reveal motion-media">
     <img class="mm-studio" src="assets/miraculous-studio.jpg" alt="Miraculous Moments photography studio session">
     <span class="mm-label one">01 / Learning together</span>
     <img class="mm-outdoor" src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography activity">
@@ -115,7 +174,7 @@
     <img class="mm-graduation" src="assets/miraculous-graduation.jpg" alt="Miraculous Moments photography class graduation">
     <span class="mm-label three">03 / Graduation day</span>
   </div>
-  <div class="mm-bridge reveal">
+  <div class="mm-bridge reveal motion-copy">
     <div class="mm-bridge-quote">Before seeing their illness, I wanted people to see the children.</div>
     <p>That experience stayed with me. It later shaped <em>The Window Without a Horizon</em> and made me think more seriously about the responsibility of communication: not only how we tell a story, but how we choose to see the person inside it.</p>
   </div>
@@ -123,15 +182,15 @@
 </section>
 
 
-<section class="section flying" id="flying-heart">
+<section class="section flying flight-chapter" id="flying-heart" data-flight="community">
 <div class="container">
   <div class="section-head"><span class="section-num">05</span><div class="rule"></div><h2 class="section-title">Flying Heart</h2></div>
   <div class="fh-intro reveal">
     <div>
       <div class="fh-kicker">Volunteer work · Community outreach</div>
-      <h2 class="fh-title">Field notes from the road.</h2>
+      <h2 class="fh-title motion-title">Field notes from the road.</h2>
     </div>
-    <p class="fh-copy">Flying Heart is part of my journey as a volunteer. These trips brought me closer to community work on the ground, from meeting families and children to helping prepare and distribute gifts. I keep them here not as achievements, but as lived moments that continue shaping how I think about care, presence, and social impact.</p>
+    <p class="fh-copy motion-copy">Flying Heart is part of my journey as a volunteer. These trips brought me closer to community work on the ground, from meeting families and children to helping prepare and distribute gifts. I keep them here not as achievements, but as lived moments that continue shaping how I think about care, presence, and social impact.</p>
   </div>
 
   <div class="trip reveal">
@@ -142,13 +201,16 @@
       </div>
       <p>This trip to Đắk Lắk carried the spirit of a field journal: small encounters, long roads, shared effort, and the quiet reality behind community outreach. The photos move between preparation, presence, and the people we met along the way.</p>
     </div>
-    <div class="trip-grid">
-      <img class="a" src="assets/flying-daklak-1.jpg" alt="Volunteer outreach in Dak Lak with a mother carrying a sleeping child">
-      <img class="b" src="assets/flying-daklak-2.jpg" alt="Children receiving support during the Dak Lak trip">
-      <img class="c" src="assets/flying-daklak-3.jpg" alt="Kiet volunteering with donated goods during the Dak Lak trip">
-      <img class="d" src="assets/flying-daklak-4.jpg" alt="Flying Heart volunteer team with children during the Dak Lak trip">
-      <img class="e" src="assets/flying-daklak-5.jpg" alt="Kiet with children during community outreach in Dak Lak">
-      <img class="f" src="assets/flying-daklak-6.jpg" alt="Flying Heart group photo with children and support packages in Dak Lak">
+    <div class="carousel-wrap motion-media">
+      <div class="carousel" data-carousel>
+        <figure class="carousel-card portrait-card"><img src="assets/flying-daklak-1.jpg" alt="Volunteer outreach in Dak Lak with a mother carrying a sleeping child"><figcaption>01 / On the road</figcaption></figure>
+        <figure class="carousel-card portrait-card"><img src="assets/flying-daklak-2.jpg" alt="Children receiving support during the Dak Lak trip"><figcaption>02 / Meeting families</figcaption></figure>
+        <figure class="carousel-card"><img src="assets/flying-daklak-3.jpg" alt="Kiet volunteering with donated goods during the Dak Lak trip"><figcaption>03 / Preparing support</figcaption></figure>
+        <figure class="carousel-card"><img src="assets/flying-daklak-4.jpg" alt="Flying Heart volunteer team with children during the Dak Lak trip"><figcaption>04 / Together on site</figcaption></figure>
+        <figure class="carousel-card"><img src="assets/flying-daklak-5.jpg" alt="Kiet with children during community outreach in Dak Lak"><figcaption>05 / Small encounters</figcaption></figure>
+        <figure class="carousel-card"><img src="assets/flying-daklak-6.jpg" alt="Flying Heart group photo with children and support packages in Dak Lak"><figcaption>06 / Community</figcaption></figure>
+      </div>
+      <div class="carousel-controls"><button class="carousel-btn prev" aria-label="Previous image">←</button><button class="carousel-btn next" aria-label="Next image">→</button></div>
     </div>
   </div>
 
@@ -160,33 +222,36 @@
       </div>
       <p>The Đồng Nai trip felt different: fuller, louder, and more festive. With Mid-Autumn activities, gifts, and a large gathering of children, the focus shifted toward creating a shared moment of joy while still holding onto the values of care and connection.</p>
     </div>
-    <div class="trip-grid small">
-      <img class="a" src="assets/flying-dongnai-1.jpg" alt="Crowded Mid-Autumn community event in Dong Nai">
-      <img class="b" src="assets/flying-dongnai-2.jpg" alt="Children gathering during the Mid-Autumn outreach event in Dong Nai">
-      <img class="c" src="assets/flying-dongnai-3.jpg" alt="Gift bags prepared for children during the Dong Nai outreach trip">
+    <div class="carousel-wrap motion-media">
+      <div class="carousel" data-carousel>
+        <figure class="carousel-card"><img src="assets/flying-dongnai-1.jpg" alt="Crowded Mid-Autumn community event in Dong Nai"><figcaption>01 / Mid-Autumn gathering</figcaption></figure>
+        <figure class="carousel-card portrait-card"><img src="assets/flying-dongnai-2.jpg" alt="Children gathering during the Mid-Autumn outreach event in Dong Nai"><figcaption>02 / Shared celebration</figcaption></figure>
+        <figure class="carousel-card"><img src="assets/flying-dongnai-3.jpg" alt="Gift bags prepared for children during the Dong Nai outreach trip"><figcaption>03 / Gifts prepared</figcaption></figure>
+      </div>
+      <div class="carousel-controls"><button class="carousel-btn prev" aria-label="Previous image">←</button><button class="carousel-btn next" aria-label="Next image">→</button></div>
     </div>
   </div>
 </div>
 </section>
 
 
-<section class="section culture" id="cham-viet-phuc">
+<section class="section culture flight-chapter" id="cham-viet-phuc" data-flight="cultureA">
 <div class="container">
   <div class="section-head"><span class="section-num">06</span><div class="rule"></div><h2 class="section-title">Chạm Việt Phục</h2></div>
   <div class="culture-intro reveal">
     <div>
       <div class="culture-kicker">Cultural project · Workshop & exhibition</div>
-      <h2 class="culture-title">Bringing heritage closer.</h2>
+      <h2 class="culture-title motion-title">Bringing heritage closer.</h2>
     </div>
-    <p class="culture-copy">Chạm Việt Phục was a student-led cultural project that invited people to engage with Vietnamese traditional clothing in a more approachable way. I joined as part of the organizing effort and contributed through concept support, content direction, and on-site interaction during the event.</p>
+    <p class="culture-copy motion-copy">Chạm Việt Phục was a student-led cultural project that invited people to engage with Vietnamese traditional clothing in a more approachable way. I joined as part of the organizing effort and contributed through concept support, content direction, and on-site interaction during the event.</p>
   </div>
-  <div class="culture-layout reveal">
+  <div class="culture-layout reveal motion-media">
     <img class="large" src="assets/cham-1.jpg" alt="Traditional costume display at Cham Viet Phuc">
     <img src="assets/cham-2.jpg" alt="Kiet in traditional attire speaking with a participant at Cham Viet Phuc">
     <img src="assets/cham-3.jpg" alt="On-site preparation and styling at Cham Viet Phuc">
     <img src="assets/cham-4.jpg" alt="Interactive activity area at Cham Viet Phuc">
   </div>
-  <div class="culture-caption reveal">
+  <div class="culture-caption reveal motion-copy">
     <h3>Culture becomes more meaningful when people can step into it.</h3>
     <p>What mattered most to me was not only presenting cultural artifacts, but creating a space where people could ask, listen, and participate. That experience strengthened my interest in cultural communication and in designing activities that help heritage feel lived, shared, and relevant to young audiences.</p>
   </div>
@@ -194,38 +259,153 @@
 </section>
 
 
-<section class="section tien" id="tien-thuong-tuan-du">
+<section class="section tien flight-chapter" id="tien-thuong-tuan-du" data-flight="cultureB">
 <div class="container">
   <div class="section-head"><span class="section-num">07</span><div class="rule"></div><h2 class="section-title">Tiên Thường Tuần Du</h2></div>
   <div class="tien-intro reveal">
     <div>
       <div class="tien-kicker">Cultural project · Community participation</div>
-      <h2 class="tien-title">Tradition in motion.</h2>
+      <h2 class="tien-title motion-title">Tradition in motion.</h2>
     </div>
-    <p class="tien-copy">Tiên Thường Tuần Du was another cultural space where I took part as a volunteer, supporting activities that brought together performance, costume, and community interaction. What drew me to this project was how culture could be experienced not as something distant, but as something alive, shared, and carried by people.</p>
+    <p class="tien-copy motion-copy">Tiên Thường Tuần Du was another cultural space where I took part as a volunteer, supporting activities that brought together performance, costume, and community interaction. What drew me to this project was how culture could be experienced not as something distant, but as something alive, shared, and carried by people.</p>
   </div>
-  <div class="tien-layout reveal">
+  <div class="tien-layout reveal motion-media">
     <img class="tien-main" src="assets/tien-2.jpg" alt="Group photo at Tien Thuong Tuan Du cultural booth">
     <div class="tien-side">
       <img src="assets/tien-1.jpg" alt="Participants in traditional attire at Tien Thuong Tuan Du">
       <img src="assets/tien-3.jpg" alt="Cultural participants posing together during Tien Thuong Tuan Du">
     </div>
   </div>
-  <div class="tien-caption reveal">
+  <div class="tien-caption reveal motion-copy">
     <h3>Projects like this taught me that heritage becomes stronger when it is practiced together.</h3>
     <p>Beyond documentation, I was interested in the atmosphere these events created: people meeting across regions, identities, and traditions. As a volunteer, I saw how cultural projects can become spaces for participation, conversation, and connection — and that is a direction I hope to keep exploring in my work.</p>
   </div>
 </div>
 </section>
 
-<section class="section projects" id="projects"><div class="container"><div class="section-head"><span class="section-num">08</span><div class="rule"></div><h2 class="section-title">Selected projects</h2></div><div class="project reveal"><div>01</div><h3>Miraculous Moments</h3><p>Community · Photography · Social Impact</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>02</div><h3>The Window Without a Horizon</h3><p>Short Film · Screenwriting · Social Impact</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>03</div><h3>Flying Heart</h3><p>Volunteer Work · Community Outreach</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>04</div><h3>Chạm Việt Phục</h3><p>Cultural Heritage · Youth Advocacy</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>05</div><h3>Tiên Thường Tuần Du</h3><p>Cultural Heritage · Community Event</p><div class="project-arrow">↗</div></div></div></section>
+<section class="section projects flight-chapter" id="projects" data-flight="archive"><div class="container"><div class="section-head"><span class="section-num">08</span><div class="rule"></div><h2 class="section-title motion-title">Selected projects</h2></div><div class="project reveal"><div>01</div><h3>Miraculous Moments</h3><p>Community · Photography · Social Impact</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>02</div><h3>The Window Without a Horizon</h3><p>Short Film · Screenwriting · Social Impact</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>03</div><h3>Flying Heart</h3><p>Volunteer Work · Community Outreach</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>04</div><h3>Chạm Việt Phục</h3><p>Cultural Heritage · Youth Advocacy</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>05</div><h3>Tiên Thường Tuần Du</h3><p>Cultural Heritage · Community Event</p><div class="project-arrow">↗</div></div></div></section>
 
-<section class="next"><div class="container reveal"><div class="eyebrow">09 / What's next</div><h2>Awareness.<br>Understanding.<br>Action.</h2><p>I want to keep exploring how communication can turn awareness into understanding, and understanding into meaningful action. This direction will continue through my graduation project and the next stage of Miraculous Moments.</p></div></section>
+<section class="next flight-chapter" data-flight="next"><div class="container reveal"><div class="eyebrow">09 / What's next</div><h2 class="motion-title">Awareness.<br>Understanding.<br>Action.</h2><p class="motion-copy">I want to keep exploring how communication can turn awareness into understanding, and understanding into meaningful action. This direction will continue through my graduation project and the next stage of Miraculous Moments.</p></div></section>
 
 <section class="contact" id="contact"><div class="container"><div class="contact-top reveal"><div><div class="eyebrow">10 / Find me elsewhere</div><h2>Let's connect.</h2></div><div class="links"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a><a href="mailto:your@email.com">Email</a></div></div><div class="footer"><span>© 2026 Kiet Anh Nguyen</span><span>Multimedia Communication · Storytelling · Social Impact</span></div></div></section>
 
 <script>
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
+const clamp=(v,min=0,max=1)=>Math.min(Math.max(v,min),max);
+const smoothstep=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
+
+/* Each chapter has its own invisible flight path. All paths begin above and end below. */
+const FLIGHT_PATHS={
+  intro:'M820 -90 C820 140 650 210 470 255 C270 305 300 500 560 560 C790 615 810 790 610 1090',
+  about:'M160 -90 C210 160 440 175 560 310 C680 445 590 610 370 650 C185 685 220 865 470 1090',
+  film:'M850 -90 C790 155 600 205 520 345 C430 505 570 635 790 650 C925 660 845 855 610 1090',
+  recognition:'M170 -90 C160 160 360 235 590 260 C820 285 845 470 685 555 C515 645 280 660 320 865 C345 960 455 1020 565 1090',
+  miraculous:'M835 -90 C830 170 665 225 455 270 C255 315 280 515 560 565 C815 610 785 805 520 1090',
+  community:'M120 -90 C170 160 415 205 640 260 C875 318 880 500 625 565 C365 635 230 760 390 1090',
+  cultureA:'M860 -90 C815 160 650 205 500 330 C340 465 400 600 690 630 C865 650 830 835 585 1090',
+  cultureB:'M145 -90 C160 160 360 230 585 300 C820 370 790 545 555 595 C300 650 275 825 510 1090',
+  archive:'M820 -90 C790 165 595 230 425 310 C245 395 315 585 650 625 C835 645 815 855 590 1090',
+  next:'M160 -90 C180 190 430 245 645 330 C850 410 820 600 590 675 C390 740 445 920 790 1090'
+};
+
+const layer=document.getElementById('flightLayer');
+const guide=document.getElementById('flightGuide');
+const trail=document.getElementById('flightTrail');
+const plane=document.getElementById('paperPlane');
+const chapters=[...document.querySelectorAll('[data-flight]')];
+let activeScene='';
+let pathLength=0;
+let ticking=false;
+
+function setScene(scene){
+  if(scene===activeScene)return;
+  activeScene=scene;
+  const d=FLIGHT_PATHS[scene]||FLIGHT_PATHS.intro;
+  guide.setAttribute('d',d);
+  trail.setAttribute('d',d);
+  pathLength=guide.getTotalLength();
+}
+
+function currentChapter(){
+  const y=window.scrollY+window.innerHeight*.5;
+  let chosen=chapters[0];
+  let best=Infinity;
+  for(const section of chapters){
+    const top=section.offsetTop;
+    const bottom=top+section.offsetHeight;
+    if(y>=top && y<=bottom)return section;
+    const dist=y<top?top-y:y-bottom;
+    if(dist<best){best=dist;chosen=section;}
+  }
+  return chosen;
+}
+
+function updateScene(){
+  const section=currentChapter();
+  if(!section){ticking=false;return;}
+  const scene=section.dataset.flight;
+  setScene(scene);
+
+  chapters.forEach(s=>s.classList.toggle('flight-active',s===section));
+
+  const rect=section.getBoundingClientRect();
+  const viewportCenter=window.innerHeight*.5;
+  const absoluteCenter=viewportCenter-rect.top;
+  const p=clamp(absoluteCenter/Math.max(rect.height,1));
+
+  /* Plane and trail share exactly the same progress. */
+  const len=p*pathLength;
+  const pt=guide.getPointAtLength(len);
+  const pt2=guide.getPointAtLength(Math.min(len+3,pathLength));
+  const angle=Math.atan2(pt2.y-pt.y,pt2.x-pt.x)*180/Math.PI;
+  const bank=Math.sin(p*Math.PI*4)*3.5;
+  const planeScale=window.innerWidth<640?.72:.92;
+  plane.setAttribute('transform',`translate(${pt.x-18} ${pt.y-18}) rotate(${angle+bank}) scale(${planeScale})`);
+
+  /* No line exists ahead of the plane. Only a short segment behind it survives. */
+  const trailLen=Math.min(pathLength*.16,170);
+  const start=Math.max(len-trailLen,0);
+  const visible=Math.max(len-start,1);
+  trail.style.strokeDasharray=`${visible} ${pathLength}`;
+  trail.style.strokeDashoffset=String(-start);
+
+  /* Hide plane/trail near scene boundaries so the next path can enter cleanly. */
+  const inFade=smoothstep(.015,.09,p);
+  const outFade=1-smoothstep(.91,.985,p);
+  const layerAlpha=clamp(Math.min(inFade,outFade));
+  layer.style.opacity=String(.82*layerAlpha);
+
+  /* Text/media respond to the same p: headings lead, copy follows, images lag. */
+  const centered=p-.5;
+  section.style.setProperty('--title-y',`${-centered*34}px`);
+  section.style.setProperty('--copy-y',`${-centered*20}px`);
+  section.style.setProperty('--media-y',`${-centered*48}px`);
+  const sceneAlpha=.82+.18*Math.sin(Math.PI*p);
+  section.style.setProperty('--scene-alpha',sceneAlpha.toFixed(3));
+  section.style.setProperty('--rule-scale',String(.25+.75*smoothstep(.08,.4,p)));
+
+  ticking=false;
+}
+
+function requestScene(){if(!ticking){requestAnimationFrame(updateScene);ticking=true}}
+window.addEventListener('scroll',requestScene,{passive:true});
+window.addEventListener('resize',requestScene);
+window.addEventListener('load',requestScene);
+
+/* Image-heavy areas: manual editorial carousel, no competing auto-motion. */
+document.querySelectorAll('.carousel-wrap').forEach(wrap=>{
+  const track=wrap.querySelector('[data-carousel]');
+  const prev=wrap.querySelector('.prev');
+  const next=wrap.querySelector('.next');
+  const step=()=>Math.min(track.clientWidth*.82,760);
+  prev.addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
+  next.addEventListener('click',()=>track.scrollBy({left:step(),behavior:'smooth'}));
+  let down=false,startX=0,startScroll=0;
+  track.addEventListener('pointerdown',e=>{down=true;startX=e.clientX;startScroll=track.scrollLeft;track.classList.add('dragging');track.setPointerCapture(e.pointerId)});
+  track.addEventListener('pointermove',e=>{if(down)track.scrollLeft=startScroll-(e.clientX-startX)});
+  const stop=()=>{down=false;track.classList.remove('dragging')};
+  track.addEventListener('pointerup',stop);track.addEventListener('pointercancel',stop);
+});
+
+updateScene();
 </script>
 </body></html>
