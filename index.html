@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kiet Anh Nguyen — Multimedia Storytelling</title>
+<meta name="description" content="Kiet Anh Nguyen — Multimedia Communication, visual storytelling and social impact.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
+:root{--bg:#080808;--paper:#f0eadf;--muted:#aaa39a;--line:rgba(240,234,223,.24);--cream:#e9dfcf;--ink:#17120f;--burgundy:#69252a;--max:1380px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--paper);font-family:"DM Sans",Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}img,video{display:block;max-width:100%}.container{width:min(var(--max),calc(100% - 72px));margin:auto}
+.nav{position:absolute;top:0;left:0;width:100%;z-index:20;display:flex;justify-content:space-between;padding:26px 36px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.navlinks{display:flex;gap:28px;color:#ddd}
+.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#111}.hero-media{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.30) 48%,rgba(0,0,0,.94)),url("assets/award-team.jpg") center 45%/cover no-repeat;transform:scale(1.02)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.62),transparent 67%)}.hero-content{position:relative;z-index:2;padding-bottom:8vh}.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#bbb;margin-bottom:22px}.hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(68px,12vw,178px);line-height:.78;letter-spacing:-.055em;margin:0 0 28px;max-width:1100px}.hero h1 span{display:block;font-family:"DM Sans";font-size:.22em;line-height:1.1;letter-spacing:.02em;margin-top:32px;font-weight:400;max-width:560px}.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:40px}.scroll{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999}.statement{max-width:430px;font-size:16px;line-height:1.6}
+.section{padding:125px 0}.section-head{display:flex;align-items:center;gap:22px;margin-bottom:58px}.section-num{font-size:11px;letter-spacing:.2em;color:var(--muted)}.rule{height:1px;background:var(--line);flex:1}.section-title{font-family:"Playfair Display";font-weight:400;font-size:clamp(50px,7vw,105px);line-height:.9;letter-spacing:-.04em;margin:0}
+.about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:9vw;align-items:center}.portrait{min-height:620px;background:url("assets/screening-emotion.jpg") center/cover;position:relative}.portrait:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.6))}.portrait small{position:absolute;z-index:2;left:20px;bottom:18px;letter-spacing:.14em;text-transform:uppercase}.about-copy .lead{font-family:"Playfair Display";font-size:clamp(30px,4vw,58px);line-height:1.08;margin:0 0 32px}.about-copy p{color:#c3beb5;line-height:1.8;max-width:520px}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:35px}.meta span{border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.feature{background:var(--cream);color:var(--ink);overflow:hidden}.feature .section-num{color:#756d64}.feature .rule{background:rgba(23,18,15,.2)}.feature-top{display:grid;grid-template-columns:1.25fr .75fr;gap:6vw;align-items:end}.film-title{font-family:"Playfair Display";font-size:clamp(58px,9vw,130px);line-height:.8;letter-spacing:-.055em;font-weight:400;margin:0}.film-copy{font-size:14px;line-height:1.8;color:#554d46;max-width:470px}.poster-composition{position:relative;min-height:850px;margin-top:65px}.poster{position:absolute;width:min(42%,530px);left:5%;top:0;z-index:3;box-shadow:0 25px 80px rgba(0,0,0,.28)}.emotion{position:absolute;width:58%;height:540px;right:0;top:170px;object-fit:cover}.quote{position:absolute;left:39%;bottom:10px;z-index:4;width:55%;font-family:"Playfair Display";font-size:clamp(36px,5vw,72px);line-height:1.02;letter-spacing:-.035em}
+
+.recognition{background:#101010}.recognition-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}.recognition-grid img{width:100%;height:100%;object-fit:cover}.rec-main{min-height:650px}.rec-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}.rec-caption{margin-top:26px;display:flex;justify-content:space-between;gap:30px;align-items:start}.rec-caption h3{font-family:"Playfair Display";font-weight:400;font-size:clamp(35px,4vw,60px);margin:0}.rec-caption p{max-width:420px;color:#aaa;line-height:1.7;font-size:13px}
+.origin-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:8vw}.origin-statement{font-family:"Playfair Display";font-size:clamp(40px,5.5vw,78px);line-height:1.02;letter-spacing:-.04em}.origin-copy{color:#b8b2aa;line-height:1.75;max-width:470px;margin-top:30px}.origin-photo{height:650px;width:100%;object-fit:cover}
+.projects{background:#e8e1d5;color:#111}.projects .section-num{color:#6f6a63}.projects .rule{background:#aaa}.project{display:grid;grid-template-columns:80px 1.1fr .9fr 80px;gap:28px;align-items:center;padding:30px 0;border-top:1px solid rgba(17,17,17,.2)}.project:last-child{border-bottom:1px solid rgba(17,17,17,.2)}.project h3{font-family:"Playfair Display";font-size:clamp(28px,3.4vw,48px);font-weight:400;margin:0}.project p{font-size:13px;color:#555}.project-arrow{text-align:right;font-size:22px}
+.next{min-height:78vh;display:flex;align-items:center;background:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.4)),url("assets/award-stage.jpg") center/cover}.next h2{font-family:"Playfair Display";font-size:clamp(58px,9vw,130px);font-weight:400;line-height:.9;letter-spacing:-.05em;margin:0 0 40px}.next p{font-size:16px;line-height:1.8;color:#d0cbc2;max-width:610px}
+.contact{padding:90px 0 35px}.contact-top{display:flex;justify-content:space-between;gap:40px;align-items:end}.contact h2{font-family:"Playfair Display";font-size:clamp(65px,10vw,145px);font-weight:400;line-height:.8;letter-spacing:-.06em;margin:0}.links{display:flex;gap:25px;flex-wrap:wrap;font-size:12px;letter-spacing:.14em;text-transform:uppercase}.links a{color:#bdb8b0}.footer{border-top:1px solid var(--line);margin-top:90px;padding:22px 0;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#777}.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}.reveal.visible{opacity:1;transform:none}
+
+.miraculous{background:#0b0b0b;overflow:hidden}
+.mm-intro{display:grid;grid-template-columns:.85fr 1.15fr;gap:8vw;align-items:end;margin-bottom:70px}
+.mm-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#aaa;margin-bottom:18px}
+.mm-title{font-family:"Playfair Display";font-size:clamp(58px,8vw,118px);font-weight:400;line-height:.84;letter-spacing:-.05em;margin:0}
+.mm-copy{color:#bdb7ae;line-height:1.8;max-width:520px}
+.mm-gallery{position:relative;min-height:930px}
+.mm-gallery img{position:absolute;object-fit:cover;box-shadow:0 20px 55px rgba(0,0,0,.28)}
+.mm-studio{left:0;top:0;width:61%;height:500px}
+.mm-outdoor{right:0;top:170px;width:43%;height:390px}
+.mm-graduation{left:18%;bottom:0;width:55%;height:410px}
+.mm-label{position:absolute;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#aaa}
+.mm-label.one{left:0;top:515px}
+.mm-label.two{right:0;top:575px}
+.mm-label.three{left:18%;bottom:-26px}
+.mm-bridge{margin-top:105px;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:start}
+.mm-bridge-quote{font-family:"Playfair Display";font-size:clamp(38px,5vw,72px);line-height:1.04;letter-spacing:-.035em}
+.mm-bridge p{color:#aaa;line-height:1.8;max-width:480px}
+
+.flying{background:#121110;overflow:hidden}
+.fh-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;align-items:end;margin-bottom:56px}
+.fh-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#aaa;margin-bottom:18px}
+.fh-title{font-family:"Playfair Display";font-size:clamp(58px,8vw,118px);font-weight:400;line-height:.84;letter-spacing:-.05em;margin:0}
+.fh-copy{color:#bdb7ae;line-height:1.8;max-width:560px}
+.trip{padding:42px 0 72px;border-top:1px solid var(--line)}
+.trip-head{display:grid;grid-template-columns:.7fr 1.3fr;gap:6vw;align-items:start;margin-bottom:26px}
+.trip-meta{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8f897f;margin-bottom:14px}
+.trip h3{font-family:"Playfair Display";font-size:clamp(34px,4vw,62px);font-weight:400;line-height:1;margin:0}
+.trip p{color:#aaa;line-height:1.75;max-width:560px;margin:0}
+.trip-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:18px;grid-auto-rows:240px}
+.trip-grid img{width:100%;height:100%;object-fit:cover}
+.trip-grid .a{grid-row:span 2}
+.trip-grid .d{grid-column:1 / span 2}
+.trip-grid.small{grid-template-columns:1.05fr .95fr;grid-auto-rows:230px}
+.trip-grid.small .a{grid-row:span 2}
+
+
+.culture{background:#17110f;color:#f2eadf;overflow:hidden}
+.culture-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;align-items:end;margin-bottom:54px}
+.culture-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#b29d88;margin-bottom:18px}
+.culture-title{font-family:"Playfair Display";font-size:clamp(58px,8vw,118px);font-weight:400;line-height:.84;letter-spacing:-.05em;margin:0}
+.culture-copy{color:#c7bfb5;line-height:1.8;max-width:560px}
+.culture-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;grid-auto-rows:280px}
+.culture-layout img{width:100%;height:100%;object-fit:cover}
+.culture-layout .large{grid-row:span 2}
+.culture-caption{margin-top:30px;display:grid;grid-template-columns:.95fr 1.05fr;gap:7vw}
+.culture-caption h3{font-family:"Playfair Display";font-weight:400;font-size:clamp(34px,4.2vw,62px);line-height:1;margin:0}
+.culture-caption p{margin:0;color:#aaa;line-height:1.8;max-width:560px}
+
+.tien{background:#0d0d0d;color:#f1ebdf;overflow:hidden}
+.tien-intro{display:grid;grid-template-columns:.92fr 1.08fr;gap:8vw;align-items:end;margin-bottom:54px}
+.tien-kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#a99e91;margin-bottom:18px}
+.tien-title{font-family:"Playfair Display";font-size:clamp(58px,8vw,118px);font-weight:400;line-height:.84;letter-spacing:-.05em;margin:0}
+.tien-copy{color:#c5beb5;line-height:1.8;max-width:560px}
+.tien-layout{display:grid;grid-template-columns:1.18fr .82fr;gap:18px;align-items:stretch}
+.tien-layout img{width:100%;height:100%;object-fit:cover}
+.tien-main{min-height:650px}
+.tien-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}
+.tien-caption{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:start}
+.tien-caption h3{font-family:"Playfair Display";font-weight:400;font-size:clamp(34px,4.2vw,62px);line-height:1;margin:0}
+.tien-caption p{margin:0;color:#aaa;line-height:1.8;max-width:560px}
+
+@media(max-width:800px){.fh-intro,.trip-head,.culture-intro,.culture-caption,.tien-intro,.tien-caption{grid-template-columns:1fr}.trip-grid,.trip-grid.small,.culture-layout,.tien-layout{grid-template-columns:1fr;grid-auto-rows:auto}.trip-grid .a,.trip-grid .d,.trip-grid.small .a,.culture-layout .large,.tien-main{grid-row:auto;grid-column:auto}.tien-side{grid-template-rows:auto;grid-template-columns:1fr;gap:18px}.mm-intro,.mm-bridge{grid-template-columns:1fr}.mm-gallery{min-height:860px}.mm-studio{width:86%;height:330px}.mm-outdoor{width:62%;height:270px;top:285px}.mm-graduation{width:76%;height:300px;left:5%;bottom:0}.mm-label.one{top:342px}.mm-label.two{top:565px}.mm-label.three{left:5%}.container{width:calc(100% - 36px)}.nav{padding:20px 18px}.navlinks{display:none}.hero-content{padding-bottom:48px}.hero h1{font-size:clamp(64px,19vw,115px)}.hero-bottom{display:block}.statement{margin-top:30px}.section{padding:85px 0}.section-head{margin-bottom:38px}.about-grid,.feature-top,.recognition-grid,.origin-grid{grid-template-columns:1fr}.portrait{min-height:470px}.poster-composition{min-height:790px}.poster{width:67%;left:0}.emotion{width:76%;height:390px;top:350px}.quote{left:10%;bottom:0;width:88%}.rec-caption,.contact-top{display:block}.rec-caption p{margin-top:20px}.rec-main{min-height:auto}.rec-side{grid-template-rows:auto}.origin-photo{height:480px}.project{grid-template-columns:40px 1fr 30px;gap:12px}.project p{grid-column:2}.project-arrow{grid-column:3;grid-row:1}.links{margin-top:40px}.footer{display:block;line-height:2}}
+</style>
+</head>
+<body>
+<header class="nav"><a href="#">KIET ANH NGUYEN</a><nav class="navlinks"><a href="#about">About</a><a href="#film">Film</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav></header>
+
+<section class="hero"><div class="hero-media"></div><div class="container hero-content"><div class="eyebrow">Multimedia Communication · Storytelling · Social Impact</div><h1>Stories<span>can change the way we see people.</span></h1><div class="hero-bottom"><div class="scroll">Scroll to explore ↓</div><p class="statement">A personal archive of films, photography, community projects, and the stories that shaped how I see communication.</p></div></div></section>
+
+<section class="section" id="about"><div class="container"><div class="section-head"><span class="section-num">01</span><div class="rule"></div><h2 class="section-title">About me</h2></div><div class="about-grid reveal"><div class="portrait"><small>Storytelling through lived moments</small></div><div class="about-copy"><p class="lead">I explore how storytelling can create empathy and turn awareness into action.</p><p>I am a Multimedia Communication student interested in visual storytelling, social impact, community work, and cultural projects. My work often begins with listening: to people, to their everyday experiences, and to the stories that are easy to overlook.</p><div class="meta"><span>Visual Storytelling</span><span>Social Impact</span><span>Community</span><span>Culture</span></div></div></div></div></section>
+
+<section class="section feature" id="film"><div class="container"><div class="section-head"><span class="section-num">02</span><div class="rule"></div><span style="font-size:12px;letter-spacing:.18em;text-transform:uppercase">Featured story</span></div><div class="feature-top reveal"><h2 class="film-title">The Window<br>Without a Horizon</h2><p class="film-copy"><strong>Cửa Sổ Không Có Đường Chân Trời</strong><br><br>A short film inspired by my experience meeting children with cancer, exploring their everyday lives, dreams, and the people who care for them.<br><br><span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#7b7168">Film link will be added later.</span></p></div><div class="poster-composition reveal"><img class="poster" src="assets/film-poster.jpg" alt="The Window Without a Horizon film poster"><img class="emotion" src="assets/screening-emotion.jpg" alt="Emotional moment during the film screening"><div class="quote">“Before seeing their illness, I wanted people to see the children.”</div></div></div></section>
+
+
+<section class="section recognition"><div class="container"><div class="section-head"><span class="section-num">03</span><div class="rule"></div><h2 class="section-title">Recognition</h2></div><div class="recognition-grid reveal"><img class="rec-main" src="assets/award-stage.jpg" alt="Best Short Film recognition"><div class="rec-side"><img src="assets/award-team.jpg" alt="Film team with awards"><img src="assets/award-guests.jpg" alt="Film team and guests with poster and award"></div></div><div class="rec-caption reveal"><h3>Best Short Film</h3><p>Recognition is presented here as part of the film's journey rather than the center of the story.</p></div></div></section>
+
+<section class="section miraculous" id="miraculous">
+<div class="container">
+  <div class="section-head"><span class="section-num">04</span><div class="rule"></div><h2 class="section-title">Where it started</h2></div>
+  <div class="mm-intro reveal">
+    <div>
+      <div class="mm-kicker">Miraculous Moments · Khoảnh Khắc Diệu Kỳ</div>
+      <h2 class="mm-title">A story before the film.</h2>
+    </div>
+    <p class="mm-copy">Miraculous Moments began with a volunteering experience where I met pediatric cancer survivors, listened to their stories, and shared moments of creativity and joy. Through photography, the children were not simply subjects of a story — they were making images of their own.</p>
+  </div>
+  <div class="mm-gallery reveal">
+    <img class="mm-studio" src="assets/miraculous-studio.jpg" alt="Miraculous Moments photography studio session">
+    <span class="mm-label one">01 / Learning together</span>
+    <img class="mm-outdoor" src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography activity">
+    <span class="mm-label two">02 / Taking the camera outside</span>
+    <img class="mm-graduation" src="assets/miraculous-graduation.jpg" alt="Miraculous Moments photography class graduation">
+    <span class="mm-label three">03 / Graduation day</span>
+  </div>
+  <div class="mm-bridge reveal">
+    <div class="mm-bridge-quote">Before seeing their illness, I wanted people to see the children.</div>
+    <p>That experience stayed with me. It later shaped <em>The Window Without a Horizon</em> and made me think more seriously about the responsibility of communication: not only how we tell a story, but how we choose to see the person inside it.</p>
+  </div>
+</div>
+</section>
+
+
+<section class="section flying" id="flying-heart">
+<div class="container">
+  <div class="section-head"><span class="section-num">05</span><div class="rule"></div><h2 class="section-title">Flying Heart</h2></div>
+  <div class="fh-intro reveal">
+    <div>
+      <div class="fh-kicker">Volunteer work · Community outreach</div>
+      <h2 class="fh-title">Field notes from the road.</h2>
+    </div>
+    <p class="fh-copy">Flying Heart is part of my journey as a volunteer. These trips brought me closer to community work on the ground, from meeting families and children to helping prepare and distribute gifts. I keep them here not as achievements, but as lived moments that continue shaping how I think about care, presence, and social impact.</p>
+  </div>
+
+  <div class="trip reveal">
+    <div class="trip-head">
+      <div>
+        <div class="trip-meta">Đắk Lắk · Outreach trip</div>
+        <h3>Meeting people where they are.</h3>
+      </div>
+      <p>This trip to Đắk Lắk carried the spirit of a field journal: small encounters, long roads, shared effort, and the quiet reality behind community outreach. The photos move between preparation, presence, and the people we met along the way.</p>
+    </div>
+    <div class="trip-grid">
+      <img class="a" src="assets/flying-daklak-1.jpg" alt="Volunteer outreach in Dak Lak with a mother carrying a sleeping child">
+      <img class="b" src="assets/flying-daklak-2.jpg" alt="Children receiving support during the Dak Lak trip">
+      <img class="c" src="assets/flying-daklak-3.jpg" alt="Kiet volunteering with donated goods during the Dak Lak trip">
+      <img class="d" src="assets/flying-daklak-4.jpg" alt="Flying Heart volunteer team with children during the Dak Lak trip">
+      <img class="e" src="assets/flying-daklak-5.jpg" alt="Kiet with children during community outreach in Dak Lak">
+      <img class="f" src="assets/flying-daklak-6.jpg" alt="Flying Heart group photo with children and support packages in Dak Lak">
+    </div>
+  </div>
+
+  <div class="trip reveal">
+    <div class="trip-head">
+      <div>
+        <div class="trip-meta">Đồng Nai · Mid-Autumn outreach</div>
+        <h3>A crowded night of celebration.</h3>
+      </div>
+      <p>The Đồng Nai trip felt different: fuller, louder, and more festive. With Mid-Autumn activities, gifts, and a large gathering of children, the focus shifted toward creating a shared moment of joy while still holding onto the values of care and connection.</p>
+    </div>
+    <div class="trip-grid small">
+      <img class="a" src="assets/flying-dongnai-1.jpg" alt="Crowded Mid-Autumn community event in Dong Nai">
+      <img class="b" src="assets/flying-dongnai-2.jpg" alt="Children gathering during the Mid-Autumn outreach event in Dong Nai">
+      <img class="c" src="assets/flying-dongnai-3.jpg" alt="Gift bags prepared for children during the Dong Nai outreach trip">
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section class="section culture" id="cham-viet-phuc">
+<div class="container">
+  <div class="section-head"><span class="section-num">06</span><div class="rule"></div><h2 class="section-title">Chạm Việt Phục</h2></div>
+  <div class="culture-intro reveal">
+    <div>
+      <div class="culture-kicker">Cultural project · Workshop & exhibition</div>
+      <h2 class="culture-title">Bringing heritage closer.</h2>
+    </div>
+    <p class="culture-copy">Chạm Việt Phục was a student-led cultural project that invited people to engage with Vietnamese traditional clothing in a more approachable way. I joined as part of the organizing effort and contributed through concept support, content direction, and on-site interaction during the event.</p>
+  </div>
+  <div class="culture-layout reveal">
+    <img class="large" src="assets/cham-1.jpg" alt="Traditional costume display at Cham Viet Phuc">
+    <img src="assets/cham-2.jpg" alt="Kiet in traditional attire speaking with a participant at Cham Viet Phuc">
+    <img src="assets/cham-3.jpg" alt="On-site preparation and styling at Cham Viet Phuc">
+    <img src="assets/cham-4.jpg" alt="Interactive activity area at Cham Viet Phuc">
+  </div>
+  <div class="culture-caption reveal">
+    <h3>Culture becomes more meaningful when people can step into it.</h3>
+    <p>What mattered most to me was not only presenting cultural artifacts, but creating a space where people could ask, listen, and participate. That experience strengthened my interest in cultural communication and in designing activities that help heritage feel lived, shared, and relevant to young audiences.</p>
+  </div>
+</div>
+</section>
+
+
+<section class="section tien" id="tien-thuong-tuan-du">
+<div class="container">
+  <div class="section-head"><span class="section-num">07</span><div class="rule"></div><h2 class="section-title">Tiên Thường Tuần Du</h2></div>
+  <div class="tien-intro reveal">
+    <div>
+      <div class="tien-kicker">Cultural project · Community participation</div>
+      <h2 class="tien-title">Tradition in motion.</h2>
+    </div>
+    <p class="tien-copy">Tiên Thường Tuần Du was another cultural space where I took part as a volunteer, supporting activities that brought together performance, costume, and community interaction. What drew me to this project was how culture could be experienced not as something distant, but as something alive, shared, and carried by people.</p>
+  </div>
+  <div class="tien-layout reveal">
+    <img class="tien-main" src="assets/tien-2.jpg" alt="Group photo at Tien Thuong Tuan Du cultural booth">
+    <div class="tien-side">
+      <img src="assets/tien-1.jpg" alt="Participants in traditional attire at Tien Thuong Tuan Du">
+      <img src="assets/tien-3.jpg" alt="Cultural participants posing together during Tien Thuong Tuan Du">
+    </div>
+  </div>
+  <div class="tien-caption reveal">
+    <h3>Projects like this taught me that heritage becomes stronger when it is practiced together.</h3>
+    <p>Beyond documentation, I was interested in the atmosphere these events created: people meeting across regions, identities, and traditions. As a volunteer, I saw how cultural projects can become spaces for participation, conversation, and connection — and that is a direction I hope to keep exploring in my work.</p>
+  </div>
+</div>
+</section>
+
+<section class="section projects" id="projects"><div class="container"><div class="section-head"><span class="section-num">08</span><div class="rule"></div><h2 class="section-title">Selected projects</h2></div><div class="project reveal"><div>01</div><h3>Miraculous Moments</h3><p>Community · Photography · Social Impact</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>02</div><h3>The Window Without a Horizon</h3><p>Short Film · Screenwriting · Social Impact</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>03</div><h3>Flying Heart</h3><p>Volunteer Work · Community Outreach</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>04</div><h3>Chạm Việt Phục</h3><p>Cultural Heritage · Youth Advocacy</p><div class="project-arrow">↗</div></div><div class="project reveal"><div>05</div><h3>Tiên Thường Tuần Du</h3><p>Cultural Heritage · Community Event</p><div class="project-arrow">↗</div></div></div></section>
+
+<section class="next"><div class="container reveal"><div class="eyebrow">09 / What's next</div><h2>Awareness.<br>Understanding.<br>Action.</h2><p>I want to keep exploring how communication can turn awareness into understanding, and understanding into meaningful action. This direction will continue through my graduation project and the next stage of Miraculous Moments.</p></div></section>
+
+<section class="contact" id="contact"><div class="container"><div class="contact-top reveal"><div><div class="eyebrow">10 / Find me elsewhere</div><h2>Let's connect.</h2></div><div class="links"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a><a href="mailto:your@email.com">Email</a></div></div><div class="footer"><span>© 2026 Kiet Anh Nguyen</span><span>Multimedia Communication · Storytelling · Social Impact</span></div></div></section>
+
+<script>
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
+</script>
+</body></html>
