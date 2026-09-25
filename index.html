@@ -3,460 +3,875 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090a0d">
 <title>Kiet Anh Nguyen — Portfolio</title>
 <style>
 :root{
-  --bg:#0b0b0c;
-  --panel:#151516;
-  --paper:#eee9df;
-  --ink:#171717;
-  --text:#f1eee8;
-  --muted:#a6a19a;
-  --line:rgba(255,255,255,.16);
+  --ink:#f4efe7;
+  --muted:#c3bcb1;
+  --cream:#e8dfd2;
   --max:1180px;
+  --ease:cubic-bezier(.22,.61,.36,1);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:auto}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#08090b;
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
-main{position:relative;z-index:1}
-.container{width:min(var(--max),calc(100% - 96px));margin:auto}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3,.display,.transition-title,.quote{
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+  letter-spacing:-.04em;
+}
+p{line-height:1.56}
+button{font:inherit}
 
-/* ------------------------------
-   ROBUST PAGE ARCHITECTURE
-   No sticky content. No pinned story stage.
-   Every chapter lives in normal document flow.
------------------------------- */
-.chapter{
-  min-height:100vh;
+/* ---------- top navigation ---------- */
+.nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:58px;
+  z-index:120;
   display:flex;
   align-items:center;
-  position:relative;
-  border-top:1px solid rgba(255,255,255,.08);
-  padding:64px 0;
+  justify-content:space-between;
+  padding:0 28px;
+  color:rgba(255,255,255,.78);
+  mix-blend-mode:difference;
+  pointer-events:none;
 }
-.chapter.light{background:var(--paper);color:var(--ink)}
-.chapter.dark{background:#111}
-.chapter.black{background:#080808}
-.chapter.burgundy{background:#30191b}
-.chapter-content{
+.nav a{pointer-events:auto}
+.nav-brand{font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+.nav-right{display:flex;gap:18px;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- landing ---------- */
+.landing{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:
+    radial-gradient(70% 65% at 76% 34%,rgba(62,82,119,.28),transparent 62%),
+    radial-gradient(46% 54% at 22% 70%,rgba(96,53,70,.12),transparent 70%),
+    linear-gradient(180deg,#090a0e,#111722);
+}
+.landing-inner{
   width:min(var(--max),calc(100% - 96px));
   margin:auto;
-  min-width:0;
 }
-.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 16px;color:var(--muted)}
-.light .eyebrow{color:#6f6a63}
-h1,h2,h3,p{margin-top:0}
-h1{font-size:clamp(52px,7vw,104px);line-height:.91;margin-bottom:24px}
-h2{font-size:clamp(38px,5vw,72px);line-height:.95;margin-bottom:20px}
-h3{font-size:clamp(24px,2.7vw,38px);line-height:1;margin-bottom:12px}
-p{font-size:15px;line-height:1.55;max-width:640px}
-.quote{font-size:clamp(28px,4vw,56px);line-height:1.06;max-width:930px}
-
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center}
-.grid-60-40{display:grid;grid-template-columns:1.18fr .82fr;gap:46px;align-items:center}
-.grid-40-60{display:grid;grid-template-columns:.82fr 1.18fr;gap:46px;align-items:center}
-.media-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
-.media-3{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center}
-.media-stack{display:grid;gap:14px}
-.portrait-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:center}
-.frame{min-width:0;display:flex;align-items:center;justify-content:center}
-.frame img{max-height:64vh;width:auto;object-fit:contain}
-.frame.poster img{max-height:70vh}
-.frame.small img{max-height:31vh}
-.gallery{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
-.gallery .frame{flex:0 0 auto;scroll-snap-align:start}
-.gallery .frame img{height:52vh;max-width:none;width:auto}
-.tabs{display:flex;gap:8px;margin-bottom:14px}
-.tabs button{
-  border:1px solid currentColor;background:transparent;color:inherit;
-  padding:8px 12px;cursor:pointer
+.kicker{
+  font-size:11px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 17px;
 }
-.tabs button.active{background:currentColor;color:#111}
-.light .tabs button.active{color:#fff}
-.gallery.hidden{display:none}
+.landing h1{
+  font-size:clamp(62px,8.4vw,126px);
+  line-height:.87;
+  max-width:1050px;
+  margin:0 0 28px;
+}
+.landing .intro{
+  max-width:590px;
+  color:#c9cdd5;
+  font-size:16px;
+}
+.scroll-note{
+  position:absolute;
+  left:max(48px,calc((100vw - var(--max))/2));
+  bottom:28px;
+  font-size:9px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#858b98;
+}
 
-.projects{display:grid;grid-template-columns:1fr 1fr;gap:38px}
-.project-col{border-top:1px solid currentColor}
-.project-row{padding:16px 0;border-bottom:1px solid currentColor}
-.project-row h3{margin:0;font-size:clamp(22px,2.4vw,34px)}
-.project-row p{font-size:11px;margin:5px 0 0}
-
-/* ------------------------------
-   TRANSITION ZONES
-   The plane appears ONLY here.
------------------------------- */
-.transition{
-  height:78vh;
-  min-height:520px;
-  background:#0c0c0d;
+/* ---------- chapter system ---------- */
+.story{position:relative}
+.story-hero{
+  min-height:100vh;
   position:relative;
   display:flex;
-  align-items:center;
-  justify-content:center;
+  align-items:flex-end;
   overflow:hidden;
+  isolation:isolate;
+  color:#fff;
+  background-color:var(--hero-base,#111);
 }
-.transition::before{
+.story-bg{
+  position:absolute;
+  inset:0;
+  z-index:-5;
+  background-image:var(--hero-image);
+  background-size:var(--hero-size,cover);
+  background-position:var(--hero-position,center);
+  background-repeat:no-repeat;
+  transform:scale(1.015);
+}
+.story-hero::before{
   content:"";
   position:absolute;
-  left:8%;right:8%;top:50%;
-  border-top:1px solid rgba(255,255,255,.07)
+  inset:0;
+  z-index:-4;
+  background:
+    linear-gradient(90deg,rgba(4,5,7,var(--shade-left,.80)) 0%,rgba(4,5,7,.43) 48%,rgba(4,5,7,var(--shade-right,.17)) 100%),
+    linear-gradient(180deg,var(--top-edge,#0b0c10) 0%,transparent 22%,transparent 62%,rgba(0,0,0,.22) 78%,transparent 100%);
 }
-.transition-label{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  font-size:11px;
-  line-height:1.6;
-  letter-spacing:.12em;
+.story-hero::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-1px;
+  height:38vh;
+  z-index:-3;
+  background:linear-gradient(180deg,transparent 0%,var(--body-bg,#111) 92%);
+}
+.hero-inner{
+  width:min(var(--max),calc(100% - 96px));
+  margin:0 auto;
+  padding:0 0 11vh;
+}
+.story-no{
+  font-size:10px;
+  letter-spacing:.14em;
   text-transform:uppercase;
-  color:#777
+  color:#d5cec4;
+  margin-bottom:13px;
 }
-.transition-label strong{display:block;color:#b9b4ad;font-size:13px;font-weight:500}
+.display{
+  font-size:clamp(54px,7vw,108px);
+  line-height:.89;
+  max-width:1000px;
+  margin:0 0 24px;
+}
+.hero-lede{
+  max-width:600px;
+  font-size:16px;
+  color:#e4ddd3;
+}
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 24px;
+  margin-top:26px;
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#d5cec4;
+}
 
-#flightCanvas{
-  position:fixed;inset:0;width:100vw;height:100vh;
-  pointer-events:none;z-index:70;display:none
+/* ---------- chapter body ---------- */
+.story-body{
+  position:relative;
+  background:var(--body-bg,#111);
+  color:var(--body-color,#f4efe7);
+  padding:90px 0 150px;
+  overflow:hidden;
 }
-#trailSvg{
-  position:fixed;inset:0;width:100vw;height:100vh;
-  pointer-events:none;z-index:69;display:none;overflow:visible
+.story-body::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:125px;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent,var(--transition-bg,#0c0d10));
 }
+.body-inner{
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+}
+.body-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:54px;
+  align-items:center;
+}
+.body-grid.wide-left{grid-template-columns:1.2fr .8fr}
+.body-grid.wide-right{grid-template-columns:.82fr 1.18fr}
+.body-title{
+  font-size:clamp(38px,4.5vw,68px);
+  line-height:.96;
+  margin-bottom:20px;
+}
+.body-copy{max-width:560px;color:var(--body-muted,#bfb8ae);font-size:15px}
+.quote{
+  font-size:clamp(30px,4vw,57px);
+  line-height:1.06;
+  max-width:890px;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:42px;
+}
+.stat{
+  padding-top:14px;
+  border-top:1px solid currentColor;
+  opacity:.9;
+}
+.stat strong{
+  display:block;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(30px,4vw,54px);
+  font-weight:400;
+  line-height:1;
+  margin-bottom:7px;
+}
+.stat span{font-size:10px;letter-spacing:.11em;text-transform:uppercase}
+
+/* ---------- media ---------- */
+.media-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+.media-stack{display:grid;gap:18px}
+.media-3{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:center}
+.portrait-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:center}
+.frame{
+  min-width:0;
+  overflow:hidden;
+  border-radius:24px;
+  background:rgba(255,255,255,.035);
+}
+.frame img{
+  width:100%;
+  height:auto;
+  border-radius:24px;
+  transition:transform .8s var(--ease);
+}
+.frame.contain img{object-fit:contain}
+.frame.crop img{width:100%;height:52vh;object-fit:cover}
+.frame.tall img{width:100%;height:58vh;object-fit:cover}
+@media (hover:hover) and (pointer:fine){
+  .frame:hover img{transform:scale(1.018)}
+}
+
+/* ---------- gallery ---------- */
+.gallery-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:20px;
+}
+.tabs{display:flex;gap:9px;flex-wrap:wrap}
+.tabs button{
+  color:inherit;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  padding:9px 14px;
+  cursor:pointer;
+}
+.tabs button.active{background:#fff;color:#111;border-color:#fff}
+.gallery{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  padding:3px 7vw 12px 0;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 88%,transparent 100%);
+          mask-image:linear-gradient(90deg,#000 0%,#000 88%,transparent 100%);
+}
+.gallery::-webkit-scrollbar{display:none}
+.gallery.hidden{display:none}
+.gallery .frame{
+  flex:0 0 auto;
+  scroll-snap-align:start;
+  border-radius:20px;
+}
+.gallery .frame img{
+  height:52vh;
+  width:auto;
+  max-width:none;
+  border-radius:20px;
+}
+
+/* ---------- dedicated transition ---------- */
+.transition{
+  height:80vh;
+  min-height:560px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(70% 85% at var(--mist-x,72%) 42%,var(--mist,rgba(255,255,255,.06)),transparent 65%),
+    linear-gradient(180deg,var(--transition-bg,#0c0d10),var(--transition-bg2,#101116));
+  color:#fff;
+}
+.transition-inner{
+  position:relative;
+  z-index:5;
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+}
+.transition:nth-of-type(even) .transition-inner{text-align:right}
+.transition:nth-of-type(even) .transition-copy{margin-left:auto}
+.chapter-no{
+  position:absolute;
+  right:-2vw;
+  top:-18vh;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(190px,26vw,420px);
+  line-height:.82;
+  color:#fff;
+  opacity:.045;
+  pointer-events:none;
+}
+.transition:nth-of-type(even) .chapter-no{right:auto;left:-2vw}
+.next{
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#8e929b;
+  margin-bottom:12px;
+}
+.transition-title{
+  font-size:clamp(54px,7.6vw,112px);
+  line-height:.88;
+  max-width:970px;
+  margin:0;
+}
+.transition:nth-of-type(even) .transition-title{margin-left:auto}
+.hand{
+  display:inline-block;
+  margin:12px 0 18px;
+  font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  font-size:clamp(24px,3vw,45px);
+  font-style:italic;
+  line-height:1.1;
+  color:#dcd5cb;
+  transform:rotate(-2deg);
+}
+.transition:nth-of-type(even) .hand{transform:rotate(2deg)}
+.transition-copy{
+  max-width:580px;
+  color:#aaa9aa;
+  font-size:15px;
+}
+
+/* ---------- 3D flight ---------- */
+#trailSvg,#flightCanvas{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  display:none;
+}
+#trailSvg{z-index:70}
+#flightCanvas{z-index:71}
 #trailPath{
   fill:none;
-  stroke:rgba(235,223,199,.67);
-  stroke-width:2.0;
+  stroke:rgba(239,228,207,.72);
+  stroke-width:2.05;
   stroke-linecap:round;
-  stroke-linejoin:round
-}
-.status{
-  position:fixed;right:12px;top:12px;z-index:100;
-  background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.16);
-  color:#bbb;font:10px/1.45 monospace;padding:8px 10px;
-  pointer-events:none
-}
-.status .ok{color:#bde8bd}
-.status .off{color:#8e8e8e}
-
-.contact{padding:100px 0 34px;background:#060606}
-.contact-grid{display:flex;align-items:end;justify-content:space-between;gap:40px}
-.links{display:flex;gap:18px;flex-wrap:wrap;color:#aaa}
-
-@media(max-width:760px){
-  .container,.chapter-content{width:calc(100% - 32px)}
-  .chapter{min-height:auto;padding:70px 0}
-  .grid-2,.grid-60-40,.grid-40-60,.media-pair,.media-3,.projects{grid-template-columns:1fr;gap:20px}
-  .portrait-row{grid-template-columns:repeat(2,1fr)}
-  .frame img{max-height:46vh}
-  .frame.poster img{max-height:56vh}
-  .gallery .frame img{height:38vh}
-  .transition{height:58vh;min-height:400px}
-  .contact-grid{display:block}
-  .status{font-size:9px}
+  stroke-linejoin:round;
 }
 
-/* =========================================================
-   V22 — SEAMLESS VISUAL SYSTEM
-   Visual-only layer. Structure + 3D transition engine unchanged.
-   ========================================================= */
-:root{--ease:cubic-bezier(.22,.61,.36,1)}
-body{background:#090a0d;font-family:Arial,Helvetica,sans-serif}
-h1,h2,.quote{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.035em}
-h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.02em}
-p{letter-spacing:.005em}
+/* ---------- special chapter palettes ---------- */
+#about{--body-bg:#0e1015;--body-color:#f2eee8;--body-muted:#aaaeb7;--transition-bg:#0b0c10;--transition-bg2:#11131a}
+#film{--body-bg:#e8dfd2;--body-color:#1e1915;--body-muted:#65584e;--transition-bg:#16100e;--transition-bg2:#211713}
+#recognition{--body-bg:#100d0d;--body-color:#f2ece5;--body-muted:#b7a89c;--transition-bg:#10150f;--transition-bg2:#182017}
+#miraculous{--body-bg:#111b14;--body-color:#eef2eb;--body-muted:#a7b2a7;--transition-bg:#0e1717;--transition-bg2:#142326}
+#flying{--body-bg:#0e191b;--body-color:#eef3f3;--body-muted:#9fb0b2;--transition-bg:#241317;--transition-bg2:#35191f}
+#embrace{--body-bg:#35191f;--body-color:#f5ecec;--body-muted:#cbb8ba;--transition-bg:#17100e;--transition-bg2:#221610}
+#tien{--body-bg:#120e0c;--body-color:#f4eee7;--body-muted:#bcaea3;--transition-bg:#131216;--transition-bg2:#1c1a20}
+#selected{--body-bg:#e0d5c7;--body-color:#1f1a16;--body-muted:#64594f;--transition-bg:#101117;--transition-bg2:#151923}
+#next{--body-bg:#08090c;--body-color:#f1eee9;--body-muted:#a7aab2;--transition-bg:#08090c;--transition-bg2:#08090c}
 
-.chapter{
-  border-top:0;isolation:isolate;overflow:hidden;
+/* portrait-based Embrace hero */
+#embrace .story-bg{
+  background-size:auto 112%;
+  background-position:72% center;
+  background-color:#32191f;
+}
+#embrace .story-hero::before{
   background:
-    radial-gradient(80% 72% at var(--glow-x,78%) var(--glow-y,28%),var(--glow,rgba(255,255,255,.05)) 0%,transparent 58%),
-    linear-gradient(180deg,var(--bg-top,#111),var(--bg-bottom,#090909));
+    linear-gradient(90deg,rgba(28,10,15,.91) 0%,rgba(35,13,20,.65) 44%,rgba(35,13,20,.18) 78%,rgba(35,13,20,.22) 100%),
+    linear-gradient(180deg,#241116 0%,transparent 18%,transparent 70%,rgba(0,0,0,.25) 82%,transparent 100%);
 }
-.chapter::before,.chapter::after{
-  content:"";position:absolute;pointer-events:none;z-index:-1;border-radius:999px;
-  filter:blur(90px);opacity:.54
+
+/* ---------- selected projects ---------- */
+.project-index{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
 }
-.chapter::before{width:42vw;height:42vw;min-width:420px;min-height:420px;left:-14vw;top:8%;background:var(--mist-a,rgba(255,255,255,.04))}
-.chapter::after{width:38vw;height:38vw;min-width:380px;min-height:380px;right:-12vw;bottom:2%;background:var(--mist-b,rgba(255,255,255,.03))}
+.project-col{border-top:1px solid rgba(0,0,0,.18)}
+.project-row{
+  padding:21px 0;
+  border-bottom:1px solid rgba(0,0,0,.16);
+}
+.project-row h3{
+  font-size:clamp(26px,3vw,42px);
+  line-height:1;
+  margin:0 0 7px;
+}
+.project-row p{font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin:0;color:#76695e}
 
-#hero{--bg-top:#090a0e;--bg-bottom:#101521;--glow:rgba(63,86,125,.30);--mist-a:rgba(40,56,91,.20);--mist-b:rgba(88,53,70,.13);--glow-x:72%;--glow-y:30%}
-#about{--bg-top:#101521;--bg-bottom:#171416;--glow:rgba(92,60,70,.21);--mist-a:rgba(44,60,83,.14);--mist-b:rgba(105,59,54,.17);--glow-x:26%;--glow-y:65%}
-#film{--bg-top:#e8dece;--bg-bottom:#d8c7ae;--glow:rgba(173,105,78,.25);--mist-a:rgba(255,248,233,.54);--mist-b:rgba(155,91,67,.17);--glow-x:78%;--glow-y:24%;color:#1c1713}
-#recognition{--bg-top:#231711;--bg-bottom:#130f10;--glow:rgba(126,66,43,.26);--mist-a:rgba(102,47,37,.18);--mist-b:rgba(53,63,85,.10);--glow-x:70%;--glow-y:43%}
-#miraculous{--bg-top:#101612;--bg-bottom:#18231c;--glow:rgba(62,105,79,.23);--mist-a:rgba(45,86,62,.18);--mist-b:rgba(110,91,58,.10);--glow-x:30%;--glow-y:30%}
-#flying-heart{--bg-top:#0d1718;--bg-bottom:#17272a;--glow:rgba(53,101,109,.24);--mist-a:rgba(37,80,88,.18);--mist-b:rgba(65,92,76,.12);--glow-x:77%;--glow-y:40%}
-#cham{--bg-top:#291317;--bg-bottom:#4a242b;--glow:rgba(150,67,80,.25);--mist-a:rgba(104,39,52,.22);--mist-b:rgba(178,117,80,.10);--glow-x:22%;--glow-y:42%}
-#tien{--bg-top:#1a1210;--bg-bottom:#0d0d0e;--glow:rgba(120,73,44,.21);--mist-a:rgba(101,55,38,.16);--mist-b:rgba(43,59,80,.10);--glow-x:75%;--glow-y:35%}
-#projects{--bg-top:#e4d9ca;--bg-bottom:#d0bca5;--glow:rgba(136,76,59,.20);--mist-a:rgba(255,246,226,.42);--mist-b:rgba(110,73,61,.14);color:#1b1714}
-#next{--bg-top:#111117;--bg-bottom:#08090c;--glow:rgba(55,75,111,.22);--mist-a:rgba(40,53,82,.15);--mist-b:rgba(85,46,68,.11)}
+/* ---------- next + contact ---------- */
+.next-body{
+  background:
+    radial-gradient(70% 75% at 78% 15%,rgba(58,79,117,.20),transparent 62%),
+    linear-gradient(180deg,#08090c,#050506);
+}
+.contact{
+  padding:100px 0 38px;
+  background:#050506;
+  color:#f2eee8;
+}
+.contact-inner{
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:50px;
+  align-items:flex-end;
+}
+.contact h2{font-size:clamp(48px,6vw,86px);margin-bottom:0}
+.contact-links{display:flex;gap:18px;flex-wrap:wrap;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b4b0aa}
 
-.frame{position:relative;border-radius:26px;overflow:hidden;background:rgba(255,255,255,.025);box-shadow:0 24px 60px rgba(0,0,0,.18)}
-.light .frame{background:rgba(255,255,255,.22);box-shadow:0 24px 60px rgba(88,62,42,.13)}
-.frame img{border-radius:26px;transition:transform .8s var(--ease),filter .8s var(--ease)}
-@media (hover:hover) and (pointer:fine){.frame:hover img{transform:scale(1.018)}}
-
-.gallery{gap:18px;padding:4px 5vw 18px 0;scrollbar-width:none;-ms-overflow-style:none;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,#000 0%,#000 88%,transparent 100%)}
-.gallery::-webkit-scrollbar{display:none}.gallery .frame{box-shadow:none;background:transparent}.gallery .frame img{border-radius:22px}
-.tabs{gap:10px}.tabs button{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:9px 15px;transition:background .25s ease,border-color .25s ease,transform .25s ease;backdrop-filter:blur(10px)}
-.tabs button.active{background:rgba(255,255,255,.92);border-color:rgba(255,255,255,.92);color:#111}
-@media (hover:hover) and (pointer:fine){.tabs button:hover{transform:translateY(-1px)}}
-
-.transition{min-height:560px;height:82vh;background:linear-gradient(180deg,var(--from) 0%,var(--mid) 48%,var(--to) 100%);isolation:isolate}
-.transition::before,.transition::after{content:"";position:absolute;pointer-events:none;border:0;border-radius:999px;filter:blur(96px);opacity:.82;z-index:0}
-.transition::before{width:64vw;height:44vw;min-width:620px;min-height:420px;left:-14vw;top:-16%;background:radial-gradient(circle,var(--from-glow) 0%,transparent 66%)}
-.transition::after{width:68vw;height:46vw;min-width:660px;min-height:440px;right:-16vw;bottom:-18%;background:radial-gradient(circle,var(--to-glow) 0%,transparent 66%)}
-.transition-label{z-index:3;color:rgba(255,255,255,.45);text-shadow:0 1px 20px rgba(0,0,0,.35)}
-.transition-label strong{margin-top:5px;color:rgba(255,255,255,.84);font-family:Georgia,"Times New Roman",serif;font-size:clamp(18px,2vw,28px);letter-spacing:-.015em;text-transform:none}
-.transition[data-to="Film"],.transition[data-to="Selected Projects"]{color:#241d18}
-.transition[data-to="Film"] .transition-label,.transition[data-to="Selected Projects"] .transition-label{color:rgba(40,30,24,.48);text-shadow:none}
-.transition[data-to="Film"] .transition-label strong,.transition[data-to="Selected Projects"] .transition-label strong{color:rgba(33,25,20,.85)}
-
-.project-col{border-top:1px solid rgba(0,0,0,.18)}.project-row{border-bottom:1px solid rgba(0,0,0,.16);padding:22px 0}
-.black .project-col,.dark .project-col,.burgundy .project-col{border-top-color:rgba(255,255,255,.15)}
-.black .project-row,.dark .project-row,.burgundy .project-row{border-bottom-color:rgba(255,255,255,.13)}
-
-.contact{position:relative;overflow:hidden;background:radial-gradient(70% 90% at 80% 10%,rgba(49,67,99,.20),transparent 60%),linear-gradient(180deg,#08090c,#050506)}
-.contact::before{content:"";position:absolute;inset:-30% -20% auto auto;width:55vw;height:55vw;border-radius:999px;filter:blur(100px);background:rgba(74,45,69,.11)}
-.status{display:none!important}
-
+/* ---------- mobile ---------- */
 @media(max-width:760px){
-  .chapter::before,.chapter::after{filter:blur(64px);opacity:.42}
-  .transition{height:64vh;min-height:430px}
-  .transition::before,.transition::after{filter:blur(72px)}
-  .frame,.frame img{border-radius:20px}
-  .gallery{-webkit-mask-image:none;mask-image:none}
+  .nav{padding:0 16px}
+  .nav-right{display:none}
+  .landing-inner,.hero-inner,.body-inner,.transition-inner,.contact-inner{width:calc(100% - 32px)}
+  .landing h1{font-size:clamp(52px,15vw,82px)}
+  .story-hero{min-height:86vh}
+  .hero-inner{padding-bottom:8vh}
+  .display{font-size:clamp(48px,13vw,78px)}
+  .story-body{padding:66px 0 115px}
+  .body-grid,.body-grid.wide-left,.body-grid.wide-right,.media-pair,.media-3,.project-index{grid-template-columns:1fr;gap:22px}
+  .portrait-row{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:1fr 1fr}
+  .frame.crop img,.frame.tall img{height:auto}
+  .gallery{-webkit-mask-image:none;mask-image:none;padding-right:14px}
+  .gallery .frame img{height:38vh}
+  .transition{height:68vh;min-height:470px}
+  .transition-inner,.transition:nth-of-type(even) .transition-inner{text-align:left}
+  .transition:nth-of-type(even) .transition-title,.transition:nth-of-type(even) .transition-copy{margin-left:0}
+  .transition:nth-of-type(even) .hand{transform:rotate(-2deg)}
+  .chapter-no,.transition:nth-of-type(even) .chapter-no{left:auto;right:-4vw;top:-5vh;font-size:44vw}
+  .transition-title{font-size:clamp(46px,12.5vw,76px)}
+  .contact-inner{display:block}
+  .contact-links{margin-top:26px}
+  #embrace .story-bg{background-size:cover;background-position:center 25%}
 }
-
 </style>
 </head>
 <body>
+
+<nav class="nav">
+  <a class="nav-brand" href="#top">Kiet Anh Nguyen</a>
+  <div class="nav-right">
+    <a href="#film">Film</a>
+    <a href="#miraculous">Impact</a>
+    <a href="#embrace">Culture</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
 <svg id="trailSvg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
   <path id="trailPath"></path>
 </svg>
 <canvas id="flightCanvas" aria-hidden="true"></canvas>
-<div class="status" id="status">
-  <div>V22 · SEAMLESS VISUAL</div>
-  <div>3D: <span id="glbState">loading</span></div>
-  <div>mode: <span id="modeState" class="off">chapter</span></div>
-</div>
 
-<main>
-  <section class="chapter dark" id="hero">
-    <div class="chapter-content">
-      <p class="eyebrow">Multimedia Communication · Storytelling · Social Impact</p>
+<main id="top">
+
+  <!-- LANDING -->
+  <section class="landing">
+    <div class="landing-inner">
+      <p class="kicker">Multimedia Communication · Storytelling · Social Impact</p>
       <h1>Stories can change<br>the way we see people.</h1>
-      <p>Personal archive of films, photography, community projects, and the experiences that shaped how I see communication.</p>
+      <p class="intro">A personal archive of films, field experiences, cultural projects, and the people who shaped the way I think about communication.</p>
+    </div>
+    <div class="scroll-note">Scroll to begin</div>
+  </section>
+
+  <!-- T01 -->
+  <section class="transition" data-route="0" style="--transition-bg:#111722;--transition-bg2:#0b0c10;--mist:rgba(63,84,122,.13);--mist-x:72%">
+    <div class="transition-inner">
+      <div class="chapter-no">01</div>
+      <div class="next">Next chapter</div>
+      <h2 class="transition-title">About</h2>
+      <div class="hand">where the stories begin</div>
+      <p class="transition-copy">Before the projects came the people, places, and conversations that taught me to look closer and listen longer.</p>
     </div>
   </section>
 
-  <section class="transition" data-from="Hero" data-to="About" data-route="0" style="--from:#101521;--mid:#15151b;--to:#101521;--from-glow:rgba(65,86,124,.33);--to-glow:rgba(105,59,54,.27)">
-    <div class="transition-label">Next chapter<strong>About</strong></div>
-  </section>
-
-  <section class="chapter black" id="about">
-    <div class="chapter-content grid-2">
-      <div class="frame"><img src="assets/screening-emotion.jpg" alt=""></div>
-      <div>
-        <p class="eyebrow">01 / About me</p>
-        <h2>I explore how storytelling can create empathy and turn awareness into action.</h2>
-        <p>I am a Multimedia Communication student interested in visual storytelling, social impact, community work, and cultural projects.</p>
+  <!-- ABOUT -->
+  <article class="story" id="about">
+    <section class="story-hero" style="--hero-image:url('assets/miraculous-outdoor.jpg');--hero-position:center 52%;--top-edge:#0b0c10">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">01 / About me</p>
+        <h2 class="display">I learn through<br>people and stories.</h2>
+        <p class="hero-lede">I am a Multimedia Communication student drawn to the moments where culture, emotion, and people meet.</p>
+        <div class="meta"><span>FPT University</span><span>Multimedia Communication</span><span>HCMC</span></div>
       </div>
+    </section>
+    <section class="story-body">
+      <div class="body-inner body-grid wide-left">
+        <div>
+          <p class="kicker">How I work</p>
+          <h3 class="body-title">Curiosity first.<br>Communication second.</h3>
+        </div>
+        <p class="body-copy">Most of what I make begins with being there: listening, observing, asking better questions, and trying to understand the person behind the subject. From there, I use writing, images, film, and collaboration to turn that understanding into something others can feel.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- T02 -->
+  <section class="transition" data-route="1" style="--transition-bg:#0b0c10;--transition-bg2:#15100e;--mist:rgba(112,72,58,.12);--mist-x:28%">
+    <div class="transition-inner">
+      <div class="chapter-no">02</div>
+      <div class="next">Next chapter</div>
+      <h2 class="transition-title">The Window Without a Horizon</h2>
+      <div class="hand">a story that stayed with me</div>
+      <p class="transition-copy">A short film shaped by listening, empathy, and the wish to see children before seeing their illness.</p>
     </div>
   </section>
 
-  <section class="transition" data-from="About" data-to="Film" data-route="1" style="--from:#171416;--mid:#75665c;--to:#e8dece;--from-glow:rgba(105,59,54,.30);--to-glow:rgba(207,160,123,.42)">
-    <div class="transition-label">Next chapter<strong>The Window Without a Horizon</strong></div>
-  </section>
+  <!-- FILM -->
+  <article class="story" id="film">
+    <section class="story-hero" style="--hero-image:url('assets/screening-emotion.jpg');--hero-position:center 53%;--top-edge:#15100e;--shade-left:.86;--shade-right:.18">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">02 / Featured story</p>
+        <h2 class="display">The Window<br>Without a Horizon</h2>
+        <p class="hero-lede">A short film about pediatric cancer, maternal resilience, and the people who exist far beyond a diagnosis.</p>
+        <div class="meta"><span>Screenwriter</span><span>Short Film</span><span>Social Impact</span></div>
+      </div>
+    </section>
+    <section class="story-body">
+      <div class="body-inner body-grid">
+        <div class="frame"><img src="assets/film-poster.jpg" alt="The Window Without a Horizon poster"></div>
+        <div>
+          <p class="kicker" style="color:#876f5f">The question behind the film</p>
+          <div class="quote">“Before seeing their illness, I wanted people to see the children.”</div>
+          <p class="body-copy" style="margin-top:22px">The film grew from conversations that made me think more seriously about dignity, empathy, and what should happen after an audience feels moved.</p>
+        </div>
+      </div>
+    </section>
+  </article>
 
-  <section class="chapter light" id="film">
-    <div class="chapter-content">
-      <div class="grid-60-40" style="margin-bottom:34px">
-        <div>
-          <p class="eyebrow">02 / Featured story</p>
-          <h1>The Window<br>Without a Horizon</h1>
-        </div>
-        <p>A short film inspired by my experience meeting children with cancer, exploring their everyday lives, dreams, and the people who care for them.</p>
-      </div>
-      <div class="media-pair">
-        <div class="frame poster"><img src="assets/film-poster.jpg" alt=""></div>
-        <div>
-          <div class="frame"><img src="assets/screening-emotion.jpg" alt=""></div>
-          <div class="quote" style="font-size:clamp(24px,3vw,40px);margin-top:22px">“Before seeing their illness, I wanted people to see the children.”</div>
-        </div>
-      </div>
+  <!-- T03 -->
+  <section class="transition" data-route="2" style="--transition-bg:#16100e;--transition-bg2:#100d0d;--mist:rgba(128,75,49,.14);--mist-x:74%">
+    <div class="transition-inner">
+      <div class="chapter-no">03</div>
+      <div class="next">Next chapter</div>
+      <h2 class="transition-title">Recognition</h2>
+      <div class="hand">when a story travels further</div>
+      <p class="transition-copy">Recognition gave the film another life beyond the classroom, while the people behind the story remained its center.</p>
     </div>
   </section>
 
-  <section class="transition" data-from="Film" data-to="Recognition" data-route="2" style="--from:#d8c7ae;--mid:#7a5f4a;--to:#231711;--from-glow:rgba(206,161,116,.38);--to-glow:rgba(126,66,43,.34)">
-    <div class="transition-label">The story continues<strong>Recognition</strong></div>
-  </section>
-
-  <section class="chapter black" id="recognition">
-    <div class="chapter-content">
-      <div class="grid-40-60">
-        <div>
-          <p class="eyebrow">03 / Recognition</p>
-          <h2>Best Short Film</h2>
-          <p>Recognition is part of the film’s journey, but not the center of it.</p>
-        </div>
-        <div class="media-3">
-          <div class="frame"><img src="assets/award-stage.jpg" alt=""></div>
-          <div class="media-stack">
-            <div class="frame small"><img src="assets/award-team.jpg" alt=""></div>
-            <div class="frame small"><img src="assets/award-guests.jpg" alt=""></div>
-          </div>
-        </div>
+  <!-- RECOGNITION -->
+  <article class="story" id="recognition">
+    <section class="story-hero" style="--hero-image:url('assets/award-stage.jpg');--hero-position:center 48%;--top-edge:#100d0d;--shade-left:.82">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">03 / Recognition</p>
+        <h2 class="display">A story that<br>traveled further.</h2>
+        <p class="hero-lede">The film received First Prize and was selected for exhibition, extending the conversation beyond its first screening.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="transition" data-from="Recognition" data-to="Miraculous Moments" data-route="3" style="--from:#130f10;--mid:#142019;--to:#101612;--from-glow:rgba(126,66,43,.25);--to-glow:rgba(62,105,79,.34)">
-    <div class="transition-label">Before the film<strong>Miraculous Moments</strong></div>
-  </section>
-
-  <section class="chapter dark" id="miraculous">
-    <div class="chapter-content">
-      <div class="grid-60-40" style="margin-bottom:30px">
+    </section>
+    <section class="story-body">
+      <div class="body-inner body-grid wide-right">
         <div>
-          <p class="eyebrow">04 / Miraculous Moments</p>
-          <h2>A story before<br>the film.</h2>
+          <p class="kicker">What stayed with me</p>
+          <h3 class="body-title">Recognition mattered.<br>The human response mattered more.</h3>
+          <p class="body-copy">The most meaningful moment was not only the award, but seeing how people connected with the children and families behind the story.</p>
         </div>
-        <p>Miraculous Moments began with a volunteering experience where I met pediatric cancer survivors, listened to their stories, and shared moments of creativity and joy.</p>
-      </div>
-      <div class="media-pair">
-        <div class="frame"><img src="assets/miraculous-studio.jpg" alt=""></div>
         <div class="media-stack">
-          <div class="frame small"><img src="assets/miraculous-outdoor.jpg" alt=""></div>
-          <div class="frame small"><img src="assets/miraculous-graduation.jpg" alt=""></div>
+          <div class="frame"><img src="assets/award-team.jpg" alt="Film team at recognition event"></div>
+          <div class="frame"><img src="assets/award-guests.jpg" alt="Guests at the screening"></div>
         </div>
       </div>
+    </section>
+  </article>
+
+  <!-- T04 -->
+  <section class="transition" data-route="3" style="--transition-bg:#100d0d;--transition-bg2:#10150f;--mist:rgba(62,104,78,.13);--mist-x:28%">
+    <div class="transition-inner">
+      <div class="chapter-no">04</div>
+      <div class="next">Next chapter</div>
+      <h2 class="transition-title">Miraculous Moments</h2>
+      <div class="hand">before the film, there were the children</div>
+      <p class="transition-copy">A photography initiative where shared time, games, and conversations became part of a larger story about joy and resilience.</p>
     </div>
   </section>
 
-  <section class="transition" data-from="Miraculous Moments" data-to="Flying Heart" data-route="0" style="--from:#18231c;--mid:#132225;--to:#0d1718;--from-glow:rgba(62,105,79,.28);--to-glow:rgba(53,101,109,.32)">
-    <div class="transition-label">Out into the field<strong>Flying Heart</strong></div>
-  </section>
-
-  <section class="chapter black" id="flying-heart">
-    <div class="chapter-content">
-      <div class="grid-60-40" style="margin-bottom:22px">
-        <div>
-          <p class="eyebrow">05 / Flying Heart</p>
-          <h2>Field notes<br>from the road.</h2>
+  <!-- MIRACULOUS -->
+  <article class="story" id="miraculous">
+    <section class="story-hero" style="--hero-image:url('assets/miraculous-studio.jpg');--hero-position:center 50%;--top-edge:#10150f;--shade-left:.82">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">04 / Miraculous Moments</p>
+        <h2 class="display">A story before<br>the film.</h2>
+        <p class="hero-lede">A day of photography, games, and dream-sharing with pediatric cancer survivors that later reshaped how I approached storytelling.</p>
+      </div>
+    </section>
+    <section class="story-body">
+      <div class="body-inner">
+        <div class="body-grid wide-left">
+          <div class="media-pair">
+            <div class="frame"><img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor session"></div>
+            <div class="frame"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project"></div>
+          </div>
+          <div>
+            <p class="kicker">The experience</p>
+            <h3 class="body-title">Small moments can change the way a story is told.</h3>
+            <p class="body-copy">I helped facilitate a practical photography session for 13 pediatric cancer survivors, while games and conversations filled the waiting time with something lighter and more human.</p>
+          </div>
         </div>
-        <p>Flying Heart brought me closer to community work on the ground: long roads, preparation, meeting families and children, and helping create small moments of care.</p>
+        <div class="stats">
+          <div class="stat"><strong>13</strong><span>young participants</span></div>
+          <div class="stat"><strong>1</strong><span>shared photography session</span></div>
+          <div class="stat"><strong>∞</strong><span>stories worth listening to</span></div>
+        </div>
       </div>
-      <div class="tabs">
-        <button type="button" class="active" data-trip="daklak">Đắk Lắk</button>
-        <button type="button" data-trip="dongnai">Đồng Nai</button>
-      </div>
-      <div class="gallery" data-gallery="daklak">
-        <div class="frame"><img src="assets/flying-daklak-1.jpg" alt=""></div>
-        <div class="frame"><img src="assets/flying-daklak-2.jpg" alt=""></div>
-        <div class="frame"><img src="assets/flying-daklak-3.jpg" alt=""></div>
-        <div class="frame"><img src="assets/flying-daklak-4.jpg" alt=""></div>
-        <div class="frame"><img src="assets/flying-daklak-5.jpg" alt=""></div>
-        <div class="frame"><img src="assets/flying-daklak-6.jpg" alt=""></div>
-      </div>
-      <div class="gallery hidden" data-gallery="dongnai">
-        <div class="frame"><img src="assets/flying-dongnai-1.jpg" alt=""></div>
-        <div class="frame"><img src="assets/flying-dongnai-2.jpg" alt=""></div>
-        <div class="frame"><img src="assets/flying-dongnai-3.jpg" alt=""></div>
-      </div>
+    </section>
+  </article>
+
+  <!-- T05 -->
+  <section class="transition" data-route="0" style="--transition-bg:#10150f;--transition-bg2:#0e1717;--mist:rgba(51,100,108,.14);--mist-x:72%">
+    <div class="transition-inner">
+      <div class="chapter-no">05</div>
+      <div class="next">Next chapter</div>
+      <h2 class="transition-title">Flying Heart</h2>
+      <div class="hand">showing up with heart</div>
+      <p class="transition-copy">Volunteer journeys that taught me impact can begin with preparation, presence, and small acts of care repeated together.</p>
     </div>
   </section>
 
-  <section class="transition" data-from="Flying Heart" data-to="Chạm Việt Phục" data-route="1" style="--from:#17272a;--mid:#302329;--to:#291317;--from-glow:rgba(53,101,109,.28);--to-glow:rgba(150,67,80,.35)">
-    <div class="transition-label">Another way of listening<strong>Chạm Việt Phục</strong></div>
-  </section>
-
-  <section class="chapter burgundy" id="cham">
-    <div class="chapter-content">
-      <div class="grid-60-40" style="margin-bottom:30px">
-        <div>
-          <p class="eyebrow">06 / Chạm Việt Phục</p>
-          <h2>Bringing heritage<br>closer.</h2>
+  <!-- FLYING HEART -->
+  <article class="story" id="flying">
+    <section class="story-hero" style="--hero-image:url('assets/flying-daklak-4.jpg');--hero-position:center 52%;--top-edge:#0e1717;--shade-left:.84">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">05 / Flying Heart</p>
+        <h2 class="display">Field notes<br>from the road.</h2>
+        <p class="hero-lede">Across trips to Dak Lak and Dong Nai, I learned that community work is built from preparation, presence, and the willingness to help where needed.</p>
+      </div>
+    </section>
+    <section class="story-body">
+      <div class="body-inner">
+        <div class="gallery-head">
+          <div>
+            <p class="kicker">Two places, one practice</p>
+            <h3 class="body-title">Care looks different in every place.</h3>
+          </div>
+          <div class="tabs">
+            <button type="button" class="active" data-trip="daklak">Dak Lak</button>
+            <button type="button" data-trip="dongnai">Dong Nai</button>
+          </div>
         </div>
-        <p>A student-led cultural project inviting people to engage with Vietnamese traditional clothing through display, conversation, and participation.</p>
+        <div class="gallery" data-gallery="daklak">
+          <div class="frame"><img src="assets/flying-daklak-1.jpg" alt=""></div>
+          <div class="frame"><img src="assets/flying-daklak-2.jpg" alt=""></div>
+          <div class="frame"><img src="assets/flying-daklak-3.jpg" alt=""></div>
+          <div class="frame"><img src="assets/flying-daklak-4.jpg" alt=""></div>
+          <div class="frame"><img src="assets/flying-daklak-5.jpg" alt=""></div>
+          <div class="frame"><img src="assets/flying-daklak-6.jpg" alt=""></div>
+        </div>
+        <div class="gallery hidden" data-gallery="dongnai">
+          <div class="frame"><img src="assets/flying-dongnai-1.jpg" alt=""></div>
+          <div class="frame"><img src="assets/flying-dongnai-2.jpg" alt=""></div>
+          <div class="frame"><img src="assets/flying-dongnai-3.jpg" alt=""></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>100+</strong><span>children reached in Dak Lak</span></div>
+          <div class="stat"><strong>30+</strong><span>households supported in Dong Nai</span></div>
+          <div class="stat"><strong>2024–26</strong><span>active volunteering</span></div>
+        </div>
       </div>
-      <div class="portrait-row">
-        <div class="frame"><img src="assets/cham-1.jpg" alt=""></div>
-        <div class="frame"><img src="assets/cham-2.jpg" alt=""></div>
-        <div class="frame"><img src="assets/cham-3.jpg" alt=""></div>
-        <div class="frame"><img src="assets/cham-4.jpg" alt=""></div>
-      </div>
+    </section>
+  </article>
+
+  <!-- T06 -->
+  <section class="transition" data-route="1" style="--transition-bg:#0e1717;--transition-bg2:#241317;--mist:rgba(145,62,79,.15);--mist-x:30%">
+    <div class="transition-inner">
+      <div class="chapter-no">06</div>
+      <div class="next">Next chapter</div>
+      <h2 class="transition-title">Embrace Vietnamese Traditional Attire</h2>
+      <div class="hand">touch to understand</div>
+      <p class="transition-copy">A cultural project that brought Vietnamese traditional attire closer to young audiences through participation, conversation, and care.</p>
     </div>
   </section>
 
-  <section class="transition" data-from="Chạm Việt Phục" data-to="Tiên Thường Tuần Du" data-route="2" style="--from:#4a242b;--mid:#2c1c19;--to:#1a1210;--from-glow:rgba(150,67,80,.32);--to-glow:rgba(120,73,44,.30)">
-    <div class="transition-label">Tradition in motion<strong>Tiên Thường Tuần Du</strong></div>
+  <!-- EMBRACE -->
+  <article class="story" id="embrace">
+    <section class="story-hero" style="--hero-image:url('assets/cham-2.jpg');--top-edge:#241317">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">06 / Cultural heritage</p>
+        <h2 class="display">Embrace Vietnamese<br>Traditional Attire</h2>
+        <p class="hero-lede">A youth heritage-education campaign designed to make traditional attire feel closer, more understandable, and worth protecting.</p>
+      </div>
+    </section>
+    <section class="story-body">
+      <div class="body-inner">
+        <div class="body-grid wide-left" style="margin-bottom:34px">
+          <div>
+            <p class="kicker">Participation over distance</p>
+            <h3 class="body-title">Culture becomes more meaningful when people can step into it.</h3>
+          </div>
+          <p class="body-copy">I co-led creative direction for a campaign that invited young audiences to learn through display, conversation, and direct participation rather than viewing heritage from afar.</p>
+        </div>
+        <div class="portrait-row">
+          <div class="frame tall"><img src="assets/cham-1.jpg" alt=""></div>
+          <div class="frame tall"><img src="assets/cham-2.jpg" alt=""></div>
+          <div class="frame tall"><img src="assets/cham-3.jpg" alt=""></div>
+          <div class="frame tall"><img src="assets/cham-4.jpg" alt=""></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>4.8K+</strong><span>views</span></div>
+          <div class="stat"><strong>1.2K</strong><span>reach</span></div>
+          <div class="stat"><strong>90+</strong><span>offline visitors</span></div>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <!-- T07 -->
+  <section class="transition" data-route="2" style="--transition-bg:#241317;--transition-bg2:#17100e;--mist:rgba(117,72,44,.14);--mist-x:72%">
+    <div class="transition-inner">
+      <div class="chapter-no">07</div>
+      <div class="next">Next chapter</div>
+      <h2 class="transition-title">Tien Thuong Tuan Du</h2>
+      <div class="hand">heritage in motion</div>
+      <p class="transition-copy">A heritage parade where tradition moved through public space, carried by community, costume, coordination, and collective participation.</p>
+    </div>
   </section>
 
-  <section class="chapter black" id="tien">
-    <div class="chapter-content">
-      <div class="grid-40-60">
+  <!-- TIEN -->
+  <article class="story" id="tien">
+    <section class="story-hero" style="--hero-image:url('assets/tien-2.jpg');--hero-position:center 48%;--top-edge:#17100e;--shade-left:.82">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">07 / Cultural participation</p>
+        <h2 class="display">Tien Thuong<br>Tuan Du</h2>
+        <p class="hero-lede">A living heritage parade where costume, ritual, public space, and community participation came together in motion.</p>
+      </div>
+    </section>
+    <section class="story-body">
+      <div class="body-inner body-grid wide-right">
         <div>
-          <p class="eyebrow">07 / Tiên Thường Tuần Du</p>
-          <h2>Tradition<br>in motion.</h2>
-          <p>A cultural space where costume, performance, and community participation came together.</p>
+          <p class="kicker">Behind the procession</p>
+          <h3 class="body-title">Heritage also depends on the work people do behind the scenes.</h3>
+          <p class="body-copy">As part of the organizing committee, I supported logistics and crowd safety for a 300+ participant parade at Saigon Zoo and the HCMC History Museum.</p>
         </div>
         <div class="media-3">
-          <div class="frame"><img src="assets/tien-2.jpg" alt=""></div>
+          <div class="frame"><img src="assets/tien-1.jpg" alt=""></div>
           <div class="media-stack">
-            <div class="frame small"><img src="assets/tien-1.jpg" alt=""></div>
-            <div class="frame small"><img src="assets/tien-3.jpg" alt=""></div>
+            <div class="frame"><img src="assets/tien-2.jpg" alt=""></div>
+            <div class="frame"><img src="assets/tien-3.jpg" alt=""></div>
           </div>
         </div>
       </div>
+    </section>
+  </article>
+
+  <!-- T08 -->
+  <section class="transition" data-route="3" style="--transition-bg:#17100e;--transition-bg2:#131216;--mist:rgba(70,67,88,.12);--mist-x:30%">
+    <div class="transition-inner">
+      <div class="chapter-no">08</div>
+      <div class="next">Next chapter</div>
+      <h2 class="transition-title">Selected Projects</h2>
+      <div class="hand">the threads come together</div>
+      <p class="transition-copy">A wider look at the work that shaped how I communicate, collaborate, and build across film, community, and culture.</p>
     </div>
   </section>
 
-  <section class="transition" data-from="Tiên Thường Tuần Du" data-to="Selected Projects" data-route="3" style="--from:#0d0d0e;--mid:#75665c;--to:#e4d9ca;--from-glow:rgba(120,73,44,.22);--to-glow:rgba(210,165,130,.40)">
-    <div class="transition-label">A wider view<strong>Selected Projects</strong></div>
-  </section>
-
-  <section class="chapter light" id="projects">
-    <div class="chapter-content">
-      <p class="eyebrow">08 / Selected Projects</p>
-      <div class="projects">
-        <div class="project-col">
-          <div class="project-row"><h3>Miraculous Moments</h3><p>Community · Photography · Social Impact</p></div>
-          <div class="project-row"><h3>The Window Without a Horizon</h3><p>Short Film · Screenwriting</p></div>
-          <div class="project-row"><h3>Flying Heart</h3><p>Volunteer Work · Community Outreach</p></div>
-        </div>
-        <div class="project-col">
-          <div class="project-row"><h3>Chạm Việt Phục</h3><p>Cultural Heritage</p></div>
-          <div class="project-row"><h3>Tiên Thường Tuần Du</h3><p>Cultural Participation</p></div>
+  <!-- SELECTED -->
+  <article class="story" id="selected">
+    <section class="story-hero" style="--hero-image:url('assets/award-team.jpg');--hero-position:center 48%;--top-edge:#131216;--shade-left:.88;--shade-right:.26">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">08 / Selected projects</p>
+        <h2 class="display">Different formats.<br>One direction.</h2>
+        <p class="hero-lede">Film, volunteering, cultural communication, and community work have each taught me a different way to connect stories with people.</p>
+      </div>
+    </section>
+    <section class="story-body">
+      <div class="body-inner">
+        <div class="project-index">
+          <div class="project-col">
+            <div class="project-row"><h3>The Window Without a Horizon</h3><p>Short film · Screenwriting · Social empathy</p></div>
+            <div class="project-row"><h3>Miraculous Moments</h3><p>Photography · Community · Pediatric cancer survivors</p></div>
+            <div class="project-row"><h3>Flying Heart</h3><p>Volunteer work · Youth outreach · Field operations</p></div>
+          </div>
+          <div class="project-col">
+            <div class="project-row"><h3>Embrace Vietnamese Traditional Attire</h3><p>Heritage education · Creative direction</p></div>
+            <div class="project-row"><h3>Tien Thuong Tuan Du</h3><p>Heritage parade · Logistics · Public participation</p></div>
+          </div>
         </div>
       </div>
+    </section>
+  </article>
+
+  <!-- T09 -->
+  <section class="transition" data-route="0" style="--transition-bg:#131216;--transition-bg2:#101117;--mist:rgba(55,76,112,.15);--mist-x:72%">
+    <div class="transition-inner">
+      <div class="chapter-no">09</div>
+      <div class="next">Final chapter</div>
+      <h2 class="transition-title">What's Next</h2>
+      <div class="hand">from awareness to action</div>
+      <p class="transition-copy">The question I keep returning to is not only what a story makes people feel, but what becomes possible after they feel it.</p>
     </div>
   </section>
 
-  <section class="transition" data-from="Selected Projects" data-to="What's Next" data-route="0" style="--from:#d0bca5;--mid:#665b58;--to:#111117;--from-glow:rgba(176,124,88,.34);--to-glow:rgba(55,75,111,.32)">
-    <div class="transition-label">Looking forward<strong>What's Next</strong></div>
-  </section>
+  <!-- NEXT -->
+  <article class="story" id="next">
+    <section class="story-hero" style="--hero-image:url('assets/miraculous-graduation.jpg');--hero-position:center 50%;--top-edge:#101117;--shade-left:.88;--shade-right:.32">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">09 / What's next</p>
+        <h2 class="display">Awareness.<br>Understanding.<br>Action.</h2>
+        <p class="hero-lede">I want to keep exploring how communication can move beyond being seen and felt — toward work people can participate in, continue, and adapt.</p>
+      </div>
+    </section>
+    <section class="story-body next-body">
+      <div class="body-inner body-grid wide-left">
+        <div>
+          <p class="kicker">Global thought → local action</p>
+          <h3 class="body-title">Learn widely.<br>Adapt carefully.<br>Build locally.</h3>
+        </div>
+        <p class="body-copy">My next step is to learn from communities and approaches beyond my own context, understand why they work, and bring those lessons back into projects in Vietnam without losing the people behind the story.</p>
+      </div>
+    </section>
+  </article>
 
-  <section class="chapter black" id="next">
-    <div class="chapter-content">
-      <p class="eyebrow">09 / What's Next</p>
-      <h1>Awareness.<br>Understanding.<br>Action.</h1>
-      <p>I want to keep exploring how communication can turn awareness into understanding, and understanding into meaningful action.</p>
-    </div>
-  </section>
 </main>
 
-<section class="contact">
-  <div class="container contact-grid">
-    <div><p class="eyebrow">10 / Find me elsewhere</p><h2>Let's connect.</h2></div>
-    <div class="links"><span>Instagram</span><span>Facebook</span><span>YouTube</span><span>Email</span></div>
+<footer class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="kicker">10 / Find me elsewhere</p>
+      <h2>Let's connect.</h2>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:nguyenanhkiet10072006@gmail.com">Email</a>
+      <span>Instagram</span>
+      <span>Facebook</span>
+      <span>YouTube</span>
+    </div>
   </div>
-</section>
+</footer>
 
 <script>
 (() => {
-  /* -----------------------------
-     Gallery: structural only
-  ----------------------------- */
+  /* Gallery tabs */
   const tripButtons=[...document.querySelectorAll('[data-trip]')];
   tripButtons.forEach(btn=>btn.addEventListener('click',()=>{
     tripButtons.forEach(b=>b.classList.toggle('active',b===btn));
@@ -465,82 +880,49 @@ p{letter-spacing:.005em}
     });
   }));
 
-  /* -----------------------------
-     TRANSITION PLANE ENGINE
-     Same embedded-GLB approach that already worked.
-     No external module / CDN / asset path.
-  ----------------------------- */
+  /* Embedded GLB / raw WebGL — same stable engine, no external dependency */
   const GLB_B64="Z2xURgIAAACsCQAAKAcAAEpTT057ImFjY2Vzc29ycyI6W3siYnVmZmVyVmlldyI6MiwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjE3LCJtYXgiOls3Mjg1LjQ5MDIzNDM3NSwzODEwLjY1OTkxMjEwOTM3NSwxMjcyLjBdLCJtaW4iOlsxNTk0LjQ4OTk5MDIzNDM3NSw1MjYuNjU2OTgyNDIxODc1LDY2MC4wXSwidHlwZSI6IlZFQzMifSx7ImJ1ZmZlclZpZXciOjIsImJ5dGVPZmZzZXQiOjIwNCwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjE3LCJtYXgiOlswLjAxNTIzOTA5OTk3MTk1MDA1NCwwLjk4NjA3NDIwOTIxMzI1NjgsMS4wXSwibWluIjpbLTAuMDE3NzgxNzAyODAxNTg1MTk3LC0wLjk4NjA3NDIwOTIxMzI1NjgsLTAuOTk4NDg4MDA4OTc1OTgyN10sInR5cGUiOiJWRUMzIn0seyJidWZmZXJWaWV3IjoxLCJjb21wb25lbnRUeXBlIjo1MTI2LCJjb3VudCI6MTcsIm1heCI6WzI5OS4yNTY5ODg1MjUzOTA2LDE2NC4wNTcwMDY4MzU5Mzc1XSwibWluIjpbLTI4OC4zMjI5OTgwNDY4NzUsLTU0LjE5MzA5OTk3NTU4NTk0XSwidHlwZSI6IlZFQzIifSx7ImJ1ZmZlclZpZXciOjAsImNvbXBvbmVudFR5cGUiOjUxMjUsImNvdW50IjoxOCwidHlwZSI6IlNDQUxBUiJ9XSwiYXNzZXQiOnsiZXh0cmFzIjp7ImF1dGhvciI6IlRyb2NrayAoaHR0cHM6Ly9za2V0Y2hmYWIuY29tL1RpbXJvY2trKSIsImxpY2Vuc2UiOiJDQy1CWS00LjAgKGh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LzQuMC8pIiwic291cmNlIjoiaHR0cHM6Ly9za2V0Y2hmYWIuY29tLzNkLW1vZGVscy9wYXBlci1wbGFuZS1hc3NldC04YTVmNmEyYTA3YjY0NTIyYmY0YjkwNGQ0YTA1N2RmYiIsInRpdGxlIjoiUGFwZXIgUGxhbmUgQXNzZXQifSwiZ2VuZXJhdG9yIjoiU2tldGNoZmFiLTEzLjE2LjAiLCJ2ZXJzaW9uIjoiMi4wIn0sImJ1ZmZlclZpZXdzIjpbeyJidWZmZXIiOjAsImJ5dGVMZW5ndGgiOjcyLCJuYW1lIjoiZmxvYXRCdWZmZXJWaWV3cyIsInRhcmdldCI6MzQ5NjN9LHsiYnVmZmVyIjowLCJieXRlTGVuZ3RoIjoxMzYsImJ5dGVPZmZzZXQiOjcyLCJieXRlU3RyaWRlIjo4LCJuYW1lIjoiZmxvYXRCdWZmZXJWaWV3cyIsInRhcmdldCI6MzQ5NjJ9LHsiYnVmZmVyIjowLCJieXRlTGVuZ3RoIjo0MDgsImJ5dGVPZmZzZXQiOjIwOCwiYnl0ZVN0cmlkZSI6MTIsIm5hbWUiOiJmbG9hdEJ1ZmZlclZpZXdzIiwidGFyZ2V0IjozNDk2Mn1dLCJidWZmZXJzIjpbeyJieXRlTGVuZ3RoIjo2MTZ9XSwibWF0ZXJpYWxzIjpbeyJkb3VibGVTaWRlZCI6dHJ1ZSwibmFtZSI6IkNvbG9yX00wMCIsInBick1ldGFsbGljUm91Z2huZXNzIjp7Im1ldGFsbGljRmFjdG9yIjowLjAsInJvdWdobmVzc0ZhY3RvciI6MC42fX1dLCJtZXNoZXMiOlt7Im5hbWUiOiJPYmplY3RfMCIsInByaW1pdGl2ZXMiOlt7ImF0dHJpYnV0ZXMiOnsiTk9STUFMIjoxLCJQT1NJVElPTiI6MCwiVEVYQ09PUkRfMCI6Mn0sImluZGljZXMiOjMsIm1hdGVyaWFsIjowLCJtb2RlIjo0fV19XSwibm9kZXMiOlt7ImNoaWxkcmVuIjpbMV0sIm1hdHJpeCI6WzEuMCwwLjAsMC4wLDAuMCwwLjAsMi4yMjA0NDYwNDkyNTAzMTNlLTE2LC0xLjAsMC4wLDAuMCwxLjAsMi4yMjA0NDYwNDkyNTAzMTNlLTE2LDAuMCwwLjAsMC4wLDAuMCwxLjBdLCJuYW1lIjoiU2tldGNoZmFiX21vZGVsIn0seyJjaGlsZHJlbiI6WzJdLCJuYW1lIjoiNmNiNjNhNjliMGM4NGFlYTlhYTU5MzZiMWZmNDVkZDQub2JqLmNsZWFuZXIubWF0ZXJpYWxtZXJnZXIuZ2xlcyJ9LHsibWVzaCI6MCwibmFtZSI6Ik9iamVjdF8yIn1dLCJzY2VuZSI6MCwic2NlbmVzIjpbeyJuYW1lIjoiU2tldGNoZmFiX1NjZW5lIiwibm9kZXMiOlswXX1dfSAgIGgCAABCSU4AAAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAFAAAADgAAAA8AAAAQAAAA2puAwtQrO0GHdoDCGYQQQlgpkMMZhBBCzhl7QvqtokLOGXtCQuClQT1qj0OqwqpCJyCEQtnqcj65fKNCvMVYwuWglUPZ6nI+XZx0Ql+4gEIE53RCmrcfQjufjkNfuIBCzhl7QqgGFkPOGXtCTNeyQoXre8OYDiRDip8JwgZB20LNzJXBmA4kQ65Px0SPigdFAAAlRK5Px0R7IAFFAACfROyr40WPigdFAACfRK5Px0R7IAFFAACfRK5Px0QMqgNEAACfROyr40WPigdFAACfRK5Px0QMqgNEAACfRK5Px0QfbfVEAICVROyr40WPigdFAACfRK5Px0R79A1FAACfRK5Px0SPigdFAAAlROyr40WPigdFAACfRK5Px0SPKm5FAACfRK5Px0R79A1FAACfROyr40WPigdFAACfRK5Px0SPXhRFAICVRK5Px0SPKm5FAACfRO+qkbxcb3w/T1IpPu+qkbxcb3w/T1IpPu+qkbxcb3w/T1IpPgAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAP2uteTzZVli96Zx/v2uteTzZVli96Zx/v2uteTzZVli96Zx/v++qkbxcb3y/T1IpPu+qkbxcb3y/T1IpPu+qkbxcb3y/T1IpPgAAAAAAAAAAAACAPwAAAAAAAAAAAACAP2uteTzZVlg96Zx/v2uteTzZVlg96Zx/v2uteTzZVlg96Zx/vw==";
   const canvas=document.getElementById('flightCanvas');
   const trailSvg=document.getElementById('trailSvg');
   const trailPath=document.getElementById('trailPath');
-  const glbState=document.getElementById('glbState');
-  const modeState=document.getElementById('modeState');
   const gl=canvas.getContext('webgl2',{alpha:true,antialias:true}) ||
            canvas.getContext('webgl',{alpha:true,antialias:true});
+  if(!gl)return;
 
-  let ready=false, mesh=null, prog=null, loc=null, aspect=1, projection=null;
-  const cameraZ=7.0, fov=40*Math.PI/180;
-
-  if(!gl){
-    glbState.textContent='WebGL unavailable';
-    glbState.className='off';
-  }
-
-  const VS=`
-    attribute vec3 aPosition;
-    attribute vec3 aNormal;
-    uniform mat4 uMVP;
-    uniform mat4 uModel;
-    varying vec3 vNormal;
-    void main(){
-      vNormal=normalize(mat3(uModel)*aNormal);
-      gl_Position=uMVP*vec4(aPosition,1.0);
-    }
-  `;
-  const FS=`
-    precision mediump float;
-    varying vec3 vNormal;
-    uniform vec3 uColor;
-    void main(){
-      vec3 n=normalize(vNormal);
-      vec3 key=normalize(vec3(.30,.62,.73));
-      vec3 fill=normalize(vec3(-.52,-.20,.82));
-      float a=max(dot(n,key),0.0);
-      float b=max(dot(n,fill),0.0);
-      float rim=pow(1.0-abs(n.z),2.0);
-      float light=.31+.61*a+.25*b+.16*rim;
-      gl_FragColor=vec4(uColor*light,1.0);
-    }
-  `;
+  const VS=`attribute vec3 aPosition;attribute vec3 aNormal;uniform mat4 uMVP;uniform mat4 uModel;varying vec3 vNormal;void main(){vNormal=normalize(mat3(uModel)*aNormal);gl_Position=uMVP*vec4(aPosition,1.0);}`;
+  const FS=`precision mediump float;varying vec3 vNormal;uniform vec3 uColor;void main(){vec3 n=normalize(vNormal);vec3 k=normalize(vec3(.32,.61,.74));vec3 f=normalize(vec3(-.5,-.18,.84));float a=max(dot(n,k),0.0),b=max(dot(n,f),0.0);float rim=pow(1.0-abs(n.z),2.0);gl_FragColor=vec4(uColor*(.31+.61*a+.24*b+.15*rim),1.0);}`;
 
   function shader(type,src){
-    const s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s);
-    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));
     return s;
   }
-  function program(){
-    const p=gl.createProgram();
-    gl.attachShader(p,shader(gl.VERTEX_SHADER,VS));
-    gl.attachShader(p,shader(gl.FRAGMENT_SHADER,FS));
-    gl.linkProgram(p);
-    if(!gl.getProgramParameter(p,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
-    return p;
-  }
+  const prog=gl.createProgram();
+  gl.attachShader(prog,shader(gl.VERTEX_SHADER,VS));
+  gl.attachShader(prog,shader(gl.FRAGMENT_SHADER,FS));
+  gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog));
+  gl.useProgram(prog);
+
+  const loc={
+    pos:gl.getAttribLocation(prog,'aPosition'),
+    normal:gl.getAttribLocation(prog,'aNormal'),
+    mvp:gl.getUniformLocation(prog,'uMVP'),
+    model:gl.getUniformLocation(prog,'uModel'),
+    color:gl.getUniformLocation(prog,'uColor')
+  };
+
   function b64ToArrayBuffer(b64){
     const bin=atob(b64),u8=new Uint8Array(bin.length);
     for(let i=0;i<bin.length;i++)u8[i]=bin.charCodeAt(i);
     return u8.buffer;
   }
   const typeSize={SCALAR:1,VEC2:2,VEC3:3,VEC4:4,MAT4:16};
-  const componentInfo={
-    5120:[Int8Array,1],5121:[Uint8Array,1],5122:[Int16Array,2],
-    5123:[Uint16Array,2],5125:[Uint32Array,4],5126:[Float32Array,4]
-  };
+  const componentInfo={5120:[Int8Array,1],5121:[Uint8Array,1],5122:[Int16Array,2],5123:[Uint16Array,2],5125:[Uint32Array,4],5126:[Float32Array,4]};
+
   function parseGLB(arrayBuffer){
     const dv=new DataView(arrayBuffer);
     if(dv.getUint32(0,true)!==0x46546c67)throw new Error('Not GLB');
-    if(dv.getUint32(4,true)!==2)throw new Error('Not GLB v2');
     let off=12,json=null,bin=null;
     while(off<arrayBuffer.byteLength){
       const len=dv.getUint32(off,true),type=dv.getUint32(off+4,true);off+=8;
@@ -548,23 +930,21 @@ p{letter-spacing:.005em}
       if(type===0x4E4F534A)json=JSON.parse(new TextDecoder().decode(chunk).replace(/\0+$/,'').trim());
       if(type===0x004E4942)bin=chunk;
     }
-    if(!json||!bin)throw new Error('Missing GLB chunks');
     function accessorData(index){
-      const acc=json.accessors[index],view=json.bufferViews[acc.bufferView];
-      const [Ctor,bytes]=componentInfo[acc.componentType],comps=typeSize[acc.type];
-      const base=(view.byteOffset||0)+(acc.byteOffset||0),stride=view.byteStride||comps*bytes;
-      const out=new Ctor(acc.count*comps),source=new DataView(bin);
-      const getter={5120:'getInt8',5121:'getUint8',5122:'getInt16',5123:'getUint16',5125:'getUint32',5126:'getFloat32'}[acc.componentType];
-      for(let i=0;i<acc.count;i++)for(let c=0;c<comps;c++)out[i*comps+c]=source[getter](base+i*stride+c*bytes,bytes>1);
+      const a=json.accessors[index],v=json.bufferViews[a.bufferView];
+      const [Ctor,bytes]=componentInfo[a.componentType],comps=typeSize[a.type];
+      const base=(v.byteOffset||0)+(a.byteOffset||0),stride=v.byteStride||comps*bytes;
+      const out=new Ctor(a.count*comps),source=new DataView(bin);
+      const getter={5120:'getInt8',5121:'getUint8',5122:'getInt16',5123:'getUint16',5125:'getUint32',5126:'getFloat32'}[a.componentType];
+      for(let i=0;i<a.count;i++)for(let c=0;c<comps;c++)out[i*comps+c]=source[getter](base+i*stride+c*bytes,bytes>1);
       return out;
     }
-    let node=null;
-    for(const n of json.nodes||[])if(typeof n.mesh==='number'){node=n;break}
-    if(!node)throw new Error('No mesh node');
+    const node=(json.nodes||[]).find(n=>typeof n.mesh==='number');
     const primitive=json.meshes[node.mesh].primitives[0];
     const positions=accessorData(primitive.attributes.POSITION);
     const normals=accessorData(primitive.attributes.NORMAL);
     const indices=new Uint16Array(accessorData(primitive.indices));
+
     let min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];
     for(let i=0;i<positions.length;i+=3)for(let c=0;c<3;c++){
       min[c]=Math.min(min[c],positions[i+c]);max[c]=Math.max(max[c],positions[i+c]);
@@ -576,31 +956,39 @@ p{letter-spacing:.005em}
       positions[i+1]=(positions[i+1]-center[1])*scale;
       positions[i+2]=(positions[i+2]-center[2])*scale;
     }
-    return {positions,normals,indices,vertices:positions.length/3,triangles:indices.length/3};
+    return {positions,normals,indices};
   }
-  function bufferAttrib(data,location,size){
+
+  const mesh=parseGLB(b64ToArrayBuffer(GLB_B64));
+  function attrib(data,location){
     const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,size,gl.FLOAT,false,0,0);
+    gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,3,gl.FLOAT,false,0,0);
   }
+  attrib(mesh.positions,loc.pos);
+  attrib(mesh.normals,loc.normal);
+  const ib=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,ib);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,mesh.indices,gl.STATIC_DRAW);
 
   const I=()=>new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
   function mul(a,b){const o=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)o[c*4+r]=a[r]*b[c*4]+a[4+r]*b[c*4+1]+a[8+r]*b[c*4+2]+a[12+r]*b[c*4+3];return o}
   function T(x,y,z){const m=I();m[12]=x;m[13]=y;m[14]=z;return m}
-  function S(x,y,z){const m=I();m[0]=x;m[5]=y;m[10]=z;return m}
+  function S(s){const m=I();m[0]=m[5]=m[10]=s;return m}
   function RX(a){const c=Math.cos(a),s=Math.sin(a),m=I();m[5]=c;m[6]=s;m[9]=-s;m[10]=c;return m}
   function RY(a){const c=Math.cos(a),s=Math.sin(a),m=I();m[0]=c;m[2]=-s;m[8]=s;m[10]=c;return m}
   function RZ(a){const c=Math.cos(a),s=Math.sin(a),m=I();m[0]=c;m[1]=s;m[4]=-s;m[5]=c;return m}
   function perspective(fovy,aspect,near,far){
     const f=1/Math.tan(fovy/2),nf=1/(near-far),m=new Float32Array(16);
-    m[0]=f/aspect;m[5]=f;m[10]=(far+near)*nf;m[11]=-1;m[14]=2*far*near*nf;return m
+    m[0]=f/aspect;m[5]=f;m[10]=(far+near)*nf;m[11]=-1;m[14]=2*far*near*nf;return m;
   }
 
+  const cameraZ=7.0,fov=40*Math.PI/180;
+  let aspect=1,projection=I();
+
   function resize(){
-    if(!gl)return;
-    const dpr=Math.min(devicePixelRatio||1,2);
-    const w=Math.max(1,Math.floor(innerWidth*dpr)),h=Math.max(1,Math.floor(innerHeight*dpr));
+    const dpr=Math.min(devicePixelRatio||1,2),w=Math.max(1,Math.floor(innerWidth*dpr)),h=Math.max(1,Math.floor(innerHeight*dpr));
     if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
-    gl.viewport(0,0,w,h);aspect=innerWidth/innerHeight;projection=perspective(fov,aspect,.1,50);
+    gl.viewport(0,0,w,h);
+    aspect=innerWidth/innerHeight;
+    projection=perspective(fov,aspect,.1,50);
   }
   function screenToWorld(p,z=0){
     const ndcX=p.x*2-1,ndcY=1-p.y*2,depth=cameraZ-z;
@@ -609,31 +997,21 @@ p{letter-spacing:.005em}
   }
   function clamp(v,a=0,b=1){return Math.min(Math.max(v,a),b)}
   function smoothstep(x){x=clamp(x);return x*x*(3-2*x)}
-  /*
-    BIG-RADIUS SERPENTINE RIBBON
-    ----------------------------
-    Instead of many control points, the flight uses one broad sinusoidal sweep.
-    This produces the reference feeling: long glide -> large U-turn -> long glide.
-    The large horizontal amplitude and low cycle count create much wider turns.
-  */
+
+  /* Big-radius ribbon profiles approved in V21.4 */
   const routeProfiles=[
     {amp:.40,cycles:1.56,mirror: 1,phase:0.00,y0:.12,y1:.89,drift:.00},
     {amp:.39,cycles:1.48,mirror:-1,phase:0.02,y0:.11,y1:.89,drift:.01},
     {amp:.38,cycles:1.52,mirror: 1,phase:-.02,y0:.12,y1:.88,drift:-.01},
     {amp:.39,cycles:1.46,mirror:-1,phase:0.00,y0:.12,y1:.89,drift:.00}
   ];
-
   function routePoint(routeIndex,t){
     t=clamp(t);
     const p=routeProfiles[routeIndex%routeProfiles.length];
-
-    // Start around the middle, then open into very wide left/right sweeps.
-    // A light envelope keeps the first/last moments more graceful.
     const envelope=.86+.14*Math.sin(Math.PI*t);
     const theta=(Math.PI*2*p.cycles*t)+(p.phase*Math.PI*2);
-    const x=.50 + p.mirror*p.amp*envelope*Math.sin(theta) + p.drift*(t-.5);
+    const x=.50+p.mirror*p.amp*envelope*Math.sin(theta)+p.drift*(t-.5);
     const y=p.y0+(p.y1-p.y0)*t;
-
     return {x:clamp(x,.075,.925),y};
   }
   function routeDerivative(routeIndex,t){
@@ -641,50 +1019,38 @@ p{letter-spacing:.005em}
     return {x:b.x-a.x,y:b.y-a.y};
   }
   function angleDiff(a,b){let d=b-a;while(d>Math.PI)d-=Math.PI*2;while(d<-Math.PI)d+=Math.PI*2;return d}
-  const MODEL_HEADING_OFFSET=0;
   function orientation(routeIndex,t){
-    const d=routeDerivative(routeIndex,t),heading=Math.atan2(-d.y,d.x)+MODEL_HEADING_OFFSET,e=.022;
+    const d=routeDerivative(routeIndex,t),heading=Math.atan2(-d.y,d.x),e=.022;
     const d0=routeDerivative(routeIndex,Math.max(0,t-e)),d1=routeDerivative(routeIndex,Math.min(1,t+e));
-    const h0=Math.atan2(-d0.y,d0.x)+MODEL_HEADING_OFFSET,h1=Math.atan2(-d1.y,d1.x)+MODEL_HEADING_OFFSET;
+    const h0=Math.atan2(-d0.y,d0.x),h1=Math.atan2(-d1.y,d1.x);
     const turn=angleDiff(h0,h1);
-    return {
-      heading,
-      bank:clamp(-turn*1.05,-.34,.34),
-      pitch:.035+.035*Math.sin((t-.12)*Math.PI)
-    };
+    return {heading,bank:clamp(-turn*1.05,-.34,.34),pitch:.035+.035*Math.sin((t-.12)*Math.PI)};
   }
 
-  try{
-    if(gl){
-      prog=program();
-      loc={pos:gl.getAttribLocation(prog,'aPosition'),normal:gl.getAttribLocation(prog,'aNormal'),mvp:gl.getUniformLocation(prog,'uMVP'),model:gl.getUniformLocation(prog,'uModel'),color:gl.getUniformLocation(prog,'uColor')};
-      mesh=parseGLB(b64ToArrayBuffer(GLB_B64));
-      gl.useProgram(prog);bufferAttrib(mesh.positions,loc.pos,3);bufferAttrib(mesh.normals,loc.normal,3);
-      const ib=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,ib);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,mesh.indices,gl.STATIC_DRAW);
-      gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.clearColor(0,0,0,0);gl.uniform3f(loc.color,.95,.92,.87);
-      ready=true;glbState.textContent=`loaded (${mesh.vertices}v/${mesh.triangles}t)`;glbState.className='ok';
-    }
-  }catch(err){console.error(err);glbState.textContent='failed';glbState.className='off'}
+  gl.enable(gl.DEPTH_TEST);
+  gl.disable(gl.CULL_FACE);
+  gl.clearColor(0,0,0,0);
+  gl.uniform3f(loc.color,.95,.92,.87);
 
   function drawPlane(routeIndex,t){
-    if(!ready)return;
     resize();
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
-    const sp=routePoint(routeIndex,t),depth=.10*Math.sin(t*Math.PI);
+    const sp=routePoint(routeIndex,t),depth=.09*Math.sin(t*Math.PI);
     const p=screenToWorld(sp,depth),o=orientation(routeIndex,t);
     let model=T(p.x,p.y,p.z);
     model=mul(model,RZ(o.heading));
     model=mul(model,RX(o.bank));
     model=mul(model,RY(o.pitch));
-    const sc=innerWidth<760?.70:.86;
-    model=mul(model,S(sc,sc,sc));
+    model=mul(model,S(innerWidth<760?.70:.86));
     const view=T(0,0,-cameraZ),mvp=mul(projection,mul(view,model));
-    gl.uniformMatrix4fv(loc.model,false,model);gl.uniformMatrix4fv(loc.mvp,false,mvp);
+    gl.uniformMatrix4fv(loc.model,false,model);
+    gl.uniformMatrix4fv(loc.mvp,false,mvp);
     gl.drawElements(gl.TRIANGLES,mesh.indices.length,gl.UNSIGNED_SHORT,0);
   }
 
   function drawTrail(routeIndex,t){
-    const start=Math.max(0,t-.44),steps=56;let d='';
+    const start=Math.max(0,t-.44),steps=56;
+    let d='';
     for(let i=0;i<=steps;i++){
       const u=start+(t-start)*(i/steps),p=routePoint(routeIndex,u);
       d+=(i===0?'M':'L')+(p.x*1000).toFixed(1)+' '+(p.y*1000).toFixed(1)+' ';
@@ -693,91 +1059,54 @@ p{letter-spacing:.005em}
   }
 
   const transitions=[...document.querySelectorAll('.transition')];
-
-  /*
-    A transition is active ONLY while the viewport center is inside it.
-    This prevents the plane from being kept alive merely because a thin strip
-    of the transition is still visible above/below a chapter.
-  */
   function activeTransition(){
-    const vh=innerHeight;
-    const centerY=vh*.5;
-
+    const centerY=innerHeight*.5;
     for(const el of transitions){
       const r=el.getBoundingClientRect();
-      if(r.top<=centerY && r.bottom>=centerY){
-        return {el,r};
-      }
+      if(r.top<=centerY&&r.bottom>=centerY)return {el,r};
     }
     return null;
   }
-
   function hideFlight(){
     canvas.style.display='none';
     trailSvg.style.display='none';
-    canvas.style.clipPath='none';
-    trailSvg.style.clipPath='none';
     canvas.style.opacity='0';
     trailSvg.style.opacity='0';
     trailPath.setAttribute('d','');
-    modeState.textContent='chapter';
-    modeState.className='off';
     if(gl)gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
   }
-
-  function render(){
+  function renderFlight(){
     const active=activeTransition();
-    if(!active||!ready){
-      hideFlight();
-      return;
-    }
-
-    const vh=innerHeight,r=active.r;
-
-    /*
-      Progress is local to the transition itself:
-      t=0 when its top reaches viewport center,
-      t=1 when its bottom reaches viewport center.
-    */
-    const progress=clamp((vh*.5-r.top)/Math.max(r.height,1));
-    const routeIndex=Number(active.el.dataset.route||0);
-
-    /*
-      Extra safety: clip BOTH WebGL and trail to the visible rectangle of the
-      transition. Even during the handoff frames, neither can paint over the
-      adjacent chapter.
-    */
+    if(!active){hideFlight();return}
+    const r=active.r,vh=innerHeight;
+    const t=clamp((vh*.5-r.top)/Math.max(r.height,1));
+    const idx=transitions.indexOf(active.el);
     const clipTop=Math.max(0,Math.min(vh,r.top));
     const clipBottom=Math.max(0,Math.min(vh,vh-r.bottom));
-    const clip=`inset(${clipTop}px 0px ${clipBottom}px 0px)`;
-    canvas.style.clipPath=clip;
-    trailSvg.style.clipPath=clip;
+    const clip=`inset(${clipTop}px 0 ${clipBottom}px 0)`;
 
-    /*
-      Fade at the local transition edges so the plane does not pop into view.
-    */
-    const edgeIn=smoothstep(progress/.12);
-    const edgeOut=smoothstep((1-progress)/.12);
-    const flightOpacity=Math.min(edgeIn,edgeOut);
+    /* Plane exists only in transition and is fully gone before the next chapter. */
+    const fadeIn=smoothstep(t/.10);
+    const fadeOut=smoothstep((.88-t)/.14);
+    const opacity=clamp(Math.min(fadeIn,fadeOut));
 
     canvas.style.display='block';
     trailSvg.style.display='block';
-    canvas.style.opacity=String(flightOpacity);
-    trailSvg.style.opacity=String(flightOpacity);
+    canvas.style.clipPath=trailSvg.style.clipPath=clip;
+    canvas.style.opacity=trailSvg.style.opacity=String(opacity);
 
-    modeState.textContent='transition '+active.el.dataset.from+' → '+active.el.dataset.to;
-    modeState.className='ok';
-
-    drawTrail(routeIndex,progress);
-    drawPlane(routeIndex,progress);
+    if(opacity<=.001){trailPath.setAttribute('d','');return}
+    drawTrail(idx,t);
+    drawPlane(idx,t);
   }
 
-  let raf=false;
+  let raf=0;
   function requestRender(){
     if(raf)return;
-    raf=true;requestAnimationFrame(()=>{raf=false;render()});
+    raf=requestAnimationFrame(()=>{raf=0;renderFlight()});
   }
-  resize();render();
+  resize();
+  renderFlight();
   addEventListener('scroll',requestRender,{passive:true});
   addEventListener('resize',()=>{resize();requestRender()});
 })();
