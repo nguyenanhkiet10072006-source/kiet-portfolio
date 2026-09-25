@@ -3,997 +3,784 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kiet Anh Nguyen — Multimedia Storytelling</title>
-<meta name="description" content="Kiet Anh Nguyen — Multimedia Communication, visual storytelling and social impact.">
+<title>Kiet Anh Nguyen — Portfolio</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
-
 :root{
-  --bg:#090909;
-  --paper:#f2ede5;
-  --muted:#a9a39a;
-  --cream:#ece2d4;
-  --ink:#17130f;
-  --burgundy:#341719;
-  --line:rgba(242,237,229,.16);
-  --radius:22px;
+  --bg:#0b0b0c;
+  --panel:#151516;
+  --paper:#eee9df;
+  --ink:#171717;
+  --text:#f1eee8;
+  --muted:#a6a19a;
+  --line:rgba(255,255,255,.16);
   --max:1180px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--bg);color:var(--paper);
-  font-family:"DM Sans",Arial,sans-serif;
-  overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none}
+html{scroll-behavior:auto}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
-button{font:inherit}
-.container{width:min(var(--max),calc(100% - 180px));margin:auto;position:relative}
-.kicker,.eyebrow{
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)
-}
-.display{
-  font-family:"Playfair Display",Georgia,serif;font-weight:400;
-  letter-spacing:-.05em;line-height:.86;margin:0
-}
-.copy{font-size:15px;line-height:1.75;color:#bdb6ad}
-.rounded{border-radius:var(--radius);overflow:hidden}
+main{position:relative;z-index:1}
+.container{width:min(var(--max),calc(100% - 96px));margin:auto}
 
-/* ---------- navigation ---------- */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:80;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:24px 34px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;
-  mix-blend-mode:difference;color:#fff;pointer-events:none
-}
-.nav a{pointer-events:auto}
-.navlinks{display:flex;gap:26px}
-
-/* ---------- pinned chapter engine ---------- */
-.chapter-wrap{
-  position:relative;
-  height:165vh;
-}
+/* ------------------------------
+   ROBUST PAGE ARCHITECTURE
+   No sticky content. No pinned story stage.
+   Every chapter lives in normal document flow.
+------------------------------ */
 .chapter{
-  position:sticky;top:0;height:100vh;overflow:hidden;
-  isolation:isolate;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:64px 0;
 }
-.chapter-inner{
-  position:absolute;inset:0;display:flex;align-items:center;
+.chapter.light{background:var(--paper);color:var(--ink)}
+.chapter.dark{background:#111}
+.chapter.black{background:#080808}
+.chapter.burgundy{background:#30191b}
+.chapter-content{
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+  min-width:0;
 }
-.chapter .container{z-index:20}
-.scene-bg{
-  position:absolute;inset:0;z-index:0;will-change:transform,opacity
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 16px;color:var(--muted)}
+.light .eyebrow{color:#6f6a63}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(52px,7vw,104px);line-height:.91;margin-bottom:24px}
+h2{font-size:clamp(38px,5vw,72px);line-height:.95;margin-bottom:20px}
+h3{font-size:clamp(24px,2.7vw,38px);line-height:1;margin-bottom:12px}
+p{font-size:15px;line-height:1.55;max-width:640px}
+.quote{font-size:clamp(28px,4vw,56px);line-height:1.06;max-width:930px}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center}
+.grid-60-40{display:grid;grid-template-columns:1.18fr .82fr;gap:46px;align-items:center}
+.grid-40-60{display:grid;grid-template-columns:.82fr 1.18fr;gap:46px;align-items:center}
+.media-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+.media-3{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center}
+.media-stack{display:grid;gap:14px}
+.portrait-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:center}
+.frame{min-width:0;display:flex;align-items:center;justify-content:center}
+.frame img{max-height:64vh;width:auto;object-fit:contain}
+.frame.poster img{max-height:70vh}
+.frame.small img{max-height:31vh}
+.gallery{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+.gallery .frame{flex:0 0 auto;scroll-snap-align:start}
+.gallery .frame img{height:52vh;max-width:none;width:auto}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tabs button{
+  border:1px solid currentColor;background:transparent;color:inherit;
+  padding:8px 12px;cursor:pointer
 }
-.scene-layer{
-  will-change:transform,opacity,clip-path;
+.tabs button.active{background:currentColor;color:#111}
+.light .tabs button.active{color:#fff}
+.gallery.hidden{display:none}
+
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:38px}
+.project-col{border-top:1px solid currentColor}
+.project-row{padding:16px 0;border-bottom:1px solid currentColor}
+.project-row h3{margin:0;font-size:clamp(22px,2.4vw,34px)}
+.project-row p{font-size:11px;margin:5px 0 0}
+
+/* ------------------------------
+   TRANSITION ZONES
+   The plane appears ONLY here.
+------------------------------ */
+.transition{
+  height:78vh;
+  min-height:520px;
+  background:#0c0c0d;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
-.scene-rule{
-  height:1px;background:var(--line);transform-origin:left center
+.transition::before{
+  content:"";
+  position:absolute;
+  left:8%;right:8%;top:50%;
+  border-top:1px solid rgba(255,255,255,.07)
 }
-.scene-head{
-  display:flex;align-items:center;gap:18px;margin-bottom:42px
+.transition-label{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  font-size:11px;
+  line-height:1.6;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#777
 }
-.scene-num{font-size:10px;letter-spacing:.2em;color:#7f786f}
-.scene-title{
-  font-family:"Playfair Display",Georgia,serif;font-size:clamp(50px,6.4vw,96px);
-  font-weight:400;line-height:.86;letter-spacing:-.05em;margin:0
+.transition-label strong{display:block;color:#b9b4ad;font-size:13px;font-weight:500}
+
+#flightCanvas{
+  position:fixed;inset:0;width:100vw;height:100vh;
+  pointer-events:none;z-index:70;display:none
+}
+#trailSvg{
+  position:fixed;inset:0;width:100vw;height:100vh;
+  pointer-events:none;z-index:69;display:none;overflow:visible
+}
+#trailPath{
+  fill:none;
+  stroke:rgba(235,223,199,.67);
+  stroke-width:2.0;
+  stroke-linecap:round;
+  stroke-linejoin:round
+}
+.status{
+  position:fixed;right:12px;top:12px;z-index:100;
+  background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.16);
+  color:#bbb;font:10px/1.45 monospace;padding:8px 10px;
+  pointer-events:none
+}
+.status .ok{color:#bde8bd}
+.status .off{color:#8e8e8e}
+
+.contact{padding:100px 0 34px;background:#060606}
+.contact-grid{display:flex;align-items:end;justify-content:space-between;gap:40px}
+.links{display:flex;gap:18px;flex-wrap:wrap;color:#aaa}
+
+@media(max-width:760px){
+  .container,.chapter-content{width:calc(100% - 32px)}
+  .chapter{min-height:auto;padding:70px 0}
+  .grid-2,.grid-60-40,.grid-40-60,.media-pair,.media-3,.projects{grid-template-columns:1fr;gap:20px}
+  .portrait-row{grid-template-columns:repeat(2,1fr)}
+  .frame img{max-height:46vh}
+  .frame.poster img{max-height:56vh}
+  .gallery .frame img{height:38vh}
+  .transition{height:58vh;min-height:400px}
+  .contact-grid{display:block}
+  .status{font-size:9px}
 }
 
-/* ---------- persistent paper plane ---------- */
-.flight-layer{
-  position:fixed;inset:0;z-index:40;pointer-events:none;overflow:hidden
-}
-.flight-canvas{
-  position:absolute;inset:0;width:100%;height:100%;
-  display:block;pointer-events:none;
-}
-.paper-plane-fallback{
-  position:absolute;left:0;top:0;width:46px;height:46px;
-  transform-origin:center;will-change:transform,opacity;
-  filter:drop-shadow(0 5px 12px rgba(0,0,0,.35));
-  opacity:0;
-}
-.paper-plane-fallback svg{width:100%;height:100%}
-.flight-layer.is-fallback .paper-plane-fallback{opacity:1}
-.flight-layer.is-fallback .flight-canvas{display:none}
-.trail-dot{
-  position:absolute;left:0;top:0;width:5px;height:5px;border-radius:50%;
-  background:rgba(242,237,229,.82);transform:translate(-50%,-50%);
-  will-change:transform,opacity
-}
+/* =========================================================
+   V22 — SEAMLESS VISUAL SYSTEM
+   Visual-only layer. Structure + 3D transition engine unchanged.
+   ========================================================= */
+:root{--ease:cubic-bezier(.22,.61,.36,1)}
+body{background:#090a0d;font-family:Arial,Helvetica,sans-serif}
+h1,h2,.quote{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.035em}
+h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.02em}
+p{letter-spacing:.005em}
 
-/* ---------- hero ---------- */
-.hero-bg{
+.chapter{
+  border-top:0;isolation:isolate;overflow:hidden;
   background:
-    linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.28) 48%,rgba(0,0,0,.92)),
-    url("assets/award-team.jpg") center 45%/cover no-repeat
+    radial-gradient(80% 72% at var(--glow-x,78%) var(--glow-y,28%),var(--glow,rgba(255,255,255,.05)) 0%,transparent 58%),
+    linear-gradient(180deg,var(--bg-top,#111),var(--bg-bottom,#090909));
 }
-.hero-bg:after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(0,0,0,.62),rgba(0,0,0,.04) 68%)
+.chapter::before,.chapter::after{
+  content:"";position:absolute;pointer-events:none;z-index:-1;border-radius:999px;
+  filter:blur(90px);opacity:.54
 }
-.hero-content{align-self:flex-end;padding-bottom:8vh}
-.hero-title{
-  font-size:clamp(74px,12vw,176px);max-width:1050px
-}
-.hero-title span{
-  display:block;font-family:"DM Sans",Arial,sans-serif;
-  font-size:.22em;line-height:1.15;letter-spacing:.015em;margin-top:30px;max-width:560px
-}
-.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:48px;margin-top:28px}
-.hero-bottom p{max-width:430px;margin:0;color:#d6d0c8;font-size:15px;line-height:1.7}
+.chapter::before{width:42vw;height:42vw;min-width:420px;min-height:420px;left:-14vw;top:8%;background:var(--mist-a,rgba(255,255,255,.04))}
+.chapter::after{width:38vw;height:38vw;min-width:380px;min-height:380px;right:-12vw;bottom:2%;background:var(--mist-b,rgba(255,255,255,.03))}
 
-/* ---------- about ---------- */
-.about{background:#0a0a0a}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:10vw;align-items:center}
-.about-photo img{border-radius:var(--radius)}
-.about-lead{font-size:clamp(34px,4.4vw,60px);line-height:1.05;margin-bottom:26px}
-.about-copy{max-width:520px}
-.meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
-.meta span{
-  border:1px solid var(--line);border-radius:999px;padding:9px 12px;
-  font-size:9px;letter-spacing:.12em;text-transform:uppercase
-}
+#hero{--bg-top:#090a0e;--bg-bottom:#101521;--glow:rgba(63,86,125,.30);--mist-a:rgba(40,56,91,.20);--mist-b:rgba(88,53,70,.13);--glow-x:72%;--glow-y:30%}
+#about{--bg-top:#101521;--bg-bottom:#171416;--glow:rgba(92,60,70,.21);--mist-a:rgba(44,60,83,.14);--mist-b:rgba(105,59,54,.17);--glow-x:26%;--glow-y:65%}
+#film{--bg-top:#e8dece;--bg-bottom:#d8c7ae;--glow:rgba(173,105,78,.25);--mist-a:rgba(255,248,233,.54);--mist-b:rgba(155,91,67,.17);--glow-x:78%;--glow-y:24%;color:#1c1713}
+#recognition{--bg-top:#231711;--bg-bottom:#130f10;--glow:rgba(126,66,43,.26);--mist-a:rgba(102,47,37,.18);--mist-b:rgba(53,63,85,.10);--glow-x:70%;--glow-y:43%}
+#miraculous{--bg-top:#101612;--bg-bottom:#18231c;--glow:rgba(62,105,79,.23);--mist-a:rgba(45,86,62,.18);--mist-b:rgba(110,91,58,.10);--glow-x:30%;--glow-y:30%}
+#flying-heart{--bg-top:#0d1718;--bg-bottom:#17272a;--glow:rgba(53,101,109,.24);--mist-a:rgba(37,80,88,.18);--mist-b:rgba(65,92,76,.12);--glow-x:77%;--glow-y:40%}
+#cham{--bg-top:#291317;--bg-bottom:#4a242b;--glow:rgba(150,67,80,.25);--mist-a:rgba(104,39,52,.22);--mist-b:rgba(178,117,80,.10);--glow-x:22%;--glow-y:42%}
+#tien{--bg-top:#1a1210;--bg-bottom:#0d0d0e;--glow:rgba(120,73,44,.21);--mist-a:rgba(101,55,38,.16);--mist-b:rgba(43,59,80,.10);--glow-x:75%;--glow-y:35%}
+#projects{--bg-top:#e4d9ca;--bg-bottom:#d0bca5;--glow:rgba(136,76,59,.20);--mist-a:rgba(255,246,226,.42);--mist-b:rgba(110,73,61,.14);color:#1b1714}
+#next{--bg-top:#111117;--bg-bottom:#08090c;--glow:rgba(55,75,111,.22);--mist-a:rgba(40,53,82,.15);--mist-b:rgba(85,46,68,.11)}
 
-/* ---------- film ---------- */
-.film{background:var(--cream);color:var(--ink)}
-.film .scene-rule{background:rgba(23,19,15,.18)}
-.film .scene-num,.film .kicker{color:#756d65}
-.film-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:7vw;align-items:end}
-.film-title{font-size:clamp(58px,8vw,118px)}
-.film-copy{color:#5e564e;max-width:460px}
-.film-media{
-  margin-top:52px;display:grid;grid-template-columns:.42fr .58fr;gap:30px;align-items:end
-}
-.poster img,.film-still img{border-radius:var(--radius)}
-.poster{width:min(100%,420px);justify-self:end}
-.film-still{margin-bottom:35px}
-.film-quote{
-  grid-column:1 / -1;margin-top:18px;width:min(760px,68%);
-  margin-left:auto;font-size:clamp(34px,4.4vw,64px);line-height:1.03
-}
+.frame{position:relative;border-radius:26px;overflow:hidden;background:rgba(255,255,255,.025);box-shadow:0 24px 60px rgba(0,0,0,.18)}
+.light .frame{background:rgba(255,255,255,.22);box-shadow:0 24px 60px rgba(88,62,42,.13)}
+.frame img{border-radius:26px;transition:transform .8s var(--ease),filter .8s var(--ease)}
+@media (hover:hover) and (pointer:fine){.frame:hover img{transform:scale(1.018)}}
 
-/* ---------- recognition ---------- */
-.recognition{background:#0c0c0c}
-.rec-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:18px}
-.rec-grid img{border-radius:var(--radius)}
-.rec-side{display:grid;gap:18px;align-content:start}
-.rec-copy{
-  margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:8vw
-}
-.rec-copy h3{font-size:clamp(36px,4.2vw,62px);margin:0}
+.gallery{gap:18px;padding:4px 5vw 18px 0;scrollbar-width:none;-ms-overflow-style:none;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,#000 0%,#000 88%,transparent 100%)}
+.gallery::-webkit-scrollbar{display:none}.gallery .frame{box-shadow:none;background:transparent}.gallery .frame img{border-radius:22px}
+.tabs{gap:10px}.tabs button{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:9px 15px;transition:background .25s ease,border-color .25s ease,transform .25s ease;backdrop-filter:blur(10px)}
+.tabs button.active{background:rgba(255,255,255,.92);border-color:rgba(255,255,255,.92);color:#111}
+@media (hover:hover) and (pointer:fine){.tabs button:hover{transform:translateY(-1px)}}
 
-/* ---------- miraculous ---------- */
-.miraculous{background:#11110f}
-.mm-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:8vw;align-items:end}
-.mm-title{font-size:clamp(58px,7.6vw,108px)}
-.mm-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:46px;align-items:start
-}
-.mm-grid img{border-radius:var(--radius)}
-.mm-grid .second{margin-top:62px}
-.mm-grid .wide{grid-column:1/-1;width:76%;justify-self:center}
-.mm-quote{
-  margin-top:42px;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:start
-}
-.mm-quote h3{font-size:clamp(34px,4.4vw,64px);margin:0}
+.transition{min-height:560px;height:82vh;background:linear-gradient(180deg,var(--from) 0%,var(--mid) 48%,var(--to) 100%);isolation:isolate}
+.transition::before,.transition::after{content:"";position:absolute;pointer-events:none;border:0;border-radius:999px;filter:blur(96px);opacity:.82;z-index:0}
+.transition::before{width:64vw;height:44vw;min-width:620px;min-height:420px;left:-14vw;top:-16%;background:radial-gradient(circle,var(--from-glow) 0%,transparent 66%)}
+.transition::after{width:68vw;height:46vw;min-width:660px;min-height:440px;right:-16vw;bottom:-18%;background:radial-gradient(circle,var(--to-glow) 0%,transparent 66%)}
+.transition-label{z-index:3;color:rgba(255,255,255,.45);text-shadow:0 1px 20px rgba(0,0,0,.35)}
+.transition-label strong{margin-top:5px;color:rgba(255,255,255,.84);font-family:Georgia,"Times New Roman",serif;font-size:clamp(18px,2vw,28px);letter-spacing:-.015em;text-transform:none}
+.transition[data-to="Film"],.transition[data-to="Selected Projects"]{color:#241d18}
+.transition[data-to="Film"] .transition-label,.transition[data-to="Selected Projects"] .transition-label{color:rgba(40,30,24,.48);text-shadow:none}
+.transition[data-to="Film"] .transition-label strong,.transition[data-to="Selected Projects"] .transition-label strong{color:rgba(33,25,20,.85)}
 
-/* ---------- flying heart ---------- */
-.flying{background:#10120f}
-.flying-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:8vw;align-items:end}
-.flying-title{font-size:clamp(58px,7.6vw,108px)}
-.trip-tabs{display:flex;gap:10px;margin:34px 0 22px}
-.trip-tab{
-  border:1px solid rgba(255,255,255,.18);border-radius:999px;background:transparent;
-  color:#bcb6ae;padding:9px 13px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer
-}
-.trip-tab.active{background:#f0e9de;color:#181512}
-.carousel-shell{position:relative}
-.carousel-track{
-  display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;
-  scroll-snap-type:x mandatory;padding-right:16vw;cursor:grab
-}
-.carousel-track::-webkit-scrollbar{display:none}
-.carousel-track.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
-.slide{
-  flex:0 0 auto;scroll-snap-align:start;position:relative;
-  height:min(55vh,520px)
-}
-.slide img{height:100%;width:auto;border-radius:var(--radius)}
-.slide figcaption{
-  position:absolute;left:0;bottom:0;padding:36px 14px 12px;
-  width:100%;background:linear-gradient(transparent,rgba(0,0,0,.58));
-  border-radius:0 0 var(--radius) var(--radius);
-  font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#fff
-}
-.carousel-arrow{
-  position:absolute;z-index:5;top:50%;transform:translateY(-50%);
-  width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.32);
-  background:rgba(7,7,7,.46);backdrop-filter:blur(7px);color:#fff;cursor:pointer
-}
-.carousel-arrow.prev{left:12px}.carousel-arrow.next{right:12px}
-.carousel-track.hidden{display:none}
+.project-col{border-top:1px solid rgba(0,0,0,.18)}.project-row{border-bottom:1px solid rgba(0,0,0,.16);padding:22px 0}
+.black .project-col,.dark .project-col,.burgundy .project-col{border-top-color:rgba(255,255,255,.15)}
+.black .project-row,.dark .project-row,.burgundy .project-row{border-bottom-color:rgba(255,255,255,.13)}
 
-/* ---------- culture ---------- */
-.cham{background:var(--burgundy)}
-.culture-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;align-items:end}
-.culture-title{font-size:clamp(58px,7.4vw,106px)}
-.portrait-strip{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start;margin-top:44px
-}
-.portrait-strip img{border-radius:var(--radius)}
-.portrait-strip .p2,.portrait-strip .p4{margin-top:54px}
-.culture-caption{
-  margin-top:42px;display:grid;grid-template-columns:1fr 1fr;gap:8vw
-}
-.culture-caption h3{font-size:clamp(34px,4.1vw,60px);margin:0}
+.contact{position:relative;overflow:hidden;background:radial-gradient(70% 90% at 80% 10%,rgba(49,67,99,.20),transparent 60%),linear-gradient(180deg,#08090c,#050506)}
+.contact::before{content:"";position:absolute;inset:-30% -20% auto auto;width:55vw;height:55vw;border-radius:999px;filter:blur(100px);background:rgba(74,45,69,.11)}
+.status{display:none!important}
 
-/* ---------- tien ---------- */
-.tien{background:#0c0c0c}
-.tien-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;align-items:end}
-.tien-title{font-size:clamp(58px,7.4vw,106px)}
-.tien-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:44px}
-.tien-grid img{border-radius:var(--radius)}
-.tien-side{display:grid;gap:18px;align-content:start}
-.tien-caption{
-  margin-top:38px;display:grid;grid-template-columns:1fr 1fr;gap:8vw
-}
-.tien-caption h3{font-size:clamp(34px,4.1vw,60px);margin:0}
-
-/* ---------- visual project index ---------- */
-.projects{background:var(--cream);color:var(--ink)}
-.projects .scene-rule{background:rgba(23,19,15,.18)}
-.projects .scene-num{color:#746d65}
-.projects-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:7vw;align-items:center}
-.project-list{border-top:1px solid rgba(23,19,15,.18)}
-.project-row{
-  display:grid;grid-template-columns:44px 1fr;gap:16px;padding:20px 0;
-  border-bottom:1px solid rgba(23,19,15,.18);cursor:pointer
-}
-.project-row h3{
-  font-family:"Playfair Display";font-weight:400;font-size:clamp(28px,3vw,44px);
-  line-height:1;margin:0
-}
-.project-row p{margin:7px 0 0;font-size:11px;color:#665e57}
-.project-preview img{border-radius:var(--radius);width:100%}
-.project-preview-caption{
-  margin-top:12px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#756d65
+@media(max-width:760px){
+  .chapter::before,.chapter::after{filter:blur(64px);opacity:.42}
+  .transition{height:64vh;min-height:430px}
+  .transition::before,.transition::after{filter:blur(72px)}
+  .frame,.frame img{border-radius:20px}
+  .gallery{-webkit-mask-image:none;mask-image:none}
 }
 
-/* ---------- next ---------- */
-.next{
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.38)),
-    url("assets/award-stage.jpg") center/cover no-repeat
-}
-.next-title{font-size:clamp(66px,9vw,130px)}
-.next-copy{max-width:600px;margin-top:30px;color:#d7d1c9;font-size:16px;line-height:1.8}
-
-/* ---------- contact ---------- */
-.contact{padding:100px 0 34px;background:#080808}
-.contact-top{display:flex;justify-content:space-between;gap:50px;align-items:end}
-.contact h2{font-size:clamp(66px,9vw,132px)}
-.links{display:flex;gap:24px;flex-wrap:wrap;font-size:10px;letter-spacing:.15em;text-transform:uppercase}
-.links a{color:#b8b2aa}.links a:hover{color:#fff}
-.footer{
-  margin-top:90px;padding-top:22px;border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:9px;letter-spacing:.14em;
-  text-transform:uppercase;color:#777
-}
-
-/* ---------- responsive ---------- */
-@media(max-width:900px){
-  .container{width:calc(100% - 72px)}
-  .portrait-strip{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:720px){
-  :root{--radius:16px}
-  .container{width:calc(100% - 36px)}
-  .chapter-wrap{height:150vh}
-  .nav{padding:18px}.navlinks{display:none}
-  .paper-plane-fallback{width:34px;height:34px}
-  .trail-dot{width:4px;height:4px}
-  .about-grid,.film-grid,.rec-copy,.mm-head,.mm-quote,.flying-head,
-  .culture-head,.culture-caption,.tien-head,.tien-caption,.projects-grid{
-    grid-template-columns:1fr
-  }
-  .film-media{grid-template-columns:1fr}
-  .poster{justify-self:start;width:62%}
-  .film-quote{width:100%;margin-left:0}
-  .rec-grid,.tien-grid{grid-template-columns:1fr}
-  .rec-side{grid-template-columns:1fr 1fr}
-  .mm-grid{grid-template-columns:1fr}
-  .mm-grid .second{margin-top:0}.mm-grid .wide{grid-column:auto;width:100%}
-  .portrait-strip{grid-template-columns:1fr 1fr}
-  .slide{height:48vh}
-  .hero-bottom,.contact-top{display:block}
-  .hero-bottom p,.links{margin-top:28px}
-  .footer{display:block;line-height:2}
-}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .flight-layer{display:none}
-  *{transition:none!important;animation:none!important}
-}
 </style>
-
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
-  }
-}
-</script>
-
 </head>
 <body>
 
-<header class="nav">
-  <a href="#hero">KIET ANH NGUYEN</a>
-  <nav class="navlinks">
-    <a href="#about">About</a>
-    <a href="#film">Film</a>
-    <a href="#community">Community</a>
-    <a href="#culture">Culture</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<div class="flight-layer" id="flightLayer" aria-hidden="true">
-  <canvas class="flight-canvas" id="flightCanvas"></canvas>
-  <div id="trailDots"></div>
-  <div class="paper-plane-fallback" id="paperPlaneFallback">
-    <svg viewBox="0 0 48 48">
-      <path d="M4 8 L43 20 L20 27 L14 43 Z" fill="#f4eee4" stroke="#786a5d" stroke-width="1.1"/>
-      <path d="M20 27 L43 20 L15 34" fill="none" stroke="#786a5d" stroke-width="1.3"/>
-    </svg>
-  </div>
+<svg id="trailSvg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+  <path id="trailPath"></path>
+</svg>
+<canvas id="flightCanvas" aria-hidden="true"></canvas>
+<div class="status" id="status">
+  <div>V22 · SEAMLESS VISUAL</div>
+  <div>3D: <span id="glbState">loading</span></div>
+  <div>mode: <span id="modeState" class="off">chapter</span></div>
 </div>
 
 <main>
+  <section class="chapter dark" id="hero">
+    <div class="chapter-content">
+      <p class="eyebrow">Multimedia Communication · Storytelling · Social Impact</p>
+      <h1>Stories can change<br>the way we see people.</h1>
+      <p>Personal archive of films, photography, community projects, and the experiences that shaped how I see communication.</p>
+    </div>
+  </section>
 
-<div class="chapter-wrap" id="hero">
-  <section class="chapter" data-scene="hero">
-    <div class="scene-bg hero-bg scene-layer" data-role="bg"></div>
-    <div class="chapter-inner">
-      <div class="container hero-content">
-        <div class="eyebrow scene-layer" data-role="kicker">Multimedia Communication · Storytelling · Social Impact</div>
-        <h1 class="display hero-title scene-layer" data-role="title">Stories<span>can change the way we see people.</span></h1>
-        <div class="hero-bottom">
-          <div class="kicker">Scroll to follow the journey ↓</div>
-          <p class="scene-layer" data-role="copy">A personal archive of films, photography, community projects, and the stories that shaped how I see communication.</p>
+  <section class="transition" data-from="Hero" data-to="About" data-route="0" style="--from:#101521;--mid:#15151b;--to:#101521;--from-glow:rgba(65,86,124,.33);--to-glow:rgba(105,59,54,.27)">
+    <div class="transition-label">Next chapter<strong>About</strong></div>
+  </section>
+
+  <section class="chapter black" id="about">
+    <div class="chapter-content grid-2">
+      <div class="frame"><img src="assets/screening-emotion.jpg" alt=""></div>
+      <div>
+        <p class="eyebrow">01 / About me</p>
+        <h2>I explore how storytelling can create empathy and turn awareness into action.</h2>
+        <p>I am a Multimedia Communication student interested in visual storytelling, social impact, community work, and cultural projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="transition" data-from="About" data-to="Film" data-route="1" style="--from:#171416;--mid:#75665c;--to:#e8dece;--from-glow:rgba(105,59,54,.30);--to-glow:rgba(207,160,123,.42)">
+    <div class="transition-label">Next chapter<strong>The Window Without a Horizon</strong></div>
+  </section>
+
+  <section class="chapter light" id="film">
+    <div class="chapter-content">
+      <div class="grid-60-40" style="margin-bottom:34px">
+        <div>
+          <p class="eyebrow">02 / Featured story</p>
+          <h1>The Window<br>Without a Horizon</h1>
+        </div>
+        <p>A short film inspired by my experience meeting children with cancer, exploring their everyday lives, dreams, and the people who care for them.</p>
+      </div>
+      <div class="media-pair">
+        <div class="frame poster"><img src="assets/film-poster.jpg" alt=""></div>
+        <div>
+          <div class="frame"><img src="assets/screening-emotion.jpg" alt=""></div>
+          <div class="quote" style="font-size:clamp(24px,3vw,40px);margin-top:22px">“Before seeing their illness, I wanted people to see the children.”</div>
         </div>
       </div>
     </div>
   </section>
-</div>
 
-<div class="chapter-wrap" id="about">
-  <section class="chapter about" data-scene="about">
-    <div class="chapter-inner">
-      <div class="container">
-        <div class="scene-head">
-          <span class="scene-num">01</span><div class="scene-rule scene-layer" data-role="rule"></div>
-          <h2 class="scene-title scene-layer" data-role="title">About me</h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-photo scene-layer" data-role="media">
-            <img src="assets/screening-emotion.jpg" alt="A screening moment connected to Kiet's storytelling work">
-          </div>
-          <div class="about-copy scene-layer" data-role="copy">
-            <p class="display about-lead">I explore how storytelling can create empathy and turn awareness into action.</p>
-            <p class="copy">I am a Multimedia Communication student interested in visual storytelling, social impact, community work, and cultural projects. My work often begins with listening: to people, to their everyday experiences, and to the stories that are easy to overlook.</p>
-            <div class="meta"><span>Visual Storytelling</span><span>Social Impact</span><span>Community</span><span>Culture</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section class="transition" data-from="Film" data-to="Recognition" data-route="2" style="--from:#d8c7ae;--mid:#7a5f4a;--to:#231711;--from-glow:rgba(206,161,116,.38);--to-glow:rgba(126,66,43,.34)">
+    <div class="transition-label">The story continues<strong>Recognition</strong></div>
   </section>
-</div>
 
-<div class="chapter-wrap" id="film">
-  <section class="chapter film" data-scene="film">
-    <div class="chapter-inner">
-      <div class="container">
-        <div class="scene-head">
-          <span class="scene-num">02</span><div class="scene-rule scene-layer" data-role="rule"></div>
-          <span class="kicker">Featured story</span>
+  <section class="chapter black" id="recognition">
+    <div class="chapter-content">
+      <div class="grid-40-60">
+        <div>
+          <p class="eyebrow">03 / Recognition</p>
+          <h2>Best Short Film</h2>
+          <p>Recognition is part of the film’s journey, but not the center of it.</p>
         </div>
-        <div class="film-grid">
-          <h2 class="display film-title scene-layer" data-role="title">The Window<br>Without a Horizon</h2>
-          <p class="film-copy scene-layer" data-role="copy"><strong>Cửa Sổ Không Có Đường Chân Trời</strong><br><br>A short film inspired by my experience meeting children with cancer, exploring their everyday lives, dreams, and the people who care for them.</p>
-        </div>
-        <div class="film-media">
-          <div class="poster scene-layer" data-role="item"><img src="assets/film-poster.jpg" alt="The Window Without a Horizon poster"></div>
-          <div class="film-still scene-layer" data-role="item"><img src="assets/screening-emotion.jpg" alt="Screening moment"></div>
-          <div class="display film-quote scene-layer" data-role="copy">“Before seeing their illness, I wanted people to see the children.”</div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div class="chapter-wrap">
-  <section class="chapter recognition" data-scene="recognition">
-    <div class="chapter-inner">
-      <div class="container">
-        <div class="scene-head">
-          <span class="scene-num">03</span><div class="scene-rule scene-layer" data-role="rule"></div>
-          <h2 class="scene-title scene-layer" data-role="title">Recognition</h2>
-        </div>
-        <div class="rec-grid">
-          <div class="scene-layer" data-role="item"><img src="assets/award-stage.jpg" alt="Best Short Film stage"></div>
-          <div class="rec-side">
-            <div class="scene-layer" data-role="item"><img src="assets/award-guests.jpg" alt="Film team with guests"></div>
-            <div class="scene-layer" data-role="item"><img src="assets/award-team.jpg" alt="Film team"></div>
-          </div>
-        </div>
-        <div class="rec-copy">
-          <h3 class="display scene-layer" data-role="title">Best Short Film</h3>
-          <p class="copy scene-layer" data-role="copy">Recognition is part of the film’s journey, but not the center of it. The story and the people behind it remain the reason the work matters to me.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div class="chapter-wrap">
-  <section class="chapter miraculous" data-scene="miraculous">
-    <div class="chapter-inner">
-      <div class="container">
-        <div class="scene-head">
-          <span class="scene-num">04</span><div class="scene-rule scene-layer" data-role="rule"></div>
-          <span class="kicker">Miraculous Moments · Khoảnh Khắc Diệu Kỳ</span>
-        </div>
-        <div class="mm-head">
-          <h2 class="display mm-title scene-layer" data-role="title">A story before the film.</h2>
-          <p class="copy scene-layer" data-role="copy">Miraculous Moments began with a volunteering experience where I met pediatric cancer survivors, listened to their stories, and shared moments of creativity and joy.</p>
-        </div>
-        <div class="mm-grid">
-          <div class="scene-layer" data-role="item"><img src="assets/miraculous-studio.jpg" alt="Studio photography session"></div>
-          <div class="scene-layer second" data-role="item"><img src="assets/miraculous-outdoor.jpg" alt="Outdoor photography activity"></div>
-          <div class="scene-layer wide" data-role="item"><img src="assets/miraculous-graduation.jpg" alt="Photography class graduation"></div>
-        </div>
-        <div class="mm-quote">
-          <h3 class="display scene-layer" data-role="title">Before seeing their illness, I wanted people to see the children.</h3>
-          <p class="copy scene-layer" data-role="copy">That experience later shaped <em>The Window Without a Horizon</em> and made me think more seriously about how we choose to see the person inside a story.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div class="chapter-wrap" id="community">
-  <section class="chapter flying" data-scene="flying">
-    <div class="chapter-inner">
-      <div class="container">
-        <div class="scene-head">
-          <span class="scene-num">05</span><div class="scene-rule scene-layer" data-role="rule"></div>
-          <span class="kicker">Flying Heart · Volunteer work</span>
-        </div>
-        <div class="flying-head">
-          <h2 class="display flying-title scene-layer" data-role="title">Field notes from the road.</h2>
-          <p class="copy scene-layer" data-role="copy">Flying Heart brought me closer to community work on the ground: long roads, preparation, meeting families and children, and helping create small moments of care.</p>
-        </div>
-
-        <div class="trip-tabs scene-layer" data-role="copy">
-          <button class="trip-tab active" data-target="daklak">Đắk Lắk</button>
-          <button class="trip-tab" data-target="dongnai">Đồng Nai</button>
-        </div>
-
-        <div class="carousel-shell scene-layer" data-role="media">
-          <button class="carousel-arrow prev" aria-label="Previous">←</button>
-
-          <div class="carousel-track" data-carousel="daklak">
-            <figure class="slide"><img src="assets/flying-daklak-1.jpg" alt="On the road"><figcaption>01 / On the road</figcaption></figure>
-            <figure class="slide"><img src="assets/flying-daklak-2.jpg" alt="Meeting families"><figcaption>02 / Meeting families</figcaption></figure>
-            <figure class="slide"><img src="assets/flying-daklak-3.jpg" alt="Preparing support"><figcaption>03 / Preparing support</figcaption></figure>
-            <figure class="slide"><img src="assets/flying-daklak-4.jpg" alt="Together on site"><figcaption>04 / Together on site</figcaption></figure>
-            <figure class="slide"><img src="assets/flying-daklak-5.jpg" alt="Small encounters"><figcaption>05 / Small encounters</figcaption></figure>
-            <figure class="slide"><img src="assets/flying-daklak-6.jpg" alt="Community"><figcaption>06 / Community</figcaption></figure>
-          </div>
-
-          <div class="carousel-track hidden" data-carousel="dongnai">
-            <figure class="slide"><img src="assets/flying-dongnai-1.jpg" alt="Gathering"><figcaption>01 / Gathering</figcaption></figure>
-            <figure class="slide"><img src="assets/flying-dongnai-2.jpg" alt="Shared celebration"><figcaption>02 / Shared celebration</figcaption></figure>
-            <figure class="slide"><img src="assets/flying-dongnai-3.jpg" alt="Gifts prepared"><figcaption>03 / Gifts prepared</figcaption></figure>
-          </div>
-
-          <button class="carousel-arrow next" aria-label="Next">→</button>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div class="chapter-wrap" id="culture">
-  <section class="chapter cham" data-scene="cham">
-    <div class="chapter-inner">
-      <div class="container">
-        <div class="scene-head">
-          <span class="scene-num">06</span><div class="scene-rule scene-layer" data-role="rule"></div>
-          <span class="kicker">Chạm Việt Phục · Workshop & exhibition</span>
-        </div>
-        <div class="culture-head">
-          <h2 class="display culture-title scene-layer" data-role="title">Bringing heritage closer.</h2>
-          <p class="copy scene-layer" data-role="copy">A student-led cultural project inviting people to engage with Vietnamese traditional clothing through display, conversation, and participation.</p>
-        </div>
-        <div class="portrait-strip">
-          <div class="scene-layer" data-role="item"><img src="assets/cham-1.jpg" alt="Traditional costume display"></div>
-          <div class="scene-layer p2" data-role="item"><img src="assets/cham-2.jpg" alt="Kiet speaking with a participant"></div>
-          <div class="scene-layer" data-role="item"><img src="assets/cham-3.jpg" alt="On-site styling"></div>
-          <div class="scene-layer p4" data-role="item"><img src="assets/cham-4.jpg" alt="Interactive activity"></div>
-        </div>
-        <div class="culture-caption">
-          <h3 class="display scene-layer" data-role="title">Culture becomes more meaningful when people can step into it.</h3>
-          <p class="copy scene-layer" data-role="copy">What mattered most was creating a space where people could ask, listen, and participate — not simply look at cultural artifacts from a distance.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div class="chapter-wrap">
-  <section class="chapter tien" data-scene="tien">
-    <div class="chapter-inner">
-      <div class="container">
-        <div class="scene-head">
-          <span class="scene-num">07</span><div class="scene-rule scene-layer" data-role="rule"></div>
-          <span class="kicker">Tiên Thường Tuần Du · Cultural participation</span>
-        </div>
-        <div class="tien-head">
-          <h2 class="display tien-title scene-layer" data-role="title">Tradition in motion.</h2>
-          <p class="copy scene-layer" data-role="copy">A cultural space where costume, performance, and community participation came together. I joined as a volunteer and experienced heritage as something carried by people, not kept behind glass.</p>
-        </div>
-        <div class="tien-grid">
-          <div class="scene-layer" data-role="item"><img src="assets/tien-2.jpg" alt="Cultural group photo"></div>
-          <div class="tien-side">
-            <div class="scene-layer" data-role="item"><img src="assets/tien-1.jpg" alt="Participants in traditional attire"></div>
-            <div class="scene-layer" data-role="item"><img src="assets/tien-3.jpg" alt="Cultural participants posing together"></div>
-          </div>
-        </div>
-        <div class="tien-caption">
-          <h3 class="display scene-layer" data-role="title">Heritage becomes stronger when it is practiced together.</h3>
-          <p class="copy scene-layer" data-role="copy">These events showed me how cultural projects can become spaces for participation, conversation, and connection across identities and traditions.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<div class="chapter-wrap" id="projects">
-  <section class="chapter projects" data-scene="projects">
-    <div class="chapter-inner">
-      <div class="container">
-        <div class="scene-head">
-          <span class="scene-num">08</span><div class="scene-rule scene-layer" data-role="rule"></div>
-          <h2 class="scene-title scene-layer" data-role="title">Selected projects</h2>
-        </div>
-        <div class="projects-grid">
-          <div class="project-list scene-layer" data-role="copy">
-            <div class="project-row active" data-img="assets/miraculous-outdoor.jpg" data-label="Community · Photography · Social Impact"><div>01</div><div><h3>Miraculous Moments</h3><p>Community · Photography · Social Impact</p></div></div>
-            <div class="project-row" data-img="assets/film-poster.jpg" data-label="Short Film · Screenwriting · Social Impact"><div>02</div><div><h3>The Window Without a Horizon</h3><p>Short Film · Screenwriting · Social Impact</p></div></div>
-            <div class="project-row" data-img="assets/flying-daklak-4.jpg" data-label="Volunteer Work · Community Outreach"><div>03</div><div><h3>Flying Heart</h3><p>Volunteer Work · Community Outreach</p></div></div>
-            <div class="project-row" data-img="assets/cham-2.jpg" data-label="Cultural Heritage · Youth Advocacy"><div>04</div><div><h3>Chạm Việt Phục</h3><p>Cultural Heritage · Youth Advocacy</p></div></div>
-            <div class="project-row" data-img="assets/tien-2.jpg" data-label="Cultural Heritage · Community Event"><div>05</div><div><h3>Tiên Thường Tuần Du</h3><p>Cultural Heritage · Community Event</p></div></div>
-          </div>
-          <div class="project-preview scene-layer" data-role="media">
-            <img id="previewImg" src="assets/miraculous-outdoor.jpg" alt="">
-            <div class="project-preview-caption" id="previewLabel">Community · Photography · Social Impact</div>
+        <div class="media-3">
+          <div class="frame"><img src="assets/award-stage.jpg" alt=""></div>
+          <div class="media-stack">
+            <div class="frame small"><img src="assets/award-team.jpg" alt=""></div>
+            <div class="frame small"><img src="assets/award-guests.jpg" alt=""></div>
           </div>
         </div>
       </div>
     </div>
   </section>
-</div>
 
-<div class="chapter-wrap">
-  <section class="chapter next" data-scene="next">
-    <div class="chapter-inner">
-      <div class="container">
-        <div class="eyebrow scene-layer" data-role="kicker">09 / What's next</div>
-        <h2 class="display next-title scene-layer" data-role="title">Awareness.<br>Understanding.<br>Action.</h2>
-        <p class="next-copy scene-layer" data-role="copy">I want to keep exploring how communication can turn awareness into understanding, and understanding into meaningful action. This direction will continue through my graduation project and the next stage of Miraculous Moments.</p>
+  <section class="transition" data-from="Recognition" data-to="Miraculous Moments" data-route="3" style="--from:#130f10;--mid:#142019;--to:#101612;--from-glow:rgba(126,66,43,.25);--to-glow:rgba(62,105,79,.34)">
+    <div class="transition-label">Before the film<strong>Miraculous Moments</strong></div>
+  </section>
+
+  <section class="chapter dark" id="miraculous">
+    <div class="chapter-content">
+      <div class="grid-60-40" style="margin-bottom:30px">
+        <div>
+          <p class="eyebrow">04 / Miraculous Moments</p>
+          <h2>A story before<br>the film.</h2>
+        </div>
+        <p>Miraculous Moments began with a volunteering experience where I met pediatric cancer survivors, listened to their stories, and shared moments of creativity and joy.</p>
+      </div>
+      <div class="media-pair">
+        <div class="frame"><img src="assets/miraculous-studio.jpg" alt=""></div>
+        <div class="media-stack">
+          <div class="frame small"><img src="assets/miraculous-outdoor.jpg" alt=""></div>
+          <div class="frame small"><img src="assets/miraculous-graduation.jpg" alt=""></div>
+        </div>
       </div>
     </div>
   </section>
-</div>
 
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="contact-top">
-      <div><div class="eyebrow">10 / Find me elsewhere</div><h2 class="display">Let's connect.</h2></div>
-      <div class="links"><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a><a href="mailto:your@email.com">Email</a></div>
+  <section class="transition" data-from="Miraculous Moments" data-to="Flying Heart" data-route="0" style="--from:#18231c;--mid:#132225;--to:#0d1718;--from-glow:rgba(62,105,79,.28);--to-glow:rgba(53,101,109,.32)">
+    <div class="transition-label">Out into the field<strong>Flying Heart</strong></div>
+  </section>
+
+  <section class="chapter black" id="flying-heart">
+    <div class="chapter-content">
+      <div class="grid-60-40" style="margin-bottom:22px">
+        <div>
+          <p class="eyebrow">05 / Flying Heart</p>
+          <h2>Field notes<br>from the road.</h2>
+        </div>
+        <p>Flying Heart brought me closer to community work on the ground: long roads, preparation, meeting families and children, and helping create small moments of care.</p>
+      </div>
+      <div class="tabs">
+        <button type="button" class="active" data-trip="daklak">Đắk Lắk</button>
+        <button type="button" data-trip="dongnai">Đồng Nai</button>
+      </div>
+      <div class="gallery" data-gallery="daklak">
+        <div class="frame"><img src="assets/flying-daklak-1.jpg" alt=""></div>
+        <div class="frame"><img src="assets/flying-daklak-2.jpg" alt=""></div>
+        <div class="frame"><img src="assets/flying-daklak-3.jpg" alt=""></div>
+        <div class="frame"><img src="assets/flying-daklak-4.jpg" alt=""></div>
+        <div class="frame"><img src="assets/flying-daklak-5.jpg" alt=""></div>
+        <div class="frame"><img src="assets/flying-daklak-6.jpg" alt=""></div>
+      </div>
+      <div class="gallery hidden" data-gallery="dongnai">
+        <div class="frame"><img src="assets/flying-dongnai-1.jpg" alt=""></div>
+        <div class="frame"><img src="assets/flying-dongnai-2.jpg" alt=""></div>
+        <div class="frame"><img src="assets/flying-dongnai-3.jpg" alt=""></div>
+      </div>
     </div>
-    <div class="footer"><span>© 2026 Kiet Anh Nguyen</span><span>Paper Plane 3D model by Trockk · CC BY 4.0</span><span>Multimedia Communication · Storytelling · Social Impact</span></div>
+  </section>
+
+  <section class="transition" data-from="Flying Heart" data-to="Chạm Việt Phục" data-route="1" style="--from:#17272a;--mid:#302329;--to:#291317;--from-glow:rgba(53,101,109,.28);--to-glow:rgba(150,67,80,.35)">
+    <div class="transition-label">Another way of listening<strong>Chạm Việt Phục</strong></div>
+  </section>
+
+  <section class="chapter burgundy" id="cham">
+    <div class="chapter-content">
+      <div class="grid-60-40" style="margin-bottom:30px">
+        <div>
+          <p class="eyebrow">06 / Chạm Việt Phục</p>
+          <h2>Bringing heritage<br>closer.</h2>
+        </div>
+        <p>A student-led cultural project inviting people to engage with Vietnamese traditional clothing through display, conversation, and participation.</p>
+      </div>
+      <div class="portrait-row">
+        <div class="frame"><img src="assets/cham-1.jpg" alt=""></div>
+        <div class="frame"><img src="assets/cham-2.jpg" alt=""></div>
+        <div class="frame"><img src="assets/cham-3.jpg" alt=""></div>
+        <div class="frame"><img src="assets/cham-4.jpg" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="transition" data-from="Chạm Việt Phục" data-to="Tiên Thường Tuần Du" data-route="2" style="--from:#4a242b;--mid:#2c1c19;--to:#1a1210;--from-glow:rgba(150,67,80,.32);--to-glow:rgba(120,73,44,.30)">
+    <div class="transition-label">Tradition in motion<strong>Tiên Thường Tuần Du</strong></div>
+  </section>
+
+  <section class="chapter black" id="tien">
+    <div class="chapter-content">
+      <div class="grid-40-60">
+        <div>
+          <p class="eyebrow">07 / Tiên Thường Tuần Du</p>
+          <h2>Tradition<br>in motion.</h2>
+          <p>A cultural space where costume, performance, and community participation came together.</p>
+        </div>
+        <div class="media-3">
+          <div class="frame"><img src="assets/tien-2.jpg" alt=""></div>
+          <div class="media-stack">
+            <div class="frame small"><img src="assets/tien-1.jpg" alt=""></div>
+            <div class="frame small"><img src="assets/tien-3.jpg" alt=""></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="transition" data-from="Tiên Thường Tuần Du" data-to="Selected Projects" data-route="3" style="--from:#0d0d0e;--mid:#75665c;--to:#e4d9ca;--from-glow:rgba(120,73,44,.22);--to-glow:rgba(210,165,130,.40)">
+    <div class="transition-label">A wider view<strong>Selected Projects</strong></div>
+  </section>
+
+  <section class="chapter light" id="projects">
+    <div class="chapter-content">
+      <p class="eyebrow">08 / Selected Projects</p>
+      <div class="projects">
+        <div class="project-col">
+          <div class="project-row"><h3>Miraculous Moments</h3><p>Community · Photography · Social Impact</p></div>
+          <div class="project-row"><h3>The Window Without a Horizon</h3><p>Short Film · Screenwriting</p></div>
+          <div class="project-row"><h3>Flying Heart</h3><p>Volunteer Work · Community Outreach</p></div>
+        </div>
+        <div class="project-col">
+          <div class="project-row"><h3>Chạm Việt Phục</h3><p>Cultural Heritage</p></div>
+          <div class="project-row"><h3>Tiên Thường Tuần Du</h3><p>Cultural Participation</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="transition" data-from="Selected Projects" data-to="What's Next" data-route="0" style="--from:#d0bca5;--mid:#665b58;--to:#111117;--from-glow:rgba(176,124,88,.34);--to-glow:rgba(55,75,111,.32)">
+    <div class="transition-label">Looking forward<strong>What's Next</strong></div>
+  </section>
+
+  <section class="chapter black" id="next">
+    <div class="chapter-content">
+      <p class="eyebrow">09 / What's Next</p>
+      <h1>Awareness.<br>Understanding.<br>Action.</h1>
+      <p>I want to keep exploring how communication can turn awareness into understanding, and understanding into meaningful action.</p>
+    </div>
+  </section>
+</main>
+
+<section class="contact">
+  <div class="container contact-grid">
+    <div><p class="eyebrow">10 / Find me elsewhere</p><h2>Let's connect.</h2></div>
+    <div class="links"><span>Instagram</span><span>Facebook</span><span>YouTube</span><span>Email</span></div>
   </div>
 </section>
 
-</main>
-
-<script type="module">
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
-const clamp=(v,a=0,b=1)=>Math.min(Math.max(v,a),b);
-const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
-
-const wraps=[...document.querySelectorAll('.chapter-wrap')];
-const chapters=wraps.map(w=>w.querySelector('.chapter'));
-const flightLayer=document.getElementById('flightLayer');
-const fallback=document.getElementById('paperPlaneFallback');
-const trailHost=document.getElementById('trailDots');
-
-/* ---------- Continuous C1 Catmull-Rom flight path ---------- */
-/* Safe corridors: the plane stays near edge/top/bottom spaces and avoids core copy/media. */
-const waypoints=[
-  {x:.84,y:.18},
-  {x:.91,y:.68},
-  {x:.16,y:.82},
-  {x:.09,y:.24},
-  {x:.86,y:.16},
-  {x:.92,y:.70},
-  {x:.15,y:.82},
-  {x:.09,y:.24},
-  {x:.86,y:.17},
-  {x:.90,y:.72},
-  {x:.55,y:1.10}
-];
-
-function catmull(p0,p1,p2,p3,t){
-  const t2=t*t,t3=t2*t;
-  return {
-    x:.5*((2*p1.x)+(-p0.x+p2.x)*t+(2*p0.x-5*p1.x+4*p2.x-p3.x)*t2+(-p0.x+3*p1.x-3*p2.x+p3.x)*t3),
-    y:.5*((2*p1.y)+(-p0.y+p2.y)*t+(2*p0.y-5*p1.y+4*p2.y-p3.y)*t2+(-p0.y+3*p1.y-3*p2.y+p3.y)*t3)
-  };
-}
-function pathPoint(seg,t){
-  const p0=waypoints[Math.max(seg-1,0)];
-  const p1=waypoints[seg];
-  const p2=waypoints[Math.min(seg+1,waypoints.length-1)];
-  const p3=waypoints[Math.min(seg+2,waypoints.length-1)];
-  return catmull(p0,p1,p2,p3,t);
-}
-function tangent2D(seg,t){
-  const e=.007;
-  const a=pathPoint(seg,Math.max(0,t-e));
-  const b=pathPoint(seg,Math.min(1,t+e));
-  return {x:b.x-a.x,y:b.y-a.y};
-}
-
-/* ---------- dotted trail sampled from path, not scroll frames ---------- */
-const dots=[];
-for(let i=0;i<22;i++){
-  const el=document.createElement('span');
-  el.className='trail-dot';
-  trailHost.appendChild(el);
-  dots.push(el);
-}
-function sampleBehind(seg,t,back){
-  let tt=t-back,ss=seg;
-  while(tt<0 && ss>0){ss--;tt+=1}
-  if(tt<0)tt=0;
-  return pathPoint(ss,tt);
-}
-function renderTrail(seg,t,vw,vh){
-  dots.forEach((d,i)=>{
-    const back=.018*(i+1);
-    const p=sampleBehind(seg,t,back);
-    const alpha=(1-i/dots.length)*.76;
-    d.style.transform=`translate(${p.x*vw}px,${p.y*vh}px) translate(-50%,-50%)`;
-    d.style.opacity=String(alpha);
-    d.style.scale=String(.72+alpha*.34);
-  });
-}
-
-/* ---------- Three.js paper plane ---------- */
-const canvas=document.getElementById('flightCanvas');
-const scene3D=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.1,100);
-camera.position.set(0,0,12);
-
-const renderer=new THREE.WebGLRenderer({
-  canvas,
-  alpha:true,
-  antialias:true,
-  powerPreference:'high-performance'
-});
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));
-renderer.setSize(innerWidth,innerHeight,false);
-renderer.outputColorSpace=THREE.SRGBColorSpace;
-
-scene3D.add(new THREE.HemisphereLight(0xffffff,0x453d38,2.25));
-const keyLight=new THREE.DirectionalLight(0xffffff,2.6);
-keyLight.position.set(4,6,8);
-scene3D.add(keyLight);
-const rimLight=new THREE.DirectionalLight(0xffe1c0,1.3);
-rimLight.position.set(-5,-2,5);
-scene3D.add(rimLight);
-
-const planeRig=new THREE.Group();
-scene3D.add(planeRig);
-
-let planeModel=null;
-let modelReady=false;
-const forwardAxis=new THREE.Vector3(1,0,0);
-const targetPosition=new THREE.Vector3();
-const targetQuaternion=new THREE.Quaternion();
-const currentTargetScale={value:1};
-let targetVisible=1;
-let fallbackState={x:0,y:0,angle:0};
-
-function viewSizeAtZ0(){
-  const dist=camera.position.z;
-  const h=2*Math.tan(THREE.MathUtils.degToRad(camera.fov*.5))*dist;
-  return {h,w:h*camera.aspect};
-}
-function screenNormToWorld(nx,ny,z=0){
-  const s=viewSizeAtZ0();
-  return new THREE.Vector3((nx-.5)*s.w,(.5-ny)*s.h,z);
-}
-function screenDirectionToWorld(dx,dy){
-  const s=viewSizeAtZ0();
-  return new THREE.Vector3(dx*s.w,-dy*s.h,0).normalize();
-}
-
-const loader=new GLTFLoader();
-loader.load(
-  'assets/paper-plane.glb',
-  gltf=>{
-    planeModel=gltf.scene;
-
-    /* Center and normalize the model. Its nose is +X. */
-    const box=new THREE.Box3().setFromObject(planeModel);
-    const size=new THREE.Vector3();
-    const center=new THREE.Vector3();
-    box.getSize(size);
-    box.getCenter(center);
-    planeModel.position.sub(center);
-    const maxDim=Math.max(size.x,size.y,size.z);
-    const normalizedScale=maxDim>0?1/maxDim:1;
-    planeModel.scale.setScalar(normalizedScale);
-
-    planeModel.traverse(obj=>{
-      if(obj.isMesh){
-        obj.castShadow=false;
-        obj.receiveShadow=false;
-        const old=obj.material;
-        const mat=new THREE.MeshStandardMaterial({
-          color:0xf3ede3,
-          roughness:.62,
-          metalness:0,
-          side:THREE.DoubleSide
-        });
-        if(old && old.color) mat.color.copy(old.color).lerp(new THREE.Color(0xf3ede3),.72);
-        obj.material=mat;
-      }
+<script>
+(() => {
+  /* -----------------------------
+     Gallery: structural only
+  ----------------------------- */
+  const tripButtons=[...document.querySelectorAll('[data-trip]')];
+  tripButtons.forEach(btn=>btn.addEventListener('click',()=>{
+    tripButtons.forEach(b=>b.classList.toggle('active',b===btn));
+    document.querySelectorAll('[data-gallery]').forEach(g=>{
+      g.classList.toggle('hidden',g.dataset.gallery!==btn.dataset.trip);
     });
+  }));
 
-    planeRig.add(planeModel);
-    modelReady=true;
-    flightLayer.classList.remove('is-fallback');
-  },
-  undefined,
-  err=>{
-    console.warn('3D paper plane could not load; using SVG fallback.',err);
-    flightLayer.classList.add('is-fallback');
-  }
-);
+  /* -----------------------------
+     TRANSITION PLANE ENGINE
+     Same embedded-GLB approach that already worked.
+     No external module / CDN / asset path.
+  ----------------------------- */
+  const GLB_B64="Z2xURgIAAACsCQAAKAcAAEpTT057ImFjY2Vzc29ycyI6W3siYnVmZmVyVmlldyI6MiwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjE3LCJtYXgiOls3Mjg1LjQ5MDIzNDM3NSwzODEwLjY1OTkxMjEwOTM3NSwxMjcyLjBdLCJtaW4iOlsxNTk0LjQ4OTk5MDIzNDM3NSw1MjYuNjU2OTgyNDIxODc1LDY2MC4wXSwidHlwZSI6IlZFQzMifSx7ImJ1ZmZlclZpZXciOjIsImJ5dGVPZmZzZXQiOjIwNCwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjE3LCJtYXgiOlswLjAxNTIzOTA5OTk3MTk1MDA1NCwwLjk4NjA3NDIwOTIxMzI1NjgsMS4wXSwibWluIjpbLTAuMDE3NzgxNzAyODAxNTg1MTk3LC0wLjk4NjA3NDIwOTIxMzI1NjgsLTAuOTk4NDg4MDA4OTc1OTgyN10sInR5cGUiOiJWRUMzIn0seyJidWZmZXJWaWV3IjoxLCJjb21wb25lbnRUeXBlIjo1MTI2LCJjb3VudCI6MTcsIm1heCI6WzI5OS4yNTY5ODg1MjUzOTA2LDE2NC4wNTcwMDY4MzU5Mzc1XSwibWluIjpbLTI4OC4zMjI5OTgwNDY4NzUsLTU0LjE5MzA5OTk3NTU4NTk0XSwidHlwZSI6IlZFQzIifSx7ImJ1ZmZlclZpZXciOjAsImNvbXBvbmVudFR5cGUiOjUxMjUsImNvdW50IjoxOCwidHlwZSI6IlNDQUxBUiJ9XSwiYXNzZXQiOnsiZXh0cmFzIjp7ImF1dGhvciI6IlRyb2NrayAoaHR0cHM6Ly9za2V0Y2hmYWIuY29tL1RpbXJvY2trKSIsImxpY2Vuc2UiOiJDQy1CWS00LjAgKGh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LzQuMC8pIiwic291cmNlIjoiaHR0cHM6Ly9za2V0Y2hmYWIuY29tLzNkLW1vZGVscy9wYXBlci1wbGFuZS1hc3NldC04YTVmNmEyYTA3YjY0NTIyYmY0YjkwNGQ0YTA1N2RmYiIsInRpdGxlIjoiUGFwZXIgUGxhbmUgQXNzZXQifSwiZ2VuZXJhdG9yIjoiU2tldGNoZmFiLTEzLjE2LjAiLCJ2ZXJzaW9uIjoiMi4wIn0sImJ1ZmZlclZpZXdzIjpbeyJidWZmZXIiOjAsImJ5dGVMZW5ndGgiOjcyLCJuYW1lIjoiZmxvYXRCdWZmZXJWaWV3cyIsInRhcmdldCI6MzQ5NjN9LHsiYnVmZmVyIjowLCJieXRlTGVuZ3RoIjoxMzYsImJ5dGVPZmZzZXQiOjcyLCJieXRlU3RyaWRlIjo4LCJuYW1lIjoiZmxvYXRCdWZmZXJWaWV3cyIsInRhcmdldCI6MzQ5NjJ9LHsiYnVmZmVyIjowLCJieXRlTGVuZ3RoIjo0MDgsImJ5dGVPZmZzZXQiOjIwOCwiYnl0ZVN0cmlkZSI6MTIsIm5hbWUiOiJmbG9hdEJ1ZmZlclZpZXdzIiwidGFyZ2V0IjozNDk2Mn1dLCJidWZmZXJzIjpbeyJieXRlTGVuZ3RoIjo2MTZ9XSwibWF0ZXJpYWxzIjpbeyJkb3VibGVTaWRlZCI6dHJ1ZSwibmFtZSI6IkNvbG9yX00wMCIsInBick1ldGFsbGljUm91Z2huZXNzIjp7Im1ldGFsbGljRmFjdG9yIjowLjAsInJvdWdobmVzc0ZhY3RvciI6MC42fX1dLCJtZXNoZXMiOlt7Im5hbWUiOiJPYmplY3RfMCIsInByaW1pdGl2ZXMiOlt7ImF0dHJpYnV0ZXMiOnsiTk9STUFMIjoxLCJQT1NJVElPTiI6MCwiVEVYQ09PUkRfMCI6Mn0sImluZGljZXMiOjMsIm1hdGVyaWFsIjowLCJtb2RlIjo0fV19XSwibm9kZXMiOlt7ImNoaWxkcmVuIjpbMV0sIm1hdHJpeCI6WzEuMCwwLjAsMC4wLDAuMCwwLjAsMi4yMjA0NDYwNDkyNTAzMTNlLTE2LC0xLjAsMC4wLDAuMCwxLjAsMi4yMjA0NDYwNDkyNTAzMTNlLTE2LDAuMCwwLjAsMC4wLDAuMCwxLjBdLCJuYW1lIjoiU2tldGNoZmFiX21vZGVsIn0seyJjaGlsZHJlbiI6WzJdLCJuYW1lIjoiNmNiNjNhNjliMGM4NGFlYTlhYTU5MzZiMWZmNDVkZDQub2JqLmNsZWFuZXIubWF0ZXJpYWxtZXJnZXIuZ2xlcyJ9LHsibWVzaCI6MCwibmFtZSI6Ik9iamVjdF8yIn1dLCJzY2VuZSI6MCwic2NlbmVzIjpbeyJuYW1lIjoiU2tldGNoZmFiX1NjZW5lIiwibm9kZXMiOlswXX1dfSAgIGgCAABCSU4AAAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAFAAAADgAAAA8AAAAQAAAA2puAwtQrO0GHdoDCGYQQQlgpkMMZhBBCzhl7QvqtokLOGXtCQuClQT1qj0OqwqpCJyCEQtnqcj65fKNCvMVYwuWglUPZ6nI+XZx0Ql+4gEIE53RCmrcfQjufjkNfuIBCzhl7QqgGFkPOGXtCTNeyQoXre8OYDiRDip8JwgZB20LNzJXBmA4kQ65Px0SPigdFAAAlRK5Px0R7IAFFAACfROyr40WPigdFAACfRK5Px0R7IAFFAACfRK5Px0QMqgNEAACfROyr40WPigdFAACfRK5Px0QMqgNEAACfRK5Px0QfbfVEAICVROyr40WPigdFAACfRK5Px0R79A1FAACfRK5Px0SPigdFAAAlROyr40WPigdFAACfRK5Px0SPKm5FAACfRK5Px0R79A1FAACfROyr40WPigdFAACfRK5Px0SPXhRFAICVRK5Px0SPKm5FAACfRO+qkbxcb3w/T1IpPu+qkbxcb3w/T1IpPu+qkbxcb3w/T1IpPgAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAP2uteTzZVli96Zx/v2uteTzZVli96Zx/v2uteTzZVli96Zx/v++qkbxcb3y/T1IpPu+qkbxcb3y/T1IpPu+qkbxcb3y/T1IpPgAAAAAAAAAAAACAPwAAAAAAAAAAAACAP2uteTzZVlg96Zx/v2uteTzZVlg96Zx/v2uteTzZVlg96Zx/vw==";
+  const canvas=document.getElementById('flightCanvas');
+  const trailSvg=document.getElementById('trailSvg');
+  const trailPath=document.getElementById('trailPath');
+  const glbState=document.getElementById('glbState');
+  const modeState=document.getElementById('modeState');
+  const gl=canvas.getContext('webgl2',{alpha:true,antialias:true}) ||
+           canvas.getContext('webgl',{alpha:true,antialias:true});
 
-/* If CDN/Three works but model takes a moment to load, keep fallback visible briefly. */
-flightLayer.classList.add('is-fallback');
-setTimeout(()=>{
-  if(modelReady)flightLayer.classList.remove('is-fallback');
-},300);
+  let ready=false, mesh=null, prog=null, loc=null, aspect=1, projection=null;
+  const cameraZ=7.0, fov=40*Math.PI/180;
 
-function setFlightTarget(seg,t,opacity=1){
-  const p=pathPoint(seg,t);
-  const tan=tangent2D(seg,t);
-
-  const world=screenNormToWorld(p.x,p.y,0);
-  targetPosition.copy(world);
-
-  const dir=screenDirectionToWorld(tan.x,tan.y);
-  const heading=new THREE.Quaternion().setFromUnitVectors(forwardAxis,dir);
-
-  /* Banking is derived from the change of tangent around the current point. */
-  const e=.035;
-  const ta=tangent2D(seg,Math.max(0,t-e));
-  const tb=tangent2D(seg,Math.min(1,t+e));
-  const la=Math.hypot(ta.x,ta.y)||1;
-  const lb=Math.hypot(tb.x,tb.y)||1;
-  const ax=ta.x/la, ay=ta.y/la, bx=tb.x/lb, by=tb.y/lb;
-  const cross=ax*by-ay*bx;
-  const bank=THREE.MathUtils.clamp(cross*6.2,-.78,.78);
-
-  const bankQ=new THREE.Quaternion().setFromAxisAngle(forwardAxis,bank);
-  targetQuaternion.copy(heading).multiply(bankQ);
-
-  /* Tiny breathing scale keeps the model lively without becoming flashy. */
-  currentTargetScale.value=.52 + Math.sin((seg+t)*Math.PI)*.025;
-  targetVisible=opacity;
-
-  /* SVG fallback follows exactly the same target if WebGL/model fails. */
-  const screenAngle=Math.atan2(tan.y*innerHeight,tan.x*innerWidth)*180/Math.PI;
-  fallbackState={x:p.x*innerWidth,y:p.y*innerHeight,angle:screenAngle};
-}
-
-function render3D(){
-  if(modelReady){
-    planeRig.position.lerp(targetPosition,.16);
-    planeRig.quaternion.slerp(targetQuaternion,.14);
-    const s=THREE.MathUtils.lerp(planeRig.scale.x||currentTargetScale.value,currentTargetScale.value,.13);
-    planeRig.scale.setScalar(s);
-    planeRig.visible=targetVisible>.02;
-    renderer.domElement.style.opacity=String(targetVisible);
+  if(!gl){
+    glbState.textContent='WebGL unavailable';
+    glbState.className='off';
   }
 
-  fallback.style.transform=
-    `translate(${fallbackState.x-23}px,${fallbackState.y-23}px) rotate(${fallbackState.angle}deg)`;
-  fallback.style.opacity=modelReady?'0':String(targetVisible);
-
-  renderer.render(scene3D,camera);
-  requestAnimationFrame(render3D);
-}
-render3D();
-
-/* ---------- scene choreography ---------- */
-function transformLayer(el,role,scene,p){
-  if(!el)return;
-  const enter=smooth(.06,.30,p);
-  const exit=smooth(.82,.98,p);
-  let x=0,y=0,scale=1,opacity=1;
-
-  if(role==='title'){
-    y=(1-enter)*38-exit*16;
-    if(scene==='film')x=-(1-enter)*56;
-    if(scene==='flying')x=-(1-enter)*64;
-    if(scene==='about')x=(1-enter)*32;
-    if(scene==='projects')x=-(1-enter)*42;
-    if(scene==='next')scale=.93+.07*enter;
-    opacity=.12+.88*enter;
-  }
-  if(role==='copy'){
-    y=(1-enter)*28-exit*10;
-    if(scene==='film')x=(1-enter)*44;
-    if(scene==='flying')x=(1-enter)*54;
-    if(scene==='about')x=-(1-enter)*30;
-    opacity=.08+.92*enter;
-  }
-  if(role==='media'){
-    y=(1-enter)*40;
-    scale=.97+.03*enter;
-    opacity=.14+.86*enter;
-  }
-  if(role==='rule'){
-    el.style.transform=`scaleX(${Math.max(.03,enter)})`;
-    el.style.opacity=String(.25+.75*enter);
-    return;
-  }
-  if(role==='kicker'){
-    opacity=.20+.80*enter;
-    y=(1-enter)*14;
-  }
-
-  el.style.transform=`translate3d(${x}px,${y}px,0) scale(${scale})`;
-  el.style.opacity=String(opacity);
-}
-
-function animateScene(chapter,p){
-  const scene=chapter.dataset.scene;
-  chapter.querySelectorAll('[data-role]').forEach(el=>transformLayer(el,el.dataset.role,scene,p));
-
-  const items=[...chapter.querySelectorAll('[data-role="item"]')];
-  items.forEach((el,i)=>{
-    const e=smooth(.12+i*.055,.42+i*.055,p);
-    const ex=smooth(.88,.99,p);
-    let x=0,y=(1-e)*44,rot=0;
-    if(scene==='recognition'){x=(1-e)*(i%2?48:-30);y=(1-e)*22}
-    if(scene==='miraculous'){y=(1-e)*(i%2?70:44);rot=(1-e)*(i%2?2.2:-2)}
-    if(scene==='cham'){y=(1-e)*(i%2?72:42);rot=(1-e)*(i%2?1.6:-1.6)}
-    if(scene==='tien'){x=(1-e)*(i%2?40:-28);y=(1-e)*28}
-    el.style.transform=`translate3d(${x}px,${y-ex*8}px,0) rotate(${rot}deg)`;
-    el.style.opacity=String(.10+.90*e);
-  });
-
-  if(scene==='hero'){
-    const bg=chapter.querySelector('[data-role="bg"]');
-    if(bg)bg.style.transform=`scale(${1.04-p*.018}) translateY(${p*10}px)`;
-  }
-
-  if(scene==='film'){
-    chapter.style.clipPath=`inset(${(1-smooth(.02,.22,p))*4}% 0 0 0)`;
-  }else{
-    chapter.style.clipPath='inset(0)';
-  }
-}
-
-/* ---------- carousels ---------- */
-const tabs=[...document.querySelectorAll('.trip-tab')];
-const tracks=[...document.querySelectorAll('.carousel-track')];
-function activeTrack(){return tracks.find(t=>!t.classList.contains('hidden'))}
-
-tabs.forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    tabs.forEach(t=>t.classList.toggle('active',t===tab));
-    tracks.forEach(track=>track.classList.toggle('hidden',track.dataset.carousel!==tab.dataset.target));
-  });
-});
-
-document.querySelectorAll('.carousel-shell').forEach(shell=>{
-  const prev=shell.querySelector('.prev'),next=shell.querySelector('.next');
-  const move=dir=>{
-    const track=activeTrack();
-    if(track)track.scrollBy({left:dir*track.clientWidth*.68,behavior:'smooth'});
-  };
-  prev.addEventListener('click',()=>move(-1));
-  next.addEventListener('click',()=>move(1));
-});
-tracks.forEach(track=>{
-  let down=false,startX=0,startScroll=0;
-  track.addEventListener('pointerdown',e=>{
-    down=true;startX=e.clientX;startScroll=track.scrollLeft;
-    track.classList.add('dragging');track.setPointerCapture(e.pointerId)
-  });
-  track.addEventListener('pointermove',e=>{
-    if(down)track.scrollLeft=startScroll-(e.clientX-startX)
-  });
-  const stop=()=>{down=false;track.classList.remove('dragging')};
-  track.addEventListener('pointerup',stop);
-  track.addEventListener('pointercancel',stop);
-});
-
-/* ---------- project preview ---------- */
-const previewImg=document.getElementById('previewImg');
-const previewLabel=document.getElementById('previewLabel');
-document.querySelectorAll('.project-row').forEach(row=>{
-  row.addEventListener('mouseenter',()=>{
-    document.querySelectorAll('.project-row').forEach(r=>r.classList.remove('active'));
-    row.classList.add('active');
-    previewImg.src=row.dataset.img;
-    previewLabel.textContent=row.dataset.label;
-  });
-});
-
-/* ---------- master scroll ---------- */
-let raf=false;
-function update(){
-  const vh=innerHeight,vw=innerWidth;
-  let activeIndex=0,local=0;
-
-  wraps.forEach((wrap,i)=>{
-    const rect=wrap.getBoundingClientRect();
-    const scrollable=wrap.offsetHeight-vh;
-    const p=clamp(-rect.top/Math.max(scrollable,1));
-    animateScene(chapters[i],p);
-    if(rect.top<=vh*.5 && rect.bottom>=vh*.5){
-      activeIndex=i;local=p;
+  const VS=`
+    attribute vec3 aPosition;
+    attribute vec3 aNormal;
+    uniform mat4 uMVP;
+    uniform mat4 uModel;
+    varying vec3 vNormal;
+    void main(){
+      vNormal=normalize(mat3(uModel)*aNormal);
+      gl_Position=uMVP*vec4(aPosition,1.0);
     }
-  });
+  `;
+  const FS=`
+    precision mediump float;
+    varying vec3 vNormal;
+    uniform vec3 uColor;
+    void main(){
+      vec3 n=normalize(vNormal);
+      vec3 key=normalize(vec3(.30,.62,.73));
+      vec3 fill=normalize(vec3(-.52,-.20,.82));
+      float a=max(dot(n,key),0.0);
+      float b=max(dot(n,fill),0.0);
+      float rim=pow(1.0-abs(n.z),2.0);
+      float light=.31+.61*a+.25*b+.16*rim;
+      gl_FragColor=vec4(uColor*light,1.0);
+    }
+  `;
 
-  const seg=Math.min(activeIndex,waypoints.length-2);
-  const finalFade=activeIndex===wraps.length-1?smooth(.72,1,local):0;
-  setFlightTarget(seg,local,1-finalFade);
-  renderTrail(seg,local,vw,vh);
-  trailHost.style.opacity=String(1-finalFade);
+  function shader(type,src){
+    const s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  function program(){
+    const p=gl.createProgram();
+    gl.attachShader(p,shader(gl.VERTEX_SHADER,VS));
+    gl.attachShader(p,shader(gl.FRAGMENT_SHADER,FS));
+    gl.linkProgram(p);
+    if(!gl.getProgramParameter(p,gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+    return p;
+  }
+  function b64ToArrayBuffer(b64){
+    const bin=atob(b64),u8=new Uint8Array(bin.length);
+    for(let i=0;i<bin.length;i++)u8[i]=bin.charCodeAt(i);
+    return u8.buffer;
+  }
+  const typeSize={SCALAR:1,VEC2:2,VEC3:3,VEC4:4,MAT4:16};
+  const componentInfo={
+    5120:[Int8Array,1],5121:[Uint8Array,1],5122:[Int16Array,2],
+    5123:[Uint16Array,2],5125:[Uint32Array,4],5126:[Float32Array,4]
+  };
+  function parseGLB(arrayBuffer){
+    const dv=new DataView(arrayBuffer);
+    if(dv.getUint32(0,true)!==0x46546c67)throw new Error('Not GLB');
+    if(dv.getUint32(4,true)!==2)throw new Error('Not GLB v2');
+    let off=12,json=null,bin=null;
+    while(off<arrayBuffer.byteLength){
+      const len=dv.getUint32(off,true),type=dv.getUint32(off+4,true);off+=8;
+      const chunk=arrayBuffer.slice(off,off+len);off+=len;
+      if(type===0x4E4F534A)json=JSON.parse(new TextDecoder().decode(chunk).replace(/\0+$/,'').trim());
+      if(type===0x004E4942)bin=chunk;
+    }
+    if(!json||!bin)throw new Error('Missing GLB chunks');
+    function accessorData(index){
+      const acc=json.accessors[index],view=json.bufferViews[acc.bufferView];
+      const [Ctor,bytes]=componentInfo[acc.componentType],comps=typeSize[acc.type];
+      const base=(view.byteOffset||0)+(acc.byteOffset||0),stride=view.byteStride||comps*bytes;
+      const out=new Ctor(acc.count*comps),source=new DataView(bin);
+      const getter={5120:'getInt8',5121:'getUint8',5122:'getInt16',5123:'getUint16',5125:'getUint32',5126:'getFloat32'}[acc.componentType];
+      for(let i=0;i<acc.count;i++)for(let c=0;c<comps;c++)out[i*comps+c]=source[getter](base+i*stride+c*bytes,bytes>1);
+      return out;
+    }
+    let node=null;
+    for(const n of json.nodes||[])if(typeof n.mesh==='number'){node=n;break}
+    if(!node)throw new Error('No mesh node');
+    const primitive=json.meshes[node.mesh].primitives[0];
+    const positions=accessorData(primitive.attributes.POSITION);
+    const normals=accessorData(primitive.attributes.NORMAL);
+    const indices=new Uint16Array(accessorData(primitive.indices));
+    let min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];
+    for(let i=0;i<positions.length;i+=3)for(let c=0;c<3;c++){
+      min[c]=Math.min(min[c],positions[i+c]);max[c]=Math.max(max[c],positions[i+c]);
+    }
+    const center=[(min[0]+max[0])/2,(min[1]+max[1])/2,(min[2]+max[2])/2];
+    const size=[max[0]-min[0],max[1]-min[1],max[2]-min[2]],scale=1/Math.max(...size);
+    for(let i=0;i<positions.length;i+=3){
+      positions[i]=(positions[i]-center[0])*scale;
+      positions[i+1]=(positions[i+1]-center[1])*scale;
+      positions[i+2]=(positions[i+2]-center[2])*scale;
+    }
+    return {positions,normals,indices,vertices:positions.length/3,triangles:indices.length/3};
+  }
+  function bufferAttrib(data,location,size){
+    const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,size,gl.FLOAT,false,0,0);
+  }
 
-  raf=false;
-}
-function requestUpdate(){
-  if(!raf){requestAnimationFrame(update);raf=true}
-}
-update();
-addEventListener('scroll',requestUpdate,{passive:true});
-addEventListener('resize',()=>{
-  camera.aspect=innerWidth/innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));
-  renderer.setSize(innerWidth,innerHeight,false);
-  requestUpdate();
-});
+  const I=()=>new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
+  function mul(a,b){const o=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)o[c*4+r]=a[r]*b[c*4]+a[4+r]*b[c*4+1]+a[8+r]*b[c*4+2]+a[12+r]*b[c*4+3];return o}
+  function T(x,y,z){const m=I();m[12]=x;m[13]=y;m[14]=z;return m}
+  function S(x,y,z){const m=I();m[0]=x;m[5]=y;m[10]=z;return m}
+  function RX(a){const c=Math.cos(a),s=Math.sin(a),m=I();m[5]=c;m[6]=s;m[9]=-s;m[10]=c;return m}
+  function RY(a){const c=Math.cos(a),s=Math.sin(a),m=I();m[0]=c;m[2]=-s;m[8]=s;m[10]=c;return m}
+  function RZ(a){const c=Math.cos(a),s=Math.sin(a),m=I();m[0]=c;m[1]=s;m[4]=-s;m[5]=c;return m}
+  function perspective(fovy,aspect,near,far){
+    const f=1/Math.tan(fovy/2),nf=1/(near-far),m=new Float32Array(16);
+    m[0]=f/aspect;m[5]=f;m[10]=(far+near)*nf;m[11]=-1;m[14]=2*far*near*nf;return m
+  }
+
+  function resize(){
+    if(!gl)return;
+    const dpr=Math.min(devicePixelRatio||1,2);
+    const w=Math.max(1,Math.floor(innerWidth*dpr)),h=Math.max(1,Math.floor(innerHeight*dpr));
+    if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
+    gl.viewport(0,0,w,h);aspect=innerWidth/innerHeight;projection=perspective(fov,aspect,.1,50);
+  }
+  function screenToWorld(p,z=0){
+    const ndcX=p.x*2-1,ndcY=1-p.y*2,depth=cameraZ-z;
+    const halfH=depth*Math.tan(fov/2),halfW=halfH*aspect;
+    return {x:ndcX*halfW,y:ndcY*halfH,z};
+  }
+  function clamp(v,a=0,b=1){return Math.min(Math.max(v,a),b)}
+  function smoothstep(x){x=clamp(x);return x*x*(3-2*x)}
+  /*
+    BIG-RADIUS SERPENTINE RIBBON
+    ----------------------------
+    Instead of many control points, the flight uses one broad sinusoidal sweep.
+    This produces the reference feeling: long glide -> large U-turn -> long glide.
+    The large horizontal amplitude and low cycle count create much wider turns.
+  */
+  const routeProfiles=[
+    {amp:.40,cycles:1.56,mirror: 1,phase:0.00,y0:.12,y1:.89,drift:.00},
+    {amp:.39,cycles:1.48,mirror:-1,phase:0.02,y0:.11,y1:.89,drift:.01},
+    {amp:.38,cycles:1.52,mirror: 1,phase:-.02,y0:.12,y1:.88,drift:-.01},
+    {amp:.39,cycles:1.46,mirror:-1,phase:0.00,y0:.12,y1:.89,drift:.00}
+  ];
+
+  function routePoint(routeIndex,t){
+    t=clamp(t);
+    const p=routeProfiles[routeIndex%routeProfiles.length];
+
+    // Start around the middle, then open into very wide left/right sweeps.
+    // A light envelope keeps the first/last moments more graceful.
+    const envelope=.86+.14*Math.sin(Math.PI*t);
+    const theta=(Math.PI*2*p.cycles*t)+(p.phase*Math.PI*2);
+    const x=.50 + p.mirror*p.amp*envelope*Math.sin(theta) + p.drift*(t-.5);
+    const y=p.y0+(p.y1-p.y0)*t;
+
+    return {x:clamp(x,.075,.925),y};
+  }
+  function routeDerivative(routeIndex,t){
+    const e=.004,a=routePoint(routeIndex,Math.max(0,t-e)),b=routePoint(routeIndex,Math.min(1,t+e));
+    return {x:b.x-a.x,y:b.y-a.y};
+  }
+  function angleDiff(a,b){let d=b-a;while(d>Math.PI)d-=Math.PI*2;while(d<-Math.PI)d+=Math.PI*2;return d}
+  const MODEL_HEADING_OFFSET=0;
+  function orientation(routeIndex,t){
+    const d=routeDerivative(routeIndex,t),heading=Math.atan2(-d.y,d.x)+MODEL_HEADING_OFFSET,e=.022;
+    const d0=routeDerivative(routeIndex,Math.max(0,t-e)),d1=routeDerivative(routeIndex,Math.min(1,t+e));
+    const h0=Math.atan2(-d0.y,d0.x)+MODEL_HEADING_OFFSET,h1=Math.atan2(-d1.y,d1.x)+MODEL_HEADING_OFFSET;
+    const turn=angleDiff(h0,h1);
+    return {
+      heading,
+      bank:clamp(-turn*1.05,-.34,.34),
+      pitch:.035+.035*Math.sin((t-.12)*Math.PI)
+    };
+  }
+
+  try{
+    if(gl){
+      prog=program();
+      loc={pos:gl.getAttribLocation(prog,'aPosition'),normal:gl.getAttribLocation(prog,'aNormal'),mvp:gl.getUniformLocation(prog,'uMVP'),model:gl.getUniformLocation(prog,'uModel'),color:gl.getUniformLocation(prog,'uColor')};
+      mesh=parseGLB(b64ToArrayBuffer(GLB_B64));
+      gl.useProgram(prog);bufferAttrib(mesh.positions,loc.pos,3);bufferAttrib(mesh.normals,loc.normal,3);
+      const ib=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,ib);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,mesh.indices,gl.STATIC_DRAW);
+      gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.clearColor(0,0,0,0);gl.uniform3f(loc.color,.95,.92,.87);
+      ready=true;glbState.textContent=`loaded (${mesh.vertices}v/${mesh.triangles}t)`;glbState.className='ok';
+    }
+  }catch(err){console.error(err);glbState.textContent='failed';glbState.className='off'}
+
+  function drawPlane(routeIndex,t){
+    if(!ready)return;
+    resize();
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+    const sp=routePoint(routeIndex,t),depth=.10*Math.sin(t*Math.PI);
+    const p=screenToWorld(sp,depth),o=orientation(routeIndex,t);
+    let model=T(p.x,p.y,p.z);
+    model=mul(model,RZ(o.heading));
+    model=mul(model,RX(o.bank));
+    model=mul(model,RY(o.pitch));
+    const sc=innerWidth<760?.70:.86;
+    model=mul(model,S(sc,sc,sc));
+    const view=T(0,0,-cameraZ),mvp=mul(projection,mul(view,model));
+    gl.uniformMatrix4fv(loc.model,false,model);gl.uniformMatrix4fv(loc.mvp,false,mvp);
+    gl.drawElements(gl.TRIANGLES,mesh.indices.length,gl.UNSIGNED_SHORT,0);
+  }
+
+  function drawTrail(routeIndex,t){
+    const start=Math.max(0,t-.44),steps=56;let d='';
+    for(let i=0;i<=steps;i++){
+      const u=start+(t-start)*(i/steps),p=routePoint(routeIndex,u);
+      d+=(i===0?'M':'L')+(p.x*1000).toFixed(1)+' '+(p.y*1000).toFixed(1)+' ';
+    }
+    trailPath.setAttribute('d',d);
+  }
+
+  const transitions=[...document.querySelectorAll('.transition')];
+
+  /*
+    A transition is active ONLY while the viewport center is inside it.
+    This prevents the plane from being kept alive merely because a thin strip
+    of the transition is still visible above/below a chapter.
+  */
+  function activeTransition(){
+    const vh=innerHeight;
+    const centerY=vh*.5;
+
+    for(const el of transitions){
+      const r=el.getBoundingClientRect();
+      if(r.top<=centerY && r.bottom>=centerY){
+        return {el,r};
+      }
+    }
+    return null;
+  }
+
+  function hideFlight(){
+    canvas.style.display='none';
+    trailSvg.style.display='none';
+    canvas.style.clipPath='none';
+    trailSvg.style.clipPath='none';
+    canvas.style.opacity='0';
+    trailSvg.style.opacity='0';
+    trailPath.setAttribute('d','');
+    modeState.textContent='chapter';
+    modeState.className='off';
+    if(gl)gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+  }
+
+  function render(){
+    const active=activeTransition();
+    if(!active||!ready){
+      hideFlight();
+      return;
+    }
+
+    const vh=innerHeight,r=active.r;
+
+    /*
+      Progress is local to the transition itself:
+      t=0 when its top reaches viewport center,
+      t=1 when its bottom reaches viewport center.
+    */
+    const progress=clamp((vh*.5-r.top)/Math.max(r.height,1));
+    const routeIndex=Number(active.el.dataset.route||0);
+
+    /*
+      Extra safety: clip BOTH WebGL and trail to the visible rectangle of the
+      transition. Even during the handoff frames, neither can paint over the
+      adjacent chapter.
+    */
+    const clipTop=Math.max(0,Math.min(vh,r.top));
+    const clipBottom=Math.max(0,Math.min(vh,vh-r.bottom));
+    const clip=`inset(${clipTop}px 0px ${clipBottom}px 0px)`;
+    canvas.style.clipPath=clip;
+    trailSvg.style.clipPath=clip;
+
+    /*
+      Fade at the local transition edges so the plane does not pop into view.
+    */
+    const edgeIn=smoothstep(progress/.12);
+    const edgeOut=smoothstep((1-progress)/.12);
+    const flightOpacity=Math.min(edgeIn,edgeOut);
+
+    canvas.style.display='block';
+    trailSvg.style.display='block';
+    canvas.style.opacity=String(flightOpacity);
+    trailSvg.style.opacity=String(flightOpacity);
+
+    modeState.textContent='transition '+active.el.dataset.from+' → '+active.el.dataset.to;
+    modeState.className='ok';
+
+    drawTrail(routeIndex,progress);
+    drawPlane(routeIndex,progress);
+  }
+
+  let raf=false;
+  function requestRender(){
+    if(raf)return;
+    raf=true;requestAnimationFrame(()=>{raf=false;render()});
+  }
+  resize();render();
+  addEventListener('scroll',requestRender,{passive:true});
+  addEventListener('resize',()=>{resize();requestRender()});
+})();
 </script>
 </body>
 </html>
