@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090a0d">
-<title>Kiet Anh Nguyen — Portfolio</title>
+<title>Kiet Anh Nguyen — Portfolio V27</title>
 <style>
 :root{
   --ink:#f4efe7;
@@ -58,14 +58,31 @@ button{font:inherit}
   display:flex;
   align-items:center;
   overflow:hidden;
+  background:#0a0b0e;
+  isolation:isolate;
+}
+.landing::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-3;
   background:
-    radial-gradient(70% 65% at 76% 34%,rgba(62,82,119,.28),transparent 62%),
-    radial-gradient(46% 54% at 22% 70%,rgba(96,53,70,.12),transparent 70%),
-    linear-gradient(180deg,#090a0e,#111722);
+    linear-gradient(90deg,rgba(5,7,10,.94) 0%,rgba(6,8,12,.84) 34%,rgba(7,9,13,.46) 52%,rgba(7,9,13,.08) 69%,rgba(7,9,13,.08) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.18));
+}
+.landing::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-4;
+  background:url("assets/kiet-portrait.jpeg") 72% 42% / cover no-repeat;
+  transform:scale(1.01);
 }
 .landing-inner{
   width:min(var(--max),calc(100% - 96px));
   margin:auto;
+  position:relative;
+  z-index:2;
 }
 .kicker{
   font-size:11px;
@@ -75,14 +92,14 @@ button{font:inherit}
   margin:0 0 17px;
 }
 .landing h1{
-  font-size:clamp(62px,8.4vw,126px);
-  line-height:.87;
-  max-width:1050px;
-  margin:0 0 28px;
+  font-size:clamp(60px,7.9vw,118px);
+  line-height:.88;
+  max-width:650px;
+  margin:0 0 26px;
 }
 .landing .intro{
-  max-width:590px;
-  color:#c9cdd5;
+  max-width:520px;
+  color:#d0d3d9;
   font-size:16px;
 }
 .scroll-note{
@@ -92,7 +109,7 @@ button{font:inherit}
   font-size:9px;
   letter-spacing:.18em;
   text-transform:uppercase;
-  color:#858b98;
+  color:#9297a2;
 }
 
 /* ---------- chapter system ---------- */
@@ -466,6 +483,548 @@ button{font:inherit}
   .contact-links{margin-top:26px}
   #embrace .story-bg{background-size:cover;background-position:center 25%}
 }
+
+/* ---------- V26 content rhythm ---------- */
+.about-compact{
+  background:#0e1015;
+  color:#f2eee8;
+  padding:110px 0 135px;
+}
+.about-grid{
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:70px;
+  align-items:end;
+}
+.about-grid h2{
+  font-size:clamp(46px,5.5vw,78px);
+  line-height:.94;
+  margin-bottom:0;
+}
+.about-grid p{
+  color:#adb2ba;
+  max-width:620px;
+  font-size:16px;
+}
+.arc-divider{
+  width:min(var(--max),calc(100% - 96px));
+  margin:0 auto;
+  padding:72px 0 24px;
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  align-items:end;
+}
+.arc-divider .arc-title{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(34px,4vw,60px);
+  line-height:.95;
+  letter-spacing:-.035em;
+}
+.arc-divider .arc-note{
+  max-width:470px;
+  color:var(--body-muted,#aaa);
+  font-size:14px;
+}
+.recognition-panel{
+  position:relative;
+  min-height:70vh;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  isolation:isolate;
+  background:#100d0d;
+}
+.recognition-panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  background:url("assets/award-stage.jpg") center 48% / cover no-repeat;
+}
+.recognition-panel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(8,6,6,.88),rgba(8,6,6,.42) 55%,rgba(8,6,6,.12)),
+    linear-gradient(180deg,transparent 54%,#100d0d 100%);
+}
+.recognition-inner{
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+  padding:0 0 9vh;
+}
+.recognition-inner h3{
+  font-size:clamp(46px,5.7vw,82px);
+  line-height:.92;
+  max-width:800px;
+  margin-bottom:18px;
+}
+.recognition-inner p{
+  max-width:590px;
+  color:#d7ccc2;
+}
+.proof-row{
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+  padding:58px 0 120px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.culture-bridge{
+  background:#35191f;
+  color:#f5ecec;
+  padding:90px 0 35px;
+}
+.culture-bridge .body-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:40px;
+  align-items:end;
+}
+.culture-bridge h3{
+  font-size:clamp(36px,4vw,60px);
+  margin:0;
+}
+.culture-bridge p{
+  max-width:500px;
+  color:#cbb8ba;
+}
+.selected-intro{
+  font-size:15px;
+  max-width:610px;
+  color:#64594f;
+  margin-bottom:42px;
+}
+.next-compact{
+  position:relative;
+  min-height:88vh;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  isolation:isolate;
+  color:#fff;
+}
+.next-compact::before{
+  content:"";
+  position:absolute;inset:0;z-index:-3;
+  background:url("assets/miraculous-graduation.jpg") center 50% / cover no-repeat;
+}
+.next-compact::after{
+  content:"";
+  position:absolute;inset:0;z-index:-2;
+  background:linear-gradient(90deg,rgba(5,7,10,.91),rgba(5,7,10,.52) 52%,rgba(5,7,10,.18)),linear-gradient(180deg,transparent 48%,#08090c 100%);
+}
+.next-compact .body-inner{padding-bottom:11vh}
+.next-compact h2{
+  font-size:clamp(58px,7.8vw,112px);
+  line-height:.88;
+  max-width:950px;
+  margin-bottom:22px;
+}
+.next-compact p{
+  max-width:620px;
+  color:#d3d5da;
+  font-size:16px;
+}
+.transition{
+  height:76vh;
+}
+.transition-copy{display:none}
+.transition-title{
+  max-width:1040px;
+}
+@media(max-width:760px){
+  .landing::after{background-position:64% center}
+  .landing::before{
+    background:linear-gradient(180deg,rgba(5,7,10,.16) 0%,rgba(5,7,10,.42) 42%,rgba(5,7,10,.92) 76%,rgba(5,7,10,.96) 100%);
+  }
+  .landing{align-items:flex-end}
+  .landing-inner{width:calc(100% - 32px);padding-bottom:12vh}
+  .landing h1{max-width:100%;font-size:clamp(48px,13vw,76px)}
+  .landing .intro{max-width:100%}
+  .about-grid,.culture-bridge .body-inner{width:calc(100% - 32px);grid-template-columns:1fr;display:grid;gap:24px}
+  .about-compact{padding:75px 0 95px}
+  .arc-divider,.recognition-inner,.proof-row{width:calc(100% - 32px)}
+  .arc-divider{display:block;padding-top:52px}
+  .arc-note{margin-top:14px}
+  .proof-row{grid-template-columns:1fr;padding-bottom:90px}
+  .transition{height:64vh}
+  .next-compact{min-height:78vh}
+}
+
+/* =========================================================
+   V27 — BREATHING EDIT
+   sparse copy / larger image pauses / 3 chapter transitions
+   ========================================================= */
+
+:root{
+  --wide:1320px;
+}
+
+/* Landing: statement only; no duplicated About copy */
+.landing-inner{
+  width:min(var(--max),calc(100% - 96px));
+}
+.landing h1{
+  max-width:660px;
+  margin-bottom:0;
+}
+.landing .intro{display:none}
+.landing-mark{
+  margin-top:30px;
+  font-size:10px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:#aeb2ba;
+}
+
+/* About is deliberately quiet */
+.about-compact{
+  min-height:78vh;
+  display:flex;
+  align-items:center;
+  padding:120px 0;
+}
+.about-grid{
+  align-items:center;
+  gap:10vw;
+}
+.about-grid h2{
+  max-width:560px;
+}
+.about-grid p{
+  max-width:570px;
+  font-size:16px;
+  line-height:1.72;
+}
+
+/* Transition = title + handwritten line only */
+.transition{
+  height:72vh;
+  min-height:540px;
+}
+.transition-title{
+  max-width:1040px;
+}
+.transition-copy{display:none}
+.hand{
+  margin-bottom:0;
+}
+
+/* More room for every chapter */
+.story-hero{
+  min-height:96vh;
+}
+.hero-inner{
+  padding-bottom:13vh;
+}
+.hero-lede{
+  max-width:560px;
+}
+.story-body{
+  padding:120px 0 170px;
+}
+
+/* Visual pause: image itself becomes the content */
+.visual-breath{
+  position:relative;
+  min-height:78vh;
+  padding:10vh max(48px,calc((100vw - var(--wide))/2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.visual-breath.dark{background:#111b14}
+.visual-breath.warm{background:#e8dfd2}
+.visual-breath.teal{background:#0e191b}
+.visual-breath.burgundy{background:#35191f}
+.visual-breath.black{background:#100d0d}
+.visual-breath img{
+  width:100%;
+  max-height:72vh;
+  object-fit:cover;
+  border-radius:26px;
+}
+.visual-breath.narrow img{
+  width:min(920px,100%);
+}
+
+/* Minimal text/evidence blocks */
+.sparse-note{
+  width:min(var(--max),calc(100% - 96px));
+  margin:0 auto;
+  padding:120px 0;
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  gap:9vw;
+  align-items:start;
+}
+.sparse-note h3{
+  font-size:clamp(38px,4.5vw,68px);
+  line-height:.96;
+  margin:0;
+}
+.sparse-note p{
+  max-width:570px;
+  margin:0;
+  color:var(--body-muted,#bfb8ae);
+  font-size:15px;
+  line-height:1.72;
+}
+.sparse-evidence{
+  width:min(var(--max),calc(100% - 96px));
+  margin:0 auto;
+  padding:10px 0 130px;
+}
+.sparse-evidence .stats{
+  margin-top:0;
+}
+
+/* Film editorial core */
+.film-poster-beat{
+  background:#e8dfd2;
+  color:#211a16;
+  padding:130px 0 150px;
+}
+.film-poster-inner{
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+  display:grid;
+  grid-template-columns:.72fr 1.28fr;
+  gap:8vw;
+  align-items:center;
+}
+.film-poster{
+  width:min(420px,100%);
+  justify-self:center;
+  border-radius:24px;
+  box-shadow:0 28px 70px rgba(58,40,25,.18);
+}
+.film-quote{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(42px,5vw,76px);
+  letter-spacing:-.045em;
+  line-height:.98;
+  max-width:760px;
+}
+.film-quote small{
+  display:block;
+  margin-top:26px;
+  max-width:480px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:12px;
+  line-height:1.6;
+  letter-spacing:.02em;
+  color:#75685d;
+}
+
+/* Film switcher: same interaction language as Flying Heart */
+.film-gallery-section{
+  background:#100d0d;
+  color:#f2ece5;
+  padding:115px 0 160px;
+}
+.switch-wrap{
+  width:min(var(--wide),calc(100% - 96px));
+  margin:auto;
+}
+.switch-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:40px;
+  margin-bottom:34px;
+}
+.switch-head h3{
+  font-size:clamp(40px,4.7vw,70px);
+  line-height:.95;
+  margin:0;
+}
+.switch-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+.switch-tabs button{
+  color:#d8d0c8;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.23);
+  border-radius:999px;
+  padding:10px 15px;
+  cursor:pointer;
+  transition:.25s var(--ease);
+}
+.switch-tabs button.active{
+  background:#f2ece5;
+  border-color:#f2ece5;
+  color:#171211;
+}
+.film-gallery{
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
+  padding:3px 7vw 12px 0;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 89%,transparent 100%);
+          mask-image:linear-gradient(90deg,#000 0%,#000 89%,transparent 100%);
+}
+.film-gallery::-webkit-scrollbar{display:none}
+.film-gallery.hidden{display:none}
+.film-gallery .frame{
+  flex:0 0 auto;
+  scroll-snap-align:start;
+  border-radius:22px;
+}
+.film-gallery .frame img{
+  width:auto;
+  height:58vh;
+  max-width:none;
+  object-fit:cover;
+  border-radius:22px;
+}
+.film-gallery.bts .frame img{height:52vh}
+.film-gallery-note{
+  min-height:26px;
+  margin-top:22px;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#958a82;
+}
+
+/* Flying Heart keeps same switch language but more air */
+#flying .story-body{
+  padding-top:115px;
+}
+#flying .gallery-head{
+  margin-bottom:34px;
+}
+#flying .stats{
+  margin-top:70px;
+}
+
+/* Culture pages: images do more of the speaking */
+.culture-images{
+  display:grid;
+  grid-template-columns:1.22fr .78fr;
+  gap:18px;
+  align-items:start;
+  margin-top:80px;
+}
+.culture-images .side{
+  display:grid;
+  gap:18px;
+}
+.culture-images .frame img{
+  height:64vh;
+  object-fit:cover;
+}
+.culture-images .side .frame img{
+  height:31vh;
+}
+
+/* Tien: evidence, not another essay */
+.tien-role{
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+  padding:120px 0 160px;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:8vw;
+  align-items:center;
+}
+.tien-role .big-number{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(88px,12vw,180px);
+  line-height:.75;
+  letter-spacing:-.06em;
+}
+.tien-role .big-number span{
+  display:block;
+  margin-top:24px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.tien-role h3{
+  font-size:clamp(36px,4.2vw,62px);
+  line-height:.96;
+  margin-bottom:20px;
+}
+.tien-role p{
+  max-width:550px;
+  color:#bcaea3;
+  margin-bottom:0;
+}
+
+/* Final chapter stripped back */
+.next-compact{
+  min-height:92vh;
+}
+.next-compact h2{
+  max-width:800px;
+}
+.next-compact p{
+  max-width:570px;
+  line-height:1.72;
+}
+
+/* Contact should feel like a final pause */
+.contact{
+  padding:130px 0 46px;
+}
+.contact-inner{
+  min-height:38vh;
+}
+
+/* Hide legacy sections/classes no longer used */
+.project-index,.selected-intro,.culture-bridge{}
+
+/* Responsive */
+@media(max-width:760px){
+  .landing h1{font-size:clamp(48px,13vw,74px)}
+  .about-compact{min-height:auto;padding:90px 0}
+  .about-grid,.sparse-note,.film-poster-inner,.tien-role{
+    width:calc(100% - 32px);
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  .sparse-note{padding:85px 0}
+  .story-hero{min-height:84vh}
+  .story-body{padding:82px 0 115px}
+  .visual-breath{
+    min-height:54vh;
+    padding:50px 16px;
+  }
+  .visual-breath img{
+    max-height:62vh;
+    border-radius:18px;
+  }
+  .film-poster-beat{padding:80px 0 95px}
+  .film-poster{width:min(320px,88%)}
+  .film-gallery-section{padding:82px 0 110px}
+  .switch-wrap{width:calc(100% - 32px)}
+  .switch-head{display:block}
+  .switch-tabs{margin-top:25px}
+  .film-gallery{-webkit-mask-image:none;mask-image:none;padding-right:14px}
+  .film-gallery .frame img,.film-gallery.bts .frame img{height:38vh}
+  .culture-images{
+    grid-template-columns:1fr;
+    margin-top:55px;
+  }
+  .culture-images .frame img,.culture-images .side .frame img{height:auto}
+  .tien-role{padding:85px 0 110px}
+}
+
 </style>
 </head>
 <body>
@@ -473,8 +1032,9 @@ button{font:inherit}
 <nav class="nav">
   <a class="nav-brand" href="#top">Kiet Anh Nguyen</a>
   <div class="nav-right">
+    <a href="#about">About</a>
     <a href="#film">Film</a>
-    <a href="#miraculous">Impact</a>
+    <a href="#flying">Community</a>
     <a href="#embrace">Culture</a>
     <a href="#contact">Contact</a>
   </div>
@@ -492,165 +1052,135 @@ button{font:inherit}
     <div class="landing-inner">
       <p class="kicker">Multimedia Communication · Storytelling · Social Impact</p>
       <h1>Stories can change<br>the way we see people.</h1>
-      <p class="intro">A personal archive of films, field experiences, cultural projects, and the people who shaped the way I think about communication.</p>
+      <div class="landing-mark">Selected work · 2024—2026</div>
     </div>
     <div class="scroll-note">Scroll to begin</div>
   </section>
 
-  <!-- T01 -->
-  <section class="transition" data-route="0" style="--transition-bg:#111722;--transition-bg2:#0b0c10;--mist:rgba(63,84,122,.13);--mist-x:72%">
-    <div class="transition-inner">
-      <div class="chapter-no">01</div>
-      <div class="next">Next chapter</div>
-      <h2 class="transition-title">About</h2>
-      <div class="hand">where the stories begin</div>
-      <p class="transition-copy">Before the projects came the people, places, and conversations that taught me to look closer and listen longer.</p>
+  <!-- ABOUT -->
+  <section class="about-compact" id="about">
+    <div class="about-grid">
+      <div>
+        <p class="kicker">01 / About</p>
+        <h2>I start by<br>paying attention.</h2>
+      </div>
+      <div>
+        <p>I am a Multimedia Communication student at FPT University. I work through writing, visual storytelling, field experience, and cultural projects — beginning with context before deciding how a story should be told.</p>
+        <div class="meta"><span>FPT University</span><span>Multimedia Communication</span><span>Ho Chi Minh City</span></div>
+      </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <article class="story" id="about">
-    <section class="story-hero" style="--hero-image:url('assets/miraculous-outdoor.jpg');--hero-position:center 52%;--top-edge:#0b0c10">
-      <div class="story-bg"></div>
-      <div class="hero-inner">
-        <p class="story-no">01 / About me</p>
-        <h2 class="display">I learn through<br>people and stories.</h2>
-        <p class="hero-lede">I am a Multimedia Communication student drawn to the moments where culture, emotion, and people meet.</p>
-        <div class="meta"><span>FPT University</span><span>Multimedia Communication</span><span>HCMC</span></div>
-      </div>
-    </section>
-    <section class="story-body">
-      <div class="body-inner body-grid wide-left">
-        <div>
-          <p class="kicker">How I work</p>
-          <h3 class="body-title">Curiosity first.<br>Communication second.</h3>
-        </div>
-        <p class="body-copy">Most of what I make begins with being there: listening, observing, asking better questions, and trying to understand the person behind the subject. From there, I use writing, images, film, and collaboration to turn that understanding into something others can feel.</p>
-      </div>
-    </section>
-  </article>
-
-  <!-- T02 -->
-  <section class="transition" data-route="1" style="--transition-bg:#0b0c10;--transition-bg2:#15100e;--mist:rgba(112,72,58,.12);--mist-x:28%">
+  <!-- TRANSITION 01 -->
+  <section class="transition" data-route="0" style="--transition-bg:#0e1015;--transition-bg2:#15100e;--mist:rgba(112,72,58,.13);--mist-x:72%">
     <div class="transition-inner">
       <div class="chapter-no">02</div>
-      <div class="next">Next chapter</div>
-      <h2 class="transition-title">The Window Without a Horizon</h2>
-      <div class="hand">a story that stayed with me</div>
-      <p class="transition-copy">A short film shaped by listening, empathy, and the wish to see children before seeing their illness.</p>
-    </div>
-  </section>
-
-  <!-- FILM -->
-  <article class="story" id="film">
-    <section class="story-hero" style="--hero-image:url('assets/screening-emotion.jpg');--hero-position:center 53%;--top-edge:#15100e;--shade-left:.86;--shade-right:.18">
-      <div class="story-bg"></div>
-      <div class="hero-inner">
-        <p class="story-no">02 / Featured story</p>
-        <h2 class="display">The Window<br>Without a Horizon</h2>
-        <p class="hero-lede">A short film about pediatric cancer, maternal resilience, and the people who exist far beyond a diagnosis.</p>
-        <div class="meta"><span>Screenwriter</span><span>Short Film</span><span>Social Impact</span></div>
-      </div>
-    </section>
-    <section class="story-body">
-      <div class="body-inner body-grid">
-        <div class="frame"><img src="assets/film-poster.jpg" alt="The Window Without a Horizon poster"></div>
-        <div>
-          <p class="kicker" style="color:#876f5f">The question behind the film</p>
-          <div class="quote">“Before seeing their illness, I wanted people to see the children.”</div>
-          <p class="body-copy" style="margin-top:22px">The film grew from conversations that made me think more seriously about dignity, empathy, and what should happen after an audience feels moved.</p>
-        </div>
-      </div>
-    </section>
-  </article>
-
-  <!-- T03 -->
-  <section class="transition" data-route="2" style="--transition-bg:#16100e;--transition-bg2:#100d0d;--mist:rgba(128,75,49,.14);--mist-x:74%">
-    <div class="transition-inner">
-      <div class="chapter-no">03</div>
-      <div class="next">Next chapter</div>
-      <h2 class="transition-title">Recognition</h2>
-      <div class="hand">when a story travels further</div>
-      <p class="transition-copy">Recognition gave the film another life beyond the classroom, while the people behind the story remained its center.</p>
-    </div>
-  </section>
-
-  <!-- RECOGNITION -->
-  <article class="story" id="recognition">
-    <section class="story-hero" style="--hero-image:url('assets/award-stage.jpg');--hero-position:center 48%;--top-edge:#100d0d;--shade-left:.82">
-      <div class="story-bg"></div>
-      <div class="hero-inner">
-        <p class="story-no">03 / Recognition</p>
-        <h2 class="display">A story that<br>traveled further.</h2>
-        <p class="hero-lede">The film received First Prize and was selected for exhibition, extending the conversation beyond its first screening.</p>
-      </div>
-    </section>
-    <section class="story-body">
-      <div class="body-inner body-grid wide-right">
-        <div>
-          <p class="kicker">What stayed with me</p>
-          <h3 class="body-title">Recognition mattered.<br>The human response mattered more.</h3>
-          <p class="body-copy">The most meaningful moment was not only the award, but seeing how people connected with the children and families behind the story.</p>
-        </div>
-        <div class="media-stack">
-          <div class="frame"><img src="assets/award-team.jpg" alt="Film team at recognition event"></div>
-          <div class="frame"><img src="assets/award-guests.jpg" alt="Guests at the screening"></div>
-        </div>
-      </div>
-    </section>
-  </article>
-
-  <!-- T04 -->
-  <section class="transition" data-route="3" style="--transition-bg:#100d0d;--transition-bg2:#10150f;--mist:rgba(62,104,78,.13);--mist-x:28%">
-    <div class="transition-inner">
-      <div class="chapter-no">04</div>
-      <div class="next">Next chapter</div>
-      <h2 class="transition-title">Miraculous Moments</h2>
-      <div class="hand">before the film, there were the children</div>
-      <p class="transition-copy">A photography initiative where shared time, games, and conversations became part of a larger story about joy and resilience.</p>
+      <div class="next">Chapter two</div>
+      <h2 class="transition-title">From Experience<br>to Story</h2>
+      <div class="hand">some stories begin before the script</div>
     </div>
   </section>
 
   <!-- MIRACULOUS -->
   <article class="story" id="miraculous">
-    <section class="story-hero" style="--hero-image:url('assets/miraculous-studio.jpg');--hero-position:center 50%;--top-edge:#10150f;--shade-left:.82">
+    <section class="story-hero" style="--hero-image:url('assets/miraculous-studio.jpg');--hero-position:center 50%;--top-edge:#15100e;--shade-left:.82">
       <div class="story-bg"></div>
       <div class="hero-inner">
-        <p class="story-no">04 / Miraculous Moments</p>
-        <h2 class="display">A story before<br>the film.</h2>
-        <p class="hero-lede">A day of photography, games, and dream-sharing with pediatric cancer survivors that later reshaped how I approached storytelling.</p>
+        <p class="story-no">02 / Miraculous Moments</p>
+        <h2 class="display">A day that changed<br>the way I looked.</h2>
+        <p class="hero-lede">A photography session with 13 pediatric cancer survivors completing their graduation projects.</p>
       </div>
     </section>
-    <section class="story-body">
-      <div class="body-inner">
-        <div class="body-grid wide-left">
-          <div class="media-pair">
-            <div class="frame"><img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor session"></div>
-            <div class="frame"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project"></div>
-          </div>
-          <div>
-            <p class="kicker">The experience</p>
-            <h3 class="body-title">Small moments can change the way a story is told.</h3>
-            <p class="body-copy">I helped facilitate a practical photography session for 13 pediatric cancer survivors, while games and conversations filled the waiting time with something lighter and more human.</p>
-          </div>
-        </div>
+
+    <section class="visual-breath dark">
+      <img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session">
+    </section>
+
+    <section class="story-body" style="padding-top:0">
+      <div class="sparse-note">
+        <h3>Photography was the activity.<br>The real memory was the time we shared.</h3>
+        <p>Between photo setups, we played games and talked about their dreams. Those ordinary moments helped me see the children beyond illness — something that later shaped the way I approached my screenplay.</p>
+      </div>
+      <div class="sparse-evidence">
         <div class="stats">
           <div class="stat"><strong>13</strong><span>young participants</span></div>
-          <div class="stat"><strong>1</strong><span>shared photography session</span></div>
-          <div class="stat"><strong>∞</strong><span>stories worth listening to</span></div>
+          <div class="stat"><strong>01</strong><span>shared photography session</span></div>
+          <div class="stat"><strong>People first</strong><span>the lesson I carried forward</span></div>
         </div>
+      </div>
+    </section>
+
+    <section class="visual-breath dark narrow">
+      <img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project">
+    </section>
+  </article>
+
+  <!-- FILM -->
+  <article class="story" id="film">
+    <section class="story-hero" style="--hero-image:url('assets/screening-emotion.jpg');--hero-position:center 53%;--top-edge:#111b14;--shade-left:.86;--shade-right:.18">
+      <div class="story-bg"></div>
+      <div class="hero-inner">
+        <p class="story-no">03 / Short Film</p>
+        <h2 class="display">The Window Without<br>a Horizon</h2>
+        <p class="hero-lede">A short film about pediatric cancer and maternal resilience, written to let audiences meet the children before meeting their diagnosis.</p>
+      </div>
+    </section>
+
+    <section class="film-poster-beat">
+      <div class="film-poster-inner">
+        <img class="film-poster" src="assets/film-poster.jpg" alt="The Window Without a Horizon poster">
+        <div class="film-quote">
+          “Before seeing their illness,<br>I wanted people to see the children.”
+          <small>Screenwriter · The Window Without a Horizon</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- Film gallery: Award Night / Nha Trang / Behind the Scenes -->
+    <section class="film-gallery-section">
+      <div class="switch-wrap">
+        <div class="switch-head">
+          <div>
+            <p class="kicker">The film beyond the script</p>
+            <h3>Three sides<br>of one project.</h3>
+          </div>
+          <div class="switch-tabs" aria-label="Film gallery views">
+            <button type="button" class="active" data-film-tab="award">Award Night</button>
+            <button type="button" data-film-tab="festival">Nha Trang Film Festival</button>
+            <button type="button" data-film-tab="bts">Behind the Scenes</button>
+          </div>
+        </div>
+
+        <div class="film-gallery" data-film-gallery="award">
+          <div class="frame"><img src="assets/award-stage.jpg" alt="Award Night stage"></div>
+          <div class="frame"><img src="assets/award-team.jpg" alt="Film team at Award Night"></div>
+          <div class="frame"><img src="assets/award-guests.jpg" alt="Award Night guests"></div>
+        </div>
+
+        <div class="film-gallery hidden" data-film-gallery="festival">
+          <div class="frame"><img src="assets/film-festival-1.jpg" alt="Nha Trang Film Festival event backdrop"></div>
+          <div class="frame"><img src="assets/film-festival-2.jpg" alt="Outdoor screening at Nha Trang Film Festival"></div>
+        </div>
+
+        <div class="film-gallery bts hidden" data-film-gallery="bts">
+          <div class="frame"><img src="assets/film-bts-1.jpg" alt="Behind the scenes moment"></div>
+          <div class="frame"><img src="assets/film-bts-2.jpg" alt="Film crew preparing a hospital set"></div>
+          <div class="frame"><img src="assets/film-bts-3.jpg" alt="Actor preparing on set"></div>
+          <div class="frame"><img src="assets/film-bts-4.jpg" alt="Camera crew behind the scenes"></div>
+        </div>
+
+        <div class="film-gallery-note" id="filmGalleryNote">Best Short Film · Award Night</div>
       </div>
     </section>
   </article>
 
-  <!-- T05 -->
-  <section class="transition" data-route="0" style="--transition-bg:#10150f;--transition-bg2:#0e1717;--mist:rgba(51,100,108,.14);--mist-x:72%">
+  <!-- TRANSITION 02 -->
+  <section class="transition" data-route="1" style="--transition-bg:#100d0d;--transition-bg2:#0e1717;--mist:rgba(51,100,108,.14);--mist-x:30%">
     <div class="transition-inner">
-      <div class="chapter-no">05</div>
-      <div class="next">Next chapter</div>
-      <h2 class="transition-title">Flying Heart</h2>
-      <div class="hand">showing up with heart</div>
-      <p class="transition-copy">Volunteer journeys that taught me impact can begin with preparation, presence, and small acts of care repeated together.</p>
+      <div class="chapter-no">04</div>
+      <div class="next">Chapter three</div>
+      <h2 class="transition-title">From Story<br>to Participation</h2>
+      <div class="hand">care becomes real when it reaches people</div>
     </div>
   </section>
 
@@ -659,23 +1189,25 @@ button{font:inherit}
     <section class="story-hero" style="--hero-image:url('assets/flying-daklak-4.jpg');--hero-position:center 52%;--top-edge:#0e1717;--shade-left:.84">
       <div class="story-bg"></div>
       <div class="hero-inner">
-        <p class="story-no">05 / Flying Heart</p>
-        <h2 class="display">Field notes<br>from the road.</h2>
-        <p class="hero-lede">Across trips to Dak Lak and Dong Nai, I learned that community work is built from preparation, presence, and the willingness to help where needed.</p>
+        <p class="story-no">04 / Community</p>
+        <h2 class="display">Showing up where<br>support is needed.</h2>
+        <p class="hero-lede">Volunteer journeys across Dak Lak and Dong Nai.</p>
       </div>
     </section>
+
     <section class="story-body">
       <div class="body-inner">
         <div class="gallery-head">
           <div>
-            <p class="kicker">Two places, one practice</p>
-            <h3 class="body-title">Care looks different in every place.</h3>
+            <p class="kicker">Flying Heart</p>
+            <h3 class="body-title">Two places.<br>Different needs.</h3>
           </div>
           <div class="tabs">
             <button type="button" class="active" data-trip="daklak">Dak Lak</button>
             <button type="button" data-trip="dongnai">Dong Nai</button>
           </div>
         </div>
+
         <div class="gallery" data-gallery="daklak">
           <div class="frame"><img src="assets/flying-daklak-1.jpg" alt=""></div>
           <div class="frame"><img src="assets/flying-daklak-2.jpg" alt=""></div>
@@ -684,11 +1216,13 @@ button{font:inherit}
           <div class="frame"><img src="assets/flying-daklak-5.jpg" alt=""></div>
           <div class="frame"><img src="assets/flying-daklak-6.jpg" alt=""></div>
         </div>
+
         <div class="gallery hidden" data-gallery="dongnai">
           <div class="frame"><img src="assets/flying-dongnai-1.jpg" alt=""></div>
           <div class="frame"><img src="assets/flying-dongnai-2.jpg" alt=""></div>
           <div class="frame"><img src="assets/flying-dongnai-3.jpg" alt=""></div>
         </div>
+
         <div class="stats">
           <div class="stat"><strong>100+</strong><span>children reached in Dak Lak</span></div>
           <div class="stat"><strong>30+</strong><span>households supported in Dong Nai</span></div>
@@ -698,159 +1232,90 @@ button{font:inherit}
     </section>
   </article>
 
-  <!-- T06 -->
-  <section class="transition" data-route="1" style="--transition-bg:#0e1717;--transition-bg2:#241317;--mist:rgba(145,62,79,.15);--mist-x:30%">
+  <!-- TRANSITION 03 -->
+  <section class="transition" data-route="2" style="--transition-bg:#0e1717;--transition-bg2:#241317;--mist:rgba(145,62,79,.15);--mist-x:72%">
     <div class="transition-inner">
-      <div class="chapter-no">06</div>
-      <div class="next">Next chapter</div>
-      <h2 class="transition-title">Embrace Vietnamese Traditional Attire</h2>
-      <div class="hand">touch to understand</div>
-      <p class="transition-copy">A cultural project that brought Vietnamese traditional attire closer to young audiences through participation, conversation, and care.</p>
+      <div class="chapter-no">05</div>
+      <div class="next">Chapter four</div>
+      <h2 class="transition-title">From Participation<br>to Culture</h2>
+      <div class="hand">how do we keep heritage close to people?</div>
     </div>
   </section>
 
-  <!-- EMBRACE -->
+  <!-- EMBRACE VIETNAMESE TRADITIONAL ATTIRE -->
   <article class="story" id="embrace">
     <section class="story-hero" style="--hero-image:url('assets/cham-2.jpg');--top-edge:#241317">
       <div class="story-bg"></div>
       <div class="hero-inner">
-        <p class="story-no">06 / Cultural heritage</p>
-        <h2 class="display">Embrace Vietnamese<br>Traditional Attire</h2>
-        <p class="hero-lede">A youth heritage-education campaign designed to make traditional attire feel closer, more understandable, and worth protecting.</p>
+        <p class="story-no">05 / Cultural Communication</p>
+        <h2 class="display">Making heritage<br>easier to approach.</h2>
+        <p class="hero-lede">Embrace Vietnamese Traditional Attire — a youth heritage-education campaign built around learning, conversation, and participation.</p>
       </div>
     </section>
+
     <section class="story-body">
       <div class="body-inner">
-        <div class="body-grid wide-left" style="margin-bottom:34px">
-          <div>
-            <p class="kicker">Participation over distance</p>
-            <h3 class="body-title">Culture becomes more meaningful when people can step into it.</h3>
+        <div class="sparse-note" style="width:100%;padding-top:10px">
+          <h3>From seeing<br>to understanding.</h3>
+          <p>As sub-lead, I co-led creative direction and helped shape an experience where visitors could ask questions, interact with cultural materials, and understand more of the context behind what they saw.</p>
+        </div>
+
+        <div class="culture-images">
+          <div class="frame"><img src="assets/cham-1.jpg" alt=""></div>
+          <div class="side">
+            <div class="frame"><img src="assets/cham-3.jpg" alt=""></div>
+            <div class="frame"><img src="assets/cham-4.jpg" alt=""></div>
           </div>
-          <p class="body-copy">I co-led creative direction for a campaign that invited young audiences to learn through display, conversation, and direct participation rather than viewing heritage from afar.</p>
         </div>
-        <div class="portrait-row">
-          <div class="frame tall"><img src="assets/cham-1.jpg" alt=""></div>
-          <div class="frame tall"><img src="assets/cham-2.jpg" alt=""></div>
-          <div class="frame tall"><img src="assets/cham-3.jpg" alt=""></div>
-          <div class="frame tall"><img src="assets/cham-4.jpg" alt=""></div>
-        </div>
-        <div class="stats">
+
+        <div class="stats" style="margin-top:72px">
           <div class="stat"><strong>4.8K+</strong><span>views</span></div>
           <div class="stat"><strong>1.2K</strong><span>reach</span></div>
-          <div class="stat"><strong>90+</strong><span>offline visitors</span></div>
+          <div class="stat"><strong>90+</strong><span>booth visitors</span></div>
         </div>
       </div>
     </section>
   </article>
 
-  <!-- T07 -->
-  <section class="transition" data-route="2" style="--transition-bg:#241317;--transition-bg2:#17100e;--mist:rgba(117,72,44,.14);--mist-x:72%">
-    <div class="transition-inner">
-      <div class="chapter-no">07</div>
-      <div class="next">Next chapter</div>
-      <h2 class="transition-title">Tien Thuong Tuan Du</h2>
-      <div class="hand">heritage in motion</div>
-      <p class="transition-copy">A heritage parade where tradition moved through public space, carried by community, costume, coordination, and collective participation.</p>
-    </div>
-  </section>
-
-  <!-- TIEN -->
+  <!-- TIEN THUONG TUAN DU: direct continuation, no extra transition -->
   <article class="story" id="tien">
-    <section class="story-hero" style="--hero-image:url('assets/tien-2.jpg');--hero-position:center 48%;--top-edge:#17100e;--shade-left:.82">
+    <section class="story-hero" style="--hero-image:url('assets/tien-2.jpg');--hero-position:center 48%;--top-edge:#35191f;--shade-left:.82">
       <div class="story-bg"></div>
       <div class="hero-inner">
-        <p class="story-no">07 / Cultural participation</p>
-        <h2 class="display">Tien Thuong<br>Tuan Du</h2>
-        <p class="hero-lede">A living heritage parade where costume, ritual, public space, and community participation came together in motion.</p>
+        <p class="story-no">06 / Culture in Public Space</p>
+        <h2 class="display">When heritage enters<br>public space.</h2>
+        <p class="hero-lede">Tien Thuong Tuan Du — a 300+ participant heritage parade at Saigon Zoo and the HCMC History Museum.</p>
       </div>
     </section>
+
     <section class="story-body">
-      <div class="body-inner body-grid wide-right">
+      <div class="body-inner media-3">
+        <div class="frame"><img src="assets/tien-1.jpg" alt=""></div>
+        <div class="media-stack">
+          <div class="frame"><img src="assets/tien-2.jpg" alt=""></div>
+          <div class="frame"><img src="assets/tien-3.jpg" alt=""></div>
+        </div>
+      </div>
+
+      <div class="tien-role">
+        <div class="big-number">300+<span>participants</span></div>
         <div>
           <p class="kicker">Behind the procession</p>
-          <h3 class="body-title">Heritage also depends on the work people do behind the scenes.</h3>
-          <p class="body-copy">As part of the organizing committee, I supported logistics and crowd safety for a 300+ participant parade at Saigon Zoo and the HCMC History Museum.</p>
-        </div>
-        <div class="media-3">
-          <div class="frame"><img src="assets/tien-1.jpg" alt=""></div>
-          <div class="media-stack">
-            <div class="frame"><img src="assets/tien-2.jpg" alt=""></div>
-            <div class="frame"><img src="assets/tien-3.jpg" alt=""></div>
-          </div>
+          <h3>Participation also depends on coordination.</h3>
+          <p>As part of the organizing committee, I supported logistics and crowd safety — the less visible work that helped the public experience move smoothly.</p>
         </div>
       </div>
     </section>
   </article>
 
-  <!-- T08 -->
-  <section class="transition" data-route="3" style="--transition-bg:#17100e;--transition-bg2:#131216;--mist:rgba(70,67,88,.12);--mist-x:30%">
-    <div class="transition-inner">
-      <div class="chapter-no">08</div>
-      <div class="next">Next chapter</div>
-      <h2 class="transition-title">Selected Projects</h2>
-      <div class="hand">the threads come together</div>
-      <p class="transition-copy">A wider look at the work that shaped how I communicate, collaborate, and build across film, community, and culture.</p>
+  <!-- WHAT'S NEXT: direct, no transition -->
+  <section class="next-compact" id="next">
+    <div class="body-inner">
+      <p class="kicker">07 / What's next</p>
+      <h2>Learn widely.<br>Build locally.</h2>
+      <p>I want to develop communication projects that move beyond awareness toward participation — learning from approaches beyond my own context, understanding why they work, and adapting those lessons thoughtfully in Vietnam.</p>
     </div>
   </section>
-
-  <!-- SELECTED -->
-  <article class="story" id="selected">
-    <section class="story-hero" style="--hero-image:url('assets/award-team.jpg');--hero-position:center 48%;--top-edge:#131216;--shade-left:.88;--shade-right:.26">
-      <div class="story-bg"></div>
-      <div class="hero-inner">
-        <p class="story-no">08 / Selected projects</p>
-        <h2 class="display">Different formats.<br>One direction.</h2>
-        <p class="hero-lede">Film, volunteering, cultural communication, and community work have each taught me a different way to connect stories with people.</p>
-      </div>
-    </section>
-    <section class="story-body">
-      <div class="body-inner">
-        <div class="project-index">
-          <div class="project-col">
-            <div class="project-row"><h3>The Window Without a Horizon</h3><p>Short film · Screenwriting · Social empathy</p></div>
-            <div class="project-row"><h3>Miraculous Moments</h3><p>Photography · Community · Pediatric cancer survivors</p></div>
-            <div class="project-row"><h3>Flying Heart</h3><p>Volunteer work · Youth outreach · Field operations</p></div>
-          </div>
-          <div class="project-col">
-            <div class="project-row"><h3>Embrace Vietnamese Traditional Attire</h3><p>Heritage education · Creative direction</p></div>
-            <div class="project-row"><h3>Tien Thuong Tuan Du</h3><p>Heritage parade · Logistics · Public participation</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </article>
-
-  <!-- T09 -->
-  <section class="transition" data-route="0" style="--transition-bg:#131216;--transition-bg2:#101117;--mist:rgba(55,76,112,.15);--mist-x:72%">
-    <div class="transition-inner">
-      <div class="chapter-no">09</div>
-      <div class="next">Final chapter</div>
-      <h2 class="transition-title">What's Next</h2>
-      <div class="hand">from awareness to action</div>
-      <p class="transition-copy">The question I keep returning to is not only what a story makes people feel, but what becomes possible after they feel it.</p>
-    </div>
-  </section>
-
-  <!-- NEXT -->
-  <article class="story" id="next">
-    <section class="story-hero" style="--hero-image:url('assets/miraculous-graduation.jpg');--hero-position:center 50%;--top-edge:#101117;--shade-left:.88;--shade-right:.32">
-      <div class="story-bg"></div>
-      <div class="hero-inner">
-        <p class="story-no">09 / What's next</p>
-        <h2 class="display">Awareness.<br>Understanding.<br>Action.</h2>
-        <p class="hero-lede">I want to keep exploring how communication can move beyond being seen and felt — toward work people can participate in, continue, and adapt.</p>
-      </div>
-    </section>
-    <section class="story-body next-body">
-      <div class="body-inner body-grid wide-left">
-        <div>
-          <p class="kicker">Global thought → local action</p>
-          <h3 class="body-title">Learn widely.<br>Adapt carefully.<br>Build locally.</h3>
-        </div>
-        <p class="body-copy">My next step is to learn from communities and approaches beyond my own context, understand why they work, and bring those lessons back into projects in Vietnam without losing the people behind the story.</p>
-      </div>
-    </section>
-  </article>
 
 </main>
 
@@ -871,13 +1336,29 @@ button{font:inherit}
 
 <script>
 (() => {
-  /* Gallery tabs */
+  /* Flying Heart tabs */
   const tripButtons=[...document.querySelectorAll('[data-trip]')];
   tripButtons.forEach(btn=>btn.addEventListener('click',()=>{
     tripButtons.forEach(b=>b.classList.toggle('active',b===btn));
     document.querySelectorAll('[data-gallery]').forEach(g=>{
       g.classList.toggle('hidden',g.dataset.gallery!==btn.dataset.trip);
     });
+  }));
+
+  /* Film gallery tabs */
+  const filmNotes={
+    award:'Best Short Film · Award Night',
+    festival:'Nha Trang Film Festival · Public screening',
+    bts:'Behind the Scenes · Production process'
+  };
+  const filmButtons=[...document.querySelectorAll('[data-film-tab]')];
+  const filmNote=document.getElementById('filmGalleryNote');
+  filmButtons.forEach(btn=>btn.addEventListener('click',()=>{
+    filmButtons.forEach(b=>b.classList.toggle('active',b===btn));
+    document.querySelectorAll('[data-film-gallery]').forEach(g=>{
+      g.classList.toggle('hidden',g.dataset.filmGallery!==btn.dataset.filmTab);
+    });
+    if(filmNote) filmNote.textContent=filmNotes[btn.dataset.filmTab]||'';
   }));
 
   /* Embedded GLB / raw WebGL — same stable engine, no external dependency */
