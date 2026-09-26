@@ -1055,50 +1055,50 @@ button{font:inherit}
 }
 .miraculous-spread .frame:last-child img{height:48vh}
 
-/* Film: tab switcher stays, but each tab gets a composed editorial grid */
-.film-grid{
-  display:grid;
-  gap:16px;
-  min-height:56vh;
-}
-.film-grid.hidden{display:none}
-.film-grid .frame{border-radius:22px;min-height:0}
-.film-grid .frame img{width:100%;height:100%;object-fit:cover;border-radius:22px}
-.film-grid.award{
-  grid-template-columns:1.35fr .65fr;
-  grid-template-rows:31vh 31vh;
-}
-.film-grid.award .frame:first-child{grid-row:1 / span 2}
-.film-grid.festival{
-  grid-template-columns:.82fr 1.18fr;
-  grid-template-rows:62vh;
-}
-.film-grid.festival .frame:first-child img{object-position:center}
-.film-grid.festival .frame:last-child img{object-position:center 68%}
-.film-grid.bts{
-  grid-template-columns:repeat(2,1fr);
-  grid-template-rows:repeat(2,31vh);
-}
-.film-gallery-note{margin-top:18px}
-
-/* Flying Heart: preserve the tabs, replace loose horizontal strip with composed grids */
+/* Film: keep the tabs but let each chapter become a horizontal editorial scroll */
+.film-grid,
 .trip-grid{
   display:grid;
-  gap:14px;
+  grid-auto-flow:column;
+  align-items:stretch;
+  gap:18px;
+  overflow-x:auto;
+  overscroll-behavior-x:contain;
+  padding-bottom:12px;
+  scroll-snap-type:x proximity;
+  scrollbar-width:thin;
 }
-.trip-grid.hidden{display:none}
-.trip-grid .frame{border-radius:20px}
-.trip-grid .frame img{width:100%;height:100%;object-fit:cover;border-radius:20px}
-.trip-grid.daklak{
-  grid-template-columns:repeat(3,1fr);
-  grid-auto-rows:27vh;
+.film-grid.hidden,.trip-grid.hidden{display:none}
+.film-grid .frame,
+.trip-grid .frame{
+  border-radius:22px;
+  min-height:0;
+  scroll-snap-align:start;
+  background:rgba(255,255,255,.03);
 }
-.trip-grid.daklak .frame:first-child{grid-column:span 2;grid-row:span 2}
-.trip-grid.dongnai{
-  grid-template-columns:1.25fr .75fr;
-  grid-auto-rows:29vh;
+.film-grid .frame img,
+.trip-grid .frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:22px;
 }
-.trip-grid.dongnai .frame:first-child{grid-row:span 2}
+.film-grid.award{grid-auto-columns:minmax(320px,48vw);min-height:58vh}
+.film-grid.award .frame img{height:58vh}
+.film-grid.festival{grid-auto-columns:minmax(360px,56vw);min-height:58vh}
+.film-grid.festival .frame img{height:58vh}
+.film-grid.festival .frame:last-child img{object-position:center 68%}
+.film-grid.bts{grid-auto-columns:minmax(300px,34vw);min-height:44vh}
+.film-grid.bts .frame img{height:44vh}
+.film-gallery-note{margin-top:10px}
+
+/* Flying Heart: the two locations switch, each one scrolls like a photo essay */
+.trip-grid{grid-auto-columns:minmax(300px,34vw)}
+.trip-grid .frame img{height:44vh}
+.trip-grid.daklak .frame:first-child,
+.trip-grid.dongnai .frame:first-child{grid-auto-columns:auto}
+.trip-grid.daklak .frame:first-child img,
+.trip-grid.dongnai .frame:first-child img{height:58vh}
 
 /* Culture: taller visual composition, less dead burgundy space */
 .culture-images{margin-top:58px;grid-template-columns:1.28fr .72fr}
@@ -1275,10 +1275,10 @@ body,
 button,
 input,
 textarea{
-  font-family:"Manrope","Aptos","Segoe UI",Helvetica,Arial,sans-serif;
+  font-family:"Avenir Next","SF Pro Text","Helvetica Neue","Aptos","Segoe UI",Arial,sans-serif;
 }
 p,.hero-lede,.about-copy,.meta,.stat span,.kicker,.story-no,.next,.film-gallery-note,.contact-links{
-  font-family:"Manrope","Aptos","Segoe UI",Helvetica,Arial,sans-serif;
+  font-family:"Avenir Next","SF Pro Text","Helvetica Neue","Aptos","Segoe UI",Arial,sans-serif;
 }
 p{line-height:1.72}
 .kicker,.story-no,.next,.meta,.stat span,.film-gallery-note{letter-spacing:.095em}
@@ -1288,7 +1288,7 @@ p{line-height:1.72}
   min-height:108vh;
 }
 .landing::after{
-  background-position:center 24%;
+  background-position:center 16%;
   transform:none;
 }
 .landing::before{
@@ -1301,7 +1301,7 @@ p{line-height:1.72}
       rgba(5,7,10,0) 54%),
     linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,0) 62%,rgba(0,0,0,.24) 100%);
 }
-.landing-inner{top:17vh}
+.landing-inner{top:20vh}
 .landing h1{font-size:clamp(46px,5.15vw,78px);line-height:.93}
 
 /* ABOUT: asymmetric editorial profile spread */
@@ -1411,48 +1411,61 @@ p{line-height:1.72}
   line-height:1.45;
 }
 
-/* MIRACULOUS: image + copy + evidence share the same visual field */
+/* MIRACULOUS: a fuller editorial spread with image rhythm and less empty space */
 .miraculous-editorial{
   background:#111b14;
-  padding:110px max(48px,calc((100vw - var(--wide))/2)) 135px;
+  padding:110px max(48px,calc((100vw - var(--wide))/2)) 138px;
   display:grid;
-  grid-template-columns:1.25fr .75fr;
+  grid-template-columns:1.08fr .92fr;
   grid-template-areas:
     "main copy"
-    "main small"
+    "main evidence"
     "stats stats";
-  gap:24px 28px;
+  gap:26px 30px;
   align-items:start;
 }
 .miraculous-main{grid-area:main;align-self:stretch}
 .miraculous-main img{
-  width:100%;height:74vh;object-fit:cover;border-radius:28px;
+  width:100%;height:78vh;object-fit:cover;border-radius:28px;
 }
 .miraculous-copy{
   grid-area:copy;
-  padding:8vh 0 0;
+  padding:2vh 0 0;
+  display:grid;
+  gap:18px;
+  align-content:start;
 }
 .miraculous-copy h3{
-  font-size:clamp(38px,4.4vw,68px);
-  line-height:.95;
-  margin:0 0 24px;
+  font-size:clamp(40px,4.6vw,72px);
+  line-height:.94;
+  margin:0;
+  max-width:8ch;
 }
 .miraculous-copy p{
-  max-width:470px;
-  color:#adb9ae;
+  max-width:500px;
+  color:#b7c2b9;
   font-size:15px;
   margin:0;
 }
-.miraculous-small{grid-area:small;align-self:end}
-.miraculous-small img{
-  width:100%;height:34vh;object-fit:cover;border-radius:24px;
+.miraculous-evidence{
+  grid-area:evidence;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-self:end;
+}
+.miraculous-evidence .frame img{
+  width:100%;
+  height:34vh;
+  object-fit:cover;
+  border-radius:24px;
 }
 .miraculous-stats{
   grid-area:stats;
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
-  margin-top:34px;
+  margin-top:16px;
 }
 .miraculous-stats .stat{border-top-color:rgba(255,255,255,.28)}
 
@@ -1600,6 +1613,125 @@ p{line-height:1.72}
   .motion-ready .reveal-right:not(.is-visible){transform:translate3d(42px,0,0)}
 }
 
+
+
+/* V32 refinements */
+.kicker,.story-no,.next,.meta,.stat span,.film-gallery-note,.contact-links,.hero-lede,
+.about-copy p,.miraculous-copy p,.trip-detail-copy p,.tien-role p,.contact-copy p,
+.about-meta-grid span,.about-meta-grid small{
+  padding-inline-start:2px;
+  overflow:visible;
+}
+
+.about-copy p,.miraculous-copy p,.trip-detail-copy p,.tien-role p,.contact-copy p,.hero-lede{
+  line-height:1.78;
+  color:#c7ccd3;
+}
+
+.about-copy{padding-top:70px}
+.about-meta-grid small{font-size:10px}
+.about-meta-grid span{font-size:12px}
+
+.miraculous-evidence .frame:first-child img{object-position:center 35%}
+.miraculous-evidence .frame:last-child img{object-position:center 45%}
+.miraculous-stats .stat{padding-top:18px}
+
+.switch-tabs,.tabs{align-self:start}
+.switch-tabs button,.tabs button{backdrop-filter:blur(12px)}
+
+.trip-detail{margin-top:28px;padding-top:34px}
+.trip-grid::-webkit-scrollbar,.film-grid::-webkit-scrollbar{height:10px}
+.trip-grid::-webkit-scrollbar-thumb,.film-grid::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:999px}
+.trip-grid::-webkit-scrollbar-track,.film-grid::-webkit-scrollbar-track{background:rgba(255,255,255,.05);border-radius:999px}
+
+#tien .media-3>.frame img{height:70vh;object-fit:cover}
+#tien .media-stack .frame{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#161211;
+}
+#tien .media-stack .frame img{
+  height:34vh;
+  width:100%;
+  object-fit:contain;
+  background:#161211;
+}
+.tien-role .big-number{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  line-height:.84;
+}
+.tien-role .big-number span{
+  margin-top:16px;
+  font-size:11px;
+  line-height:1.3;
+}
+
+.contact{
+  padding:124px 0 56px;
+  background:radial-gradient(circle at 18% 8%,rgba(53,92,118,.16),transparent 34%),#070a10;
+}
+.contact-inner{
+  min-height:46vh;
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:5vw;
+  align-items:end;
+}
+.contact-copy{max-width:470px}
+.contact-copy p{max-width:450px;color:#b9c1cb;margin:18px 0 0}
+.contact-panel{
+  justify-self:end;
+  width:min(520px,100%);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:28px;
+  padding:28px 28px 24px;
+  background:rgba(255,255,255,.03);
+  box-shadow:0 20px 55px rgba(0,0,0,.22);
+}
+.contact-mail{
+  display:block;
+  margin-bottom:24px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(26px,3vw,38px);
+  line-height:1.05;
+  color:var(--text);
+}
+.contact-meta{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:0 0 26px;
+}
+.contact-meta div{padding-top:10px;border-top:1px solid rgba(255,255,255,.16)}
+.contact-meta small{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8d98a4;margin-bottom:7px}
+.contact-meta span{display:block;font-size:12px;color:#edf1f6;line-height:1.45}
+.contact-links{gap:20px;color:#e9ecef}
+.contact-links a,.contact-links span{opacity:.92}
+
+@media(max-width:760px){
+  .miraculous-editorial{
+    padding:68px 16px 92px;
+    grid-template-columns:1fr;
+    grid-template-areas:"copy" "main" "evidence" "stats";
+    gap:28px;
+  }
+  .miraculous-main img{height:auto}
+  .miraculous-evidence{grid-template-columns:1fr 1fr}
+  .miraculous-evidence .frame img{height:auto;aspect-ratio:4 / 5}
+  .miraculous-stats{grid-template-columns:1fr 1fr}
+  .film-grid,.trip-grid{grid-auto-columns:82vw}
+  .film-grid.bts{grid-auto-columns:82vw}
+  .film-grid .frame img,.trip-grid .frame img{height:40vh}
+  .film-grid.award .frame img,.film-grid.festival .frame img,.trip-grid.daklak .frame:first-child img,.trip-grid.dongnai .frame:first-child img{height:46vh}
+  #tien .media-stack .frame img{height:auto;max-height:44vh}
+  .contact-inner{grid-template-columns:1fr;min-height:auto;gap:34px}
+  .contact-panel{justify-self:stretch;padding:24px 20px 22px}
+  .contact-meta{grid-template-columns:1fr 1fr}
+}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal-left,.reveal-right,.reveal-image,
@@ -1699,11 +1831,15 @@ p{line-height:1.72}
         <p>I helped run activities and spent time talking with the children about their dreams. That experience later shaped how I wrote <em>The Window Without a Horizon</em>: the child had to come before the diagnosis.</p>
       </div>
 
-      <div class="frame miraculous-small"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project"></div>
+      <div class="miraculous-evidence">
+        <div class="frame"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project"></div>
+        <div class="frame"><img src="assets/miraculous-studio.jpg" alt="Children in the Miraculous Moments photography session"></div>
+      </div>
 
       <div class="miraculous-stats">
         <div class="stat"><strong>13</strong><span>young participants</span></div>
         <div class="stat"><strong>01</strong><span>shared photography session</span></div>
+        <div class="stat"><strong>People first</strong><span>the lesson I carried forward</span></div>
       </div>
     </section>
   </article>
@@ -1932,15 +2068,24 @@ p{line-height:1.72}
 
 <footer class="contact" id="contact">
   <div class="contact-inner">
-    <div>
+    <div class="contact-copy">
       <p class="kicker">08 / Find me elsewhere</p>
       <h2>Let's connect.</h2>
+      <p>I am open to creative collaborations, internships, and community or cultural storytelling projects that need care, clarity, and a strong sense of people.</p>
     </div>
-    <div class="contact-links">
-      <a href="mailto:nguyenanhkiet10072006@gmail.com">Email</a>
-      <span>Instagram</span>
-      <span>Facebook</span>
-      <span>YouTube</span>
+    <div class="contact-panel">
+      <a class="contact-mail" href="mailto:nguyenanhkiet10072006@gmail.com">nguyenanhkiet10072006@gmail.com</a>
+      <div class="contact-meta">
+        <div><small>Based in</small><span>Ho Chi Minh City</span></div>
+        <div><small>Works across</small><span>Film · Culture · Community</span></div>
+        <div><small>Looking for</small><span>Internships · Collaborations</span></div>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:nguyenanhkiet10072006@gmail.com">Email</a>
+        <span>Instagram</span>
+        <span>Facebook</span>
+        <span>YouTube</span>
+      </div>
     </div>
   </div>
 </footer>
@@ -1957,8 +2102,8 @@ p{line-height:1.72}
     });
   };
 
-  addReveal('.about-title, .story-hero .display, .transition-title, .switch-head h3, .gallery-head .body-title, .miraculous-copy h3, .sparse-note h3, .tien-role h3, .next-compact h2, .trip-detail h4','reveal-left');
-  addReveal('.about-copy, .story-hero .hero-lede, .story-hero .story-no, .transition .hand, .switch-tabs, .gallery-head .tabs, .miraculous-copy p:not(.kicker), .tien-role p, .next-compact p, .trip-detail-copy','reveal-right','reveal-delay-1');
+  addReveal('.about-title, .story-hero .display, .transition-title, .switch-head h3, .gallery-head .body-title, .miraculous-copy h3, .sparse-note h3, .tien-role h3, .next-compact h2, .trip-detail h4, .contact-copy h2','reveal-left');
+  addReveal('.about-copy, .story-hero .hero-lede, .story-hero .story-no, .transition .hand, .switch-tabs, .gallery-head .tabs, .miraculous-copy p:not(.kicker), .tien-role p, .next-compact p, .trip-detail-copy, .contact-copy p, .contact-links, .contact-meta, .contact-panel','reveal-right','reveal-delay-1');
   addReveal('.about-photo, .frame, .film-poster','reveal-image');
   addReveal('.stats, .miraculous-stats, .about-meta-grid','reveal-right','reveal-delay-2');
 
