@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090a0d">
-<title>Kiet Anh Nguyen — Portfolio V30</title>
+<title>Kiet Anh Nguyen — Portfolio V31</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('motion-ready')</script>
 <style>
 :root{
   --ink:#f4efe7;
@@ -1261,6 +1265,355 @@ button{font:inherit}
   }
 }
 
+
+/* =========================================================
+   V31 — PREMIUM EDITORIAL + MOTION PASS
+   ========================================================= */
+
+/* Cleaner reading face for all small/body copy */
+body,
+button,
+input,
+textarea{
+  font-family:"Manrope","Aptos","Segoe UI",Helvetica,Arial,sans-serif;
+}
+p,.hero-lede,.about-copy,.meta,.stat span,.kicker,.story-no,.next,.film-gallery-note,.contact-links{
+  font-family:"Manrope","Aptos","Segoe UI",Helvetica,Arial,sans-serif;
+}
+p{line-height:1.72}
+.kicker,.story-no,.next,.meta,.stat span,.film-gallery-note{letter-spacing:.095em}
+
+/* HERO: reveal more of the upper image and keep the central trio clear */
+.landing{
+  min-height:108vh;
+}
+.landing::after{
+  background-position:center 24%;
+  transform:none;
+}
+.landing::before{
+  background:
+    linear-gradient(90deg,
+      rgba(5,7,10,.88) 0%,
+      rgba(5,7,10,.72) 18%,
+      rgba(5,7,10,.40) 28%,
+      rgba(5,7,10,.08) 40%,
+      rgba(5,7,10,0) 54%),
+    linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,0) 62%,rgba(0,0,0,.24) 100%);
+}
+.landing-inner{top:17vh}
+.landing h1{font-size:clamp(46px,5.15vw,78px);line-height:.93}
+
+/* ABOUT: asymmetric editorial profile spread */
+.about-compact{
+  min-height:100vh;
+  padding:118px 0 130px;
+  overflow:hidden;
+  position:relative;
+}
+.about-compact::after{
+  content:"01";
+  position:absolute;
+  right:-.03em;
+  top:7vh;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(220px,27vw,420px);
+  line-height:.78;
+  color:rgba(255,255,255,.028);
+  pointer-events:none;
+}
+.about-shell{
+  width:min(var(--max),calc(100% - 96px));
+  min-height:72vh;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:auto 1fr auto;
+  column-gap:22px;
+  align-items:start;
+  position:relative;
+  z-index:2;
+}
+.about-title{
+  grid-column:1 / span 7;
+  grid-row:1;
+  padding-top:7vh;
+  position:relative;
+  z-index:3;
+}
+.about-title h2{
+  font-size:clamp(62px,7.6vw,112px);
+  line-height:.84;
+  margin:0;
+  max-width:720px;
+}
+.about-photo{
+  grid-column:8 / -1;
+  grid-row:1 / span 3;
+  width:min(390px,100%);
+  justify-self:end;
+  margin:0;
+  align-self:center;
+  position:relative;
+}
+.about-photo::before{
+  content:"PORTRAIT / 2026";
+  position:absolute;
+  left:-18px;
+  bottom:26px;
+  transform:translateX(-100%) rotate(-90deg);
+  transform-origin:right bottom;
+  font-size:9px;
+  letter-spacing:.14em;
+  color:#858b92;
+  white-space:nowrap;
+}
+.about-photo img{
+  aspect-ratio:4 / 5;
+  width:100%;
+  object-fit:cover;
+  object-position:50% 40%;
+  border-radius:26px;
+  box-shadow:0 35px 90px rgba(0,0,0,.35);
+}
+.about-copy{
+  grid-column:2 / span 5;
+  grid-row:2;
+  align-self:end;
+  max-width:570px;
+  padding:90px 0 34px;
+}
+.about-copy p{
+  font-size:16px;
+  color:#bdc2ca;
+  margin-bottom:32px;
+}
+.about-meta-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  border-top:1px solid rgba(255,255,255,.18);
+  padding-top:17px;
+}
+.about-meta-grid div{min-width:0}
+.about-meta-grid small{
+  display:block;
+  color:#747b86;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:7px;
+}
+.about-meta-grid span{
+  display:block;
+  color:#eef0f2;
+  font-size:11px;
+  line-height:1.45;
+}
+
+/* MIRACULOUS: image + copy + evidence share the same visual field */
+.miraculous-editorial{
+  background:#111b14;
+  padding:110px max(48px,calc((100vw - var(--wide))/2)) 135px;
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  grid-template-areas:
+    "main copy"
+    "main small"
+    "stats stats";
+  gap:24px 28px;
+  align-items:start;
+}
+.miraculous-main{grid-area:main;align-self:stretch}
+.miraculous-main img{
+  width:100%;height:74vh;object-fit:cover;border-radius:28px;
+}
+.miraculous-copy{
+  grid-area:copy;
+  padding:8vh 0 0;
+}
+.miraculous-copy h3{
+  font-size:clamp(38px,4.4vw,68px);
+  line-height:.95;
+  margin:0 0 24px;
+}
+.miraculous-copy p{
+  max-width:470px;
+  color:#adb9ae;
+  font-size:15px;
+  margin:0;
+}
+.miraculous-small{grid-area:small;align-self:end}
+.miraculous-small img{
+  width:100%;height:34vh;object-fit:cover;border-radius:24px;
+}
+.miraculous-stats{
+  grid-area:stats;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:34px;
+}
+.miraculous-stats .stat{border-top-color:rgba(255,255,255,.28)}
+
+/* Flying Heart: each location gets its own accurate context */
+.trip-detail{
+  margin-top:46px;
+  display:grid;
+  grid-template-columns:.72fr 1.28fr;
+  gap:8vw;
+  align-items:start;
+  padding:42px 0 0;
+  border-top:1px solid rgba(255,255,255,.2);
+}
+.trip-detail.hidden{display:none}
+.trip-detail h4{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+  font-size:clamp(34px,4.1vw,58px);
+  line-height:.95;
+  letter-spacing:-.035em;
+}
+.trip-detail-copy p{
+  max-width:650px;
+  color:#a8b8ba;
+  margin:0 0 28px;
+  font-size:15px;
+}
+.trip-facts{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.trip-fact{
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.16);
+}
+.trip-fact strong{
+  display:block;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(25px,3vw,43px);
+  font-weight:400;
+  line-height:1;
+  margin-bottom:7px;
+}
+.trip-fact span{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.10em;
+  color:#a3b0b1;
+}
+
+/* More polished button states */
+.tabs button,.switch-tabs button{
+  transition:background .28s var(--ease),color .28s var(--ease),border-color .28s var(--ease),transform .28s var(--ease);
+}
+.tabs button:hover,.switch-tabs button:hover{transform:translateY(-2px)}
+
+/* Scroll motion. Hero stays static by design. */
+.motion-ready .reveal-left:not(.is-visible){
+  opacity:0;
+  transform:translate3d(-105px,0,0);
+  filter:blur(8px);
+}
+.motion-ready .reveal-right:not(.is-visible){
+  opacity:0;
+  transform:translate3d(105px,0,0);
+  filter:blur(8px);
+}
+.motion-ready .reveal-image:not(.is-visible){
+  opacity:.25;
+  transform:scale(1.035);
+  clip-path:inset(0 10% 0 10% round 24px);
+}
+.reveal-left,.reveal-right{
+  transition:opacity .9s var(--ease),transform 1.02s var(--ease),filter .9s var(--ease);
+  will-change:opacity,transform,filter;
+}
+.reveal-image{
+  transition:opacity 1s var(--ease),transform 1.15s var(--ease),clip-path 1.15s var(--ease);
+  will-change:opacity,transform,clip-path;
+}
+.reveal-left.is-visible,.reveal-right.is-visible,.reveal-image.is-visible{
+  opacity:1;
+  transform:none;
+  filter:none;
+  clip-path:inset(0 0 0 0 round 24px);
+}
+.reveal-delay-1{transition-delay:.09s}
+.reveal-delay-2{transition-delay:.17s}
+.reveal-delay-3{transition-delay:.25s}
+
+/* tiny premium detail */
+.story-hero .hero-inner::before{
+  content:"";
+  display:block;
+  width:56px;
+  height:1px;
+  background:rgba(255,255,255,.7);
+  margin-bottom:20px;
+}
+
+@media(max-width:980px) and (min-width:761px){
+  .about-title{grid-column:1 / span 7}
+  .about-photo{grid-column:8 / -1;width:min(330px,100%)}
+  .about-copy{grid-column:1 / span 6;padding-top:65px}
+}
+
+@media(max-width:760px){
+  .landing{min-height:100svh}
+  .landing::after{background-position:center top}
+  .landing-inner{padding-bottom:8vh}
+  .about-compact{padding:86px 0 100px}
+  .about-shell{
+    width:calc(100% - 32px);
+    min-height:auto;
+    display:flex;
+    flex-direction:column;
+  }
+  .about-title{padding-top:0}
+  .about-title h2{font-size:clamp(52px,14vw,78px)}
+  .about-photo{
+    width:min(82vw,350px);
+    align-self:flex-end;
+    margin:48px 0 0;
+  }
+  .about-photo::before{display:none}
+  .about-copy{padding:48px 0 0;max-width:none}
+  .about-meta-grid{grid-template-columns:1fr 1fr}
+
+  .miraculous-editorial{
+    padding:68px 16px 92px;
+    grid-template-columns:1fr;
+    grid-template-areas:"copy" "main" "small" "stats";
+    gap:28px;
+  }
+  .miraculous-copy{padding:0}
+  .miraculous-main img,.miraculous-small img{height:auto}
+  .miraculous-stats{grid-template-columns:1fr 1fr;margin-top:8px}
+
+  .trip-detail{grid-template-columns:1fr;gap:28px;margin-top:32px}
+  .trip-facts{grid-template-columns:1fr 1fr}
+
+  .motion-ready .reveal-left:not(.is-visible){transform:translate3d(-42px,0,0)}
+  .motion-ready .reveal-right:not(.is-visible){transform:translate3d(42px,0,0)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal-left,.reveal-right,.reveal-image,
+  .motion-ready .reveal-left:not(.is-visible),
+  .motion-ready .reveal-right:not(.is-visible),
+  .motion-ready .reveal-image:not(.is-visible){
+    transition:none!important;
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    clip-path:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1295,18 +1648,24 @@ button{font:inherit}
 
   <!-- ABOUT -->
   <section class="about-compact" id="about">
-    <div class="about-grid">
-      <div>
+    <div class="about-shell">
+      <div class="about-title">
         <p class="kicker">01 / About</p>
         <h2>I start by<br>paying attention.</h2>
       </div>
-      <div class="about-copy">
-        <p>I am a Multimedia Communication student at FPT University. I write, make visual work, and join community and cultural projects. I usually begin by listening to the people involved, then decide what form the story should take.</p>
-        <div class="meta"><span>FPT University</span><span>Multimedia Communication</span><span>Ho Chi Minh City</span></div>
-      </div>
+
       <figure class="about-photo" aria-label="Portrait of Kiet Anh Nguyen">
         <img src="assets/about-profile.jpeg" alt="Portrait of Kiet Anh Nguyen">
       </figure>
+
+      <div class="about-copy">
+        <p>I am a Multimedia Communication student at FPT University. I usually begin with people and context: listening first, then choosing the form — writing, film, visual storytelling, or a cultural experience — that best serves the story.</p>
+        <div class="about-meta-grid">
+          <div><small>Study</small><span>Multimedia Communication</span></div>
+          <div><small>Based in</small><span>Ho Chi Minh City</span></div>
+          <div><small>Focus</small><span>Film · Culture · Community</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1330,25 +1689,24 @@ button{font:inherit}
         <p class="hero-lede">A half-day photography initiative with 13 pediatric cancer survivors, with games and conversations in between.</p>
       </div>
     </section>
-    <section class="miraculous-spread">
-      <div class="frame"><img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session"></div>
-      <div class="frame"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project"></div>
-    </section>
 
-<section class="story-body" style="padding-top:0">
-      <div class="sparse-note">
-        <h3>What I remember most<br>happened between the photos.</h3>
-        <p>I helped run activities and spent time talking with the children about their dreams. That experience later shaped how I wrote The Window Without a Horizon: the child had to come before the diagnosis.</p>
+    <section class="miraculous-editorial">
+      <div class="frame miraculous-main"><img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session"></div>
+
+      <div class="miraculous-copy">
+        <p class="kicker">What stayed with me</p>
+        <h3>What I remember most happened between the photos.</h3>
+        <p>I helped run activities and spent time talking with the children about their dreams. That experience later shaped how I wrote <em>The Window Without a Horizon</em>: the child had to come before the diagnosis.</p>
       </div>
-      <div class="sparse-evidence">
-        <div class="stats">
-          <div class="stat"><strong>13</strong><span>young participants</span></div>
-          <div class="stat"><strong>01</strong><span>shared photography session</span></div>
-          <div class="stat"><strong>People first</strong><span>the lesson I carried forward</span></div>
-        </div>
+
+      <div class="frame miraculous-small"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project"></div>
+
+      <div class="miraculous-stats">
+        <div class="stat"><strong>13</strong><span>young participants</span></div>
+        <div class="stat"><strong>01</strong><span>shared photography session</span></div>
       </div>
     </section>
-</article>
+  </article>
 
   <!-- FILM -->
   <article class="story" id="film">
@@ -1426,7 +1784,7 @@ button{font:inherit}
       <div class="hero-inner">
         <p class="story-no">04 / Community</p>
         <h2 class="display">Showing up where<br>support is needed.</h2>
-        <p class="hero-lede">Volunteer trips in Dak Lak and Dong Nai, supporting children and families through learning materials, food, and Mid-Autumn activities.</p>
+        <p class="hero-lede">Volunteer trips in Dak Lak and Dong Nai, shaped around learning, essential support, and a warmer Mid-Autumn for children.</p>
       </div>
     </section>
 
@@ -1444,24 +1802,42 @@ button{font:inherit}
         </div>
 
         <div class="trip-grid daklak" data-gallery="daklak">
-          <div class="frame"><img src="assets/flying-daklak-1.jpg" alt=""></div>
-          <div class="frame"><img src="assets/flying-daklak-2.jpg" alt=""></div>
-          <div class="frame"><img src="assets/flying-daklak-3.jpg" alt=""></div>
-          <div class="frame"><img src="assets/flying-daklak-4.jpg" alt=""></div>
-          <div class="frame"><img src="assets/flying-daklak-5.jpg" alt=""></div>
-          <div class="frame"><img src="assets/flying-daklak-6.jpg" alt=""></div>
+          <div class="frame"><img src="assets/flying-daklak-1.jpg" alt="Mid-Autumn outreach in Dak Lak"></div>
+          <div class="frame"><img src="assets/flying-daklak-2.jpg" alt="Children joining the Dak Lak activity"></div>
+          <div class="frame"><img src="assets/flying-daklak-3.jpg" alt="Community activity in Dak Lak"></div>
+          <div class="frame"><img src="assets/flying-daklak-4.jpg" alt="Mid-Autumn gathering in Dak Lak"></div>
+          <div class="frame"><img src="assets/flying-daklak-5.jpg" alt="Children at the Dak Lak program"></div>
+          <div class="frame"><img src="assets/flying-daklak-6.jpg" alt="Gifts and activities in Dak Lak"></div>
         </div>
 
         <div class="trip-grid dongnai hidden" data-gallery="dongnai">
-          <div class="frame"><img src="assets/flying-dongnai-1.jpg" alt=""></div>
-          <div class="frame"><img src="assets/flying-dongnai-2.jpg" alt=""></div>
-          <div class="frame"><img src="assets/flying-dongnai-3.jpg" alt=""></div>
+          <div class="frame"><img src="assets/flying-dongnai-1.jpg" alt="Support activity in Dong Nai"></div>
+          <div class="frame"><img src="assets/flying-dongnai-2.jpg" alt="Essential supplies for families in Dong Nai"></div>
+          <div class="frame"><img src="assets/flying-dongnai-3.jpg" alt="Mid-Autumn support in Dong Nai"></div>
         </div>
 
-        <div class="stats">
-          <div class="stat"><strong>100+</strong><span>children reached in Dak Lak</span></div>
-          <div class="stat"><strong>30+</strong><span>households supported in Dong Nai</span></div>
-          <div class="stat"><strong>2024–26</strong><span>active volunteering</span></div>
+        <div class="trip-detail" data-trip-detail="daklak">
+          <h4>Dak Lak · Mid-Autumn with 100+ children</h4>
+          <div class="trip-detail-copy">
+            <p>Our team brought stationery, books, Mid-Autumn gifts, and activities to more than 100 ethnic minority children, creating a day centered on learning and celebration.</p>
+            <div class="trip-facts">
+              <div class="trip-fact"><strong>100+</strong><span>children reached</span></div>
+              <div class="trip-fact"><strong>Learning</strong><span>stationery & books</span></div>
+              <div class="trip-fact"><strong>Mid-Autumn</strong><span>gifts & activities</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trip-detail hidden" data-trip-detail="dongnai">
+          <h4>Dong Nai · 30+ households, children at the center</h4>
+          <div class="trip-detail-copy">
+            <p>We supported more than 30 low-income households with essential supplies, while paying special attention to the children in each family so they could welcome Mid-Autumn with more warmth and joy.</p>
+            <div class="trip-facts">
+              <div class="trip-fact"><strong>30+</strong><span>households supported</span></div>
+              <div class="trip-fact"><strong>Essentials</strong><span>practical family support</span></div>
+              <div class="trip-fact"><strong>Children</strong><span>a warmer Mid-Autumn</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1557,7 +1933,7 @@ button{font:inherit}
 <footer class="contact" id="contact">
   <div class="contact-inner">
     <div>
-      <p class="kicker">10 / Find me elsewhere</p>
+      <p class="kicker">08 / Find me elsewhere</p>
       <h2>Let's connect.</h2>
     </div>
     <div class="contact-links">
@@ -1571,12 +1947,41 @@ button{font:inherit}
 
 <script>
 (() => {
+
+  /* V31 scroll reveal system: hero stays static; later sections animate in */
+  const addReveal=(selector,cls,delayClass='')=>{
+    document.querySelectorAll(selector).forEach(el=>{
+      if(el.closest('.landing')) return;
+      el.classList.add(cls);
+      if(delayClass) el.classList.add(delayClass);
+    });
+  };
+
+  addReveal('.about-title, .story-hero .display, .transition-title, .switch-head h3, .gallery-head .body-title, .miraculous-copy h3, .sparse-note h3, .tien-role h3, .next-compact h2, .trip-detail h4','reveal-left');
+  addReveal('.about-copy, .story-hero .hero-lede, .story-hero .story-no, .transition .hand, .switch-tabs, .gallery-head .tabs, .miraculous-copy p:not(.kicker), .tien-role p, .next-compact p, .trip-detail-copy','reveal-right','reveal-delay-1');
+  addReveal('.about-photo, .frame, .film-poster','reveal-image');
+  addReveal('.stats, .miraculous-stats, .about-meta-grid','reveal-right','reveal-delay-2');
+
+  const revealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:.14,rootMargin:'0px 0px -7% 0px'});
+
+  document.querySelectorAll('.reveal-left,.reveal-right,.reveal-image').forEach(el=>revealObserver.observe(el));
+
   /* Flying Heart tabs */
   const tripButtons=[...document.querySelectorAll('[data-trip]')];
   tripButtons.forEach(btn=>btn.addEventListener('click',()=>{
     tripButtons.forEach(b=>b.classList.toggle('active',b===btn));
     document.querySelectorAll('[data-gallery]').forEach(g=>{
       g.classList.toggle('hidden',g.dataset.gallery!==btn.dataset.trip);
+    });
+    document.querySelectorAll('[data-trip-detail]').forEach(d=>{
+      d.classList.toggle('hidden',d.dataset.tripDetail!==btn.dataset.trip);
     });
   }));
 
