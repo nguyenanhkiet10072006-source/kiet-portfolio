@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090a0d">
-<title>Kiet Anh Nguyen — Portfolio V36</title>
+<title>Kiet Anh Nguyen — Portfolio V39</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -2463,6 +2463,249 @@ p{line-height:1.72}
   }
 }
 
+
+
+/* =========================================================
+   V37 — MIRACULOUS EDITORIAL RECOMPOSITION
+   Heading outside on the left, two supporting images at top,
+   a horizontal reflection line, then one large wide image.
+   ========================================================= */
+.v37-miraculous{
+  display:block!important;
+  background:#111b14!important;
+  padding:108px max(48px,calc((100vw - var(--wide))/2)) 132px!important;
+}
+.v37-miraculous .miraculous-topline{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:56px;
+  align-items:start;
+}
+.v37-miraculous .miraculous-heading-block{
+  padding:14px 0 0 4px;
+  max-width:610px;
+  overflow:visible;
+}
+.v37-miraculous .miraculous-heading-block .kicker{
+  color:#aeb9b0;
+  margin-bottom:16px;
+}
+.v37-miraculous .miraculous-heading-block h3{
+  margin:0;
+  max-width:10.5ch;
+  color:#f4efe7;
+  font-size:clamp(48px,5.5vw,82px);
+  line-height:.94;
+  overflow:visible;
+  padding:.04em 0 .08em;
+}
+.v37-miraculous .miraculous-small-pair{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+.v37-miraculous .miraculous-small-pair .frame{
+  overflow:hidden;
+  border-radius:22px;
+  background:#152018;
+}
+.v37-miraculous .miraculous-small-pair img{
+  width:100%;
+  height:30vh;
+  min-height:230px;
+  object-fit:cover;
+  border-radius:22px;
+}
+.v37-miraculous .miraculous-small-pair .frame:first-child img{object-position:center 40%}
+.v37-miraculous .miraculous-small-pair .frame:last-child img{object-position:center 46%}
+
+.v37-miraculous .miraculous-copy-line{
+  width:min(980px,100%);
+  margin:52px 0 34px;
+  padding-left:4px;
+}
+.v37-miraculous .miraculous-copy-line p{
+  margin:0;
+  max-width:900px;
+  font-size:16px;
+  line-height:1.8;
+  color:#bec8c0;
+}
+.v37-miraculous .miraculous-wide{
+  width:100%;
+  overflow:hidden;
+  border-radius:28px;
+  background:#152018;
+}
+.v37-miraculous .miraculous-wide img{
+  width:100%;
+  height:auto;
+  aspect-ratio:16 / 7;
+  object-fit:cover;
+  object-position:center 54%;
+  border-radius:28px;
+}
+.v37-miraculous .miraculous-stats{
+  margin-top:42px!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:18px!important;
+}
+
+@media(max-width:980px){
+  .v37-miraculous .miraculous-topline{
+    grid-template-columns:1fr;
+    gap:34px;
+  }
+  .v37-miraculous .miraculous-heading-block{max-width:760px}
+  .v37-miraculous .miraculous-small-pair img{height:32vh}
+  .v37-miraculous .miraculous-copy-line{margin-top:38px}
+}
+@media(max-width:760px){
+  .v37-miraculous{
+    padding:74px 16px 96px!important;
+  }
+  .v37-miraculous .miraculous-heading-block{
+    padding-left:0;
+  }
+  .v37-miraculous .miraculous-heading-block h3{
+    font-size:clamp(42px,12vw,62px);
+    max-width:9ch;
+  }
+  .v37-miraculous .miraculous-small-pair{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .v37-miraculous .miraculous-small-pair img{
+    min-height:0;
+    height:auto;
+    aspect-ratio:4 / 5;
+  }
+  .v37-miraculous .miraculous-copy-line{
+    margin:32px 0 24px;
+    padding-left:0;
+  }
+  .v37-miraculous .miraculous-copy-line p{
+    font-size:15px;
+  }
+  .v37-miraculous .miraculous-wide img{
+    aspect-ratio:4 / 3;
+  }
+  .v37-miraculous .miraculous-stats{
+    grid-template-columns:1fr 1fr!important;
+    margin-top:30px!important;
+  }
+}
+
+
+/* =========================================================
+   V38 — FLYING HEART FRAME FIX
+   Prevent flex items from stretching to the tallest photo.
+   Each card now hugs its image, so no empty panel appears below it.
+   ========================================================= */
+.trip-grid{
+  align-items:flex-start!important;
+}
+.trip-grid .frame{
+  align-self:flex-start!important;
+  height:auto!important;
+  min-height:0!important;
+  background:transparent!important;
+  line-height:0!important;
+}
+.trip-grid .frame img,
+.trip-grid .frame:first-child img{
+  display:block!important;
+  height:48vh!important;
+  width:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  background:transparent!important;
+}
+@media(max-width:760px){
+  .trip-grid .frame img,
+  .trip-grid .frame:first-child img{
+    height:38vh!important;
+  }
+}
+
+
+/* =========================================================
+   V39 — TIEN THUONG TUAN DU BALANCE
+   Move the 300+ evidence into the empty visual area beside the gallery.
+   ========================================================= */
+.tien-gallery{
+  align-items:start!important;
+}
+.tien-side-column{
+  display:grid;
+  grid-template-rows:auto auto;
+  gap:30px;
+  align-content:start;
+}
+.tien-inline-stat{
+  padding:30px 0 12px;
+  border-top:1px solid rgba(255,255,255,.22);
+  width:100%;
+}
+.tien-inline-stat strong{
+  display:block;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(96px,10vw,160px);
+  line-height:.76;
+  font-weight:400;
+  letter-spacing:-.055em;
+}
+.tien-inline-stat span{
+  display:block;
+  margin-top:34px!important;
+  font-size:11px!important;
+  line-height:1.25!important;
+  letter-spacing:.15em!important;
+  text-transform:uppercase;
+}
+.tien-role{
+  grid-template-columns:1fr!important;
+  padding-top:72px!important;
+}
+.tien-role > div{
+  max-width:670px;
+  margin-left:auto;
+}
+@media(max-width:900px){
+  .tien-side-column{
+    grid-template-columns:minmax(0,1fr) minmax(220px,.55fr);
+    grid-template-rows:auto;
+    align-items:end;
+  }
+  .tien-inline-stat{
+    border-top:0;
+    border-left:1px solid rgba(255,255,255,.18);
+    padding:20px 0 12px 28px;
+  }
+}
+@media(max-width:760px){
+  .tien-side-column{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+  .tien-inline-stat{
+    border-left:0;
+    border-top:1px solid rgba(255,255,255,.18);
+    padding:26px 0 8px;
+  }
+  .tien-inline-stat strong{
+    font-size:clamp(84px,27vw,132px);
+  }
+  .tien-inline-stat span{
+    margin-top:28px!important;
+  }
+  .tien-role > div{
+    margin-left:0;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2539,22 +2782,25 @@ p{line-height:1.72}
       </div>
     </section>
 
-    <section class="miraculous-editorial">
-      <div class="frame miraculous-main">
-        <img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session">
-        <div class="miraculous-overlay">
+    <section class="miraculous-editorial v37-miraculous">
+      <div class="miraculous-topline">
+        <div class="miraculous-heading-block">
           <p class="kicker">What stayed with me</p>
           <h3>What I remember most happened between the photos.</h3>
         </div>
+
+        <div class="miraculous-small-pair">
+          <div class="frame"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project"></div>
+          <div class="frame"><img src="assets/miraculous-studio.jpg" alt="Children in the Miraculous Moments photography session"></div>
+        </div>
       </div>
 
-      <div class="miraculous-copy">
+      <div class="miraculous-copy-line">
         <p>I helped run activities and spent time talking with the children about their dreams. That experience later shaped how I wrote <em>The Window Without a Horizon</em>: the child had to come before the diagnosis.</p>
       </div>
 
-      <div class="miraculous-bottom">
-        <div class="frame"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project"></div>
-        <div class="frame"><img src="assets/miraculous-studio.jpg" alt="Children in the Miraculous Moments photography session"></div>
+      <div class="frame miraculous-wide">
+        <img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session">
       </div>
 
       <div class="miraculous-stats">
@@ -2765,11 +3011,14 @@ p{line-height:1.72}
           <div class="frame"><img src="assets/tien-1.jpg" alt="Participants at Tien Thuong Tuan Du"></div>
           <div class="frame"><img src="assets/tien-2.jpg" alt="Heritage parade at Tien Thuong Tuan Du"></div>
         </div>
-        <div class="frame tien-portrait"><img src="assets/tien-3.jpg" alt="Portrait-oriented photo from Tien Thuong Tuan Du"></div>
+
+        <div class="tien-side-column">
+          <div class="frame tien-portrait"><img src="assets/tien-3.jpg" alt="Portrait-oriented photo from Tien Thuong Tuan Du"></div>
+          <div class="big-number tien-inline-stat"><strong>300+</strong><span>participants</span></div>
+        </div>
       </div>
 
       <div class="tien-role">
-        <div class="big-number"><strong>300+</strong><span>participants</span></div>
         <div>
           <p class="kicker">Behind the procession</p>
           <h3>My role was behind the procession.</h3>
@@ -2832,9 +3081,9 @@ p{line-height:1.72}
     });
   };
 
-  addReveal('.about-title, .story-hero .display, .transition-title, .switch-head h3, .gallery-head .body-title, .miraculous-copy h3, .sparse-note h3, .tien-role h3, .next-compact h2, .trip-detail h4, .contact-copy h2','reveal-left');
+  addReveal('.about-title, .story-hero .display, .transition-title, .switch-head h3, .gallery-head .body-title, .miraculous-heading-block h3, .sparse-note h3, .tien-role h3, .next-compact h2, .trip-detail h4, .contact-copy h2','reveal-left');
   addReveal('.switch-tabs, .gallery-head .tabs, .transition .hand','reveal-right','reveal-delay-1');
-  addReveal('.about-copy, .story-hero .hero-lede, .story-hero .story-no, .miraculous-copy p:not(.kicker), .tien-role p, .next-compact p, .trip-detail-copy, .contact-invite, .social-icons','reveal-copy','reveal-delay-1');
+  addReveal('.about-copy, .story-hero .hero-lede, .story-hero .story-no, .miraculous-copy-line p, .tien-role p, .next-compact p, .trip-detail-copy, .contact-invite, .social-icons','reveal-copy','reveal-delay-1');
   addReveal('.about-photo, .frame, .film-poster, .project-slideshow','reveal-image');
   addReveal('.stats, .miraculous-stats, .about-meta-grid','reveal-copy','reveal-delay-2');
 
