@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090a0d">
-<title>Kiet Anh Nguyen — Portfolio V35</title>
+<title>Kiet Anh Nguyen — Portfolio V36</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -2271,6 +2271,198 @@ p{line-height:1.72}
   .miraculous-copy{padding:18px 0 0!important}
 }
 
+
+
+/* =========================================================
+   V36 — NAV CONTRAST + ABOUT BACKGROUND + MIRACULOUS OVERLAY
+   ========================================================= */
+
+/* Navigation should stay readable on the opening light imagery. */
+.nav{
+  mix-blend-mode:normal!important;
+  color:rgba(245,241,236,.88);
+  text-shadow:0 1px 10px rgba(0,0,0,.18);
+  transition:color .28s ease, text-shadow .28s ease;
+}
+.nav.dark{
+  color:rgba(16,16,16,.86)!important;
+  text-shadow:none!important;
+}
+
+/* ABOUT — use the portrait as a background image instead of a floating card. */
+.about-compact{
+  background:
+    linear-gradient(90deg,rgba(7,10,16,.96) 0%,rgba(7,10,16,.94) 41%,rgba(7,10,16,.76) 55%,rgba(7,10,16,.34) 69%,rgba(7,10,16,.10) 100%),
+    url("assets/about-profile.jpeg") right 7% center / auto 86% no-repeat,
+    #070a10!important;
+}
+.about-shell{
+  min-height:78vh!important;
+}
+.about-photo{display:none!important}
+.about-title{
+  grid-column:1 / span 7!important;
+  padding-top:9vh!important;
+  max-width:760px;
+}
+.about-title h2{
+  max-width:690px!important;
+}
+.about-copy{
+  grid-column:1 / span 6!important;
+  padding:72px 0 34px!important;
+  max-width:640px!important;
+}
+.about-copy p{
+  max-width:560px;
+}
+.about-meta-grid{
+  max-width:560px;
+}
+
+/* MIRACULOUS — keep the big line inside the image, horizontal and readable. */
+.miraculous-editorial{
+  background:#111b14!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  grid-template-areas:
+    "main main"
+    "copy bottom"
+    "stats stats"!important;
+  gap:28px 30px!important;
+  padding:104px max(48px,calc((100vw - var(--wide))/2)) 132px!important;
+  align-items:start!important;
+}
+.miraculous-main{
+  grid-area:main!important;
+  position:relative;
+  overflow:hidden!important;
+  border-radius:28px;
+}
+.miraculous-main img{
+  width:100%!important;
+  height:74vh!important;
+  object-fit:cover!important;
+  object-position:center 56%!important;
+  border-radius:28px;
+}
+.miraculous-main::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.44) 0%,rgba(0,0,0,.14) 30%,rgba(0,0,0,0) 56%);
+  pointer-events:none;
+}
+.miraculous-overlay{
+  position:absolute;
+  top:34px;
+  left:34px;
+  width:min(58%,700px);
+  z-index:2;
+}
+.miraculous-overlay .kicker{
+  color:rgba(246,241,232,.82)!important;
+  margin-bottom:14px;
+}
+.miraculous-overlay h3{
+  font-size:clamp(42px,5.4vw,78px)!important;
+  line-height:.94!important;
+  margin:0!important;
+  max-width:11ch!important;
+  color:#f7f1e8;
+  text-shadow:0 3px 18px rgba(0,0,0,.22);
+}
+.miraculous-copy{
+  grid-area:copy!important;
+  padding:4px 12px 0 4px!important;
+  min-width:0;
+}
+.miraculous-copy p{
+  margin:0!important;
+  max-width:550px!important;
+}
+.miraculous-bottom{
+  grid-area:bottom!important;
+  margin-top:0!important;
+  align-self:start;
+}
+.miraculous-bottom .frame img{
+  aspect-ratio:4 / 3!important;
+}
+.miraculous-stats{
+  grid-area:stats!important;
+  margin-top:16px!important;
+}
+
+/* TIEN — do not stretch the portrait container into an empty panel. */
+.tien-gallery{
+  align-items:start!important;
+}
+.tien-portrait{
+  align-self:start!important;
+  height:auto!important;
+  background:transparent!important;
+}
+.tien-portrait img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  object-fit:cover!important;
+  display:block;
+}
+
+/* Responsive refinements */
+@media(max-width:980px){
+  .about-compact{
+    background:
+      linear-gradient(180deg,rgba(7,10,16,.92) 0%,rgba(7,10,16,.88) 42%,rgba(7,10,16,.82) 100%),
+      url("assets/about-profile.jpeg") right -10px top 22% / auto 78% no-repeat,
+      #070a10!important;
+  }
+  .about-title,.about-copy{grid-column:1 / span 7!important}
+  .miraculous-overlay{width:min(70%,680px)}
+}
+@media(max-width:760px){
+  .nav{
+    color:rgba(245,241,236,.92);
+    text-shadow:0 1px 10px rgba(0,0,0,.22);
+  }
+  .about-compact{
+    background:
+      linear-gradient(180deg,rgba(7,10,16,.96) 0%,rgba(7,10,16,.90) 34%,rgba(7,10,16,.84) 100%),
+      url("assets/about-profile.jpeg") center top / cover no-repeat,
+      #070a10!important;
+    padding:94px 0 86px!important;
+  }
+  .about-shell{display:block!important;width:calc(100% - 32px)!important}
+  .about-title{padding-top:0!important}
+  .about-copy{padding:34px 0 0!important}
+  .about-meta-grid{grid-template-columns:1fr 1fr!important}
+  .miraculous-editorial{
+    grid-template-columns:1fr!important;
+    grid-template-areas:
+      "main"
+      "copy"
+      "bottom"
+      "stats"!important;
+    padding:72px 16px 96px!important;
+  }
+  .miraculous-main img{height:54vh!important}
+  .miraculous-overlay{
+    top:24px;
+    left:22px;
+    right:22px;
+    width:auto!important;
+  }
+  .miraculous-overlay h3{
+    font-size:clamp(36px,10.5vw,56px)!important;
+    max-width:8ch!important;
+  }
+  .miraculous-bottom{
+    grid-template-columns:1fr!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2316,7 +2508,7 @@ p{line-height:1.72}
       </figure>
 
       <div class="about-copy">
-        <p>I am a Multimedia Communication student at FPT University. I usually begin with people and context: listening first, then choosing the form — writing, film, visual storytelling, or a cultural experience — that best serves the story.</p>
+        <p>I am a Multimedia Communication student at FPT University. I am most interested in stories that begin with people: listening first, understanding the context, and then deciding whether the work should take shape as writing, film, visual storytelling, or a cultural experience.</p>
         <div class="about-meta-grid">
           <div><small>Study</small><span>Multimedia Communication</span></div>
           <div><small>Based in</small><span>Ho Chi Minh City</span></div>
@@ -2348,13 +2540,16 @@ p{line-height:1.72}
     </section>
 
     <section class="miraculous-editorial">
-      <div class="miraculous-top">
-        <div class="frame miraculous-main"><img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session"></div>
-        <div class="miraculous-copy">
+      <div class="frame miraculous-main">
+        <img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session">
+        <div class="miraculous-overlay">
           <p class="kicker">What stayed with me</p>
           <h3>What I remember most happened between the photos.</h3>
-          <p>I helped run activities and spent time talking with the children about their dreams. That experience later shaped how I wrote <em>The Window Without a Horizon</em>: the child had to come before the diagnosis.</p>
         </div>
+      </div>
+
+      <div class="miraculous-copy">
+        <p>I helped run activities and spent time talking with the children about their dreams. That experience later shaped how I wrote <em>The Window Without a Horizon</em>: the child had to come before the diagnosis.</p>
       </div>
 
       <div class="miraculous-bottom">
@@ -2704,6 +2899,20 @@ p{line-height:1.72}
   document.querySelectorAll('[data-social-placeholder]').forEach(link=>{
     link.addEventListener('click',e=>e.preventDefault());
   });
+
+
+
+  /* Nav contrast: switch to dark text over the opening light-image sections. */
+  const nav=document.querySelector('.nav');
+  const darkNavZones=[document.querySelector('.landing'), document.querySelector('#about')].filter(Boolean);
+  const syncNavTheme=()=>{
+    const probeY=window.scrollY + 50;
+    const useDark=darkNavZones.some(sec=>probeY>=sec.offsetTop && probeY<sec.offsetTop+sec.offsetHeight);
+    nav.classList.toggle('dark',useDark);
+  };
+  window.addEventListener('scroll',syncNavTheme,{passive:true});
+  window.addEventListener('resize',syncNavTheme);
+  syncNavTheme();
 
   /* Embedded GLB / raw WebGL — same stable engine, no external dependency */
   const GLB_B64="Z2xURgIAAACsCQAAKAcAAEpTT057ImFjY2Vzc29ycyI6W3siYnVmZmVyVmlldyI6MiwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjE3LCJtYXgiOls3Mjg1LjQ5MDIzNDM3NSwzODEwLjY1OTkxMjEwOTM3NSwxMjcyLjBdLCJtaW4iOlsxNTk0LjQ4OTk5MDIzNDM3NSw1MjYuNjU2OTgyNDIxODc1LDY2MC4wXSwidHlwZSI6IlZFQzMifSx7ImJ1ZmZlclZpZXciOjIsImJ5dGVPZmZzZXQiOjIwNCwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjE3LCJtYXgiOlswLjAxNTIzOTA5OTk3MTk1MDA1NCwwLjk4NjA3NDIwOTIxMzI1NjgsMS4wXSwibWluIjpbLTAuMDE3NzgxNzAyODAxNTg1MTk3LC0wLjk4NjA3NDIwOTIxMzI1NjgsLTAuOTk4NDg4MDA4OTc1OTgyN10sInR5cGUiOiJWRUMzIn0seyJidWZmZXJWaWV3IjoxLCJjb21wb25lbnRUeXBlIjo1MTI2LCJjb3VudCI6MTcsIm1heCI6WzI5OS4yNTY5ODg1MjUzOTA2LDE2NC4wNTcwMDY4MzU5Mzc1XSwibWluIjpbLTI4OC4zMjI5OTgwNDY4NzUsLTU0LjE5MzA5OTk3NTU4NTk0XSwidHlwZSI6IlZFQzIifSx7ImJ1ZmZlclZpZXciOjAsImNvbXBvbmVudFR5cGUiOjUxMjUsImNvdW50IjoxOCwidHlwZSI6IlNDQUxBUiJ9XSwiYXNzZXQiOnsiZXh0cmFzIjp7ImF1dGhvciI6IlRyb2NrayAoaHR0cHM6Ly9za2V0Y2hmYWIuY29tL1RpbXJvY2trKSIsImxpY2Vuc2UiOiJDQy1CWS00LjAgKGh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LzQuMC8pIiwic291cmNlIjoiaHR0cHM6Ly9za2V0Y2hmYWIuY29tLzNkLW1vZGVscy9wYXBlci1wbGFuZS1hc3NldC04YTVmNmEyYTA3YjY0NTIyYmY0YjkwNGQ0YTA1N2RmYiIsInRpdGxlIjoiUGFwZXIgUGxhbmUgQXNzZXQifSwiZ2VuZXJhdG9yIjoiU2tldGNoZmFiLTEzLjE2LjAiLCJ2ZXJzaW9uIjoiMi4wIn0sImJ1ZmZlclZpZXdzIjpbeyJidWZmZXIiOjAsImJ5dGVMZW5ndGgiOjcyLCJuYW1lIjoiZmxvYXRCdWZmZXJWaWV3cyIsInRhcmdldCI6MzQ5NjN9LHsiYnVmZmVyIjowLCJieXRlTGVuZ3RoIjoxMzYsImJ5dGVPZmZzZXQiOjcyLCJieXRlU3RyaWRlIjo4LCJuYW1lIjoiZmxvYXRCdWZmZXJWaWV3cyIsInRhcmdldCI6MzQ5NjJ9LHsiYnVmZmVyIjowLCJieXRlTGVuZ3RoIjo0MDgsImJ5dGVPZmZzZXQiOjIwOCwiYnl0ZVN0cmlkZSI6MTIsIm5hbWUiOiJmbG9hdEJ1ZmZlclZpZXdzIiwidGFyZ2V0IjozNDk2Mn1dLCJidWZmZXJzIjpbeyJieXRlTGVuZ3RoIjo2MTZ9XSwibWF0ZXJpYWxzIjpbeyJkb3VibGVTaWRlZCI6dHJ1ZSwibmFtZSI6IkNvbG9yX00wMCIsInBick1ldGFsbGljUm91Z2huZXNzIjp7Im1ldGFsbGljRmFjdG9yIjowLjAsInJvdWdobmVzc0ZhY3RvciI6MC42fX1dLCJtZXNoZXMiOlt7Im5hbWUiOiJPYmplY3RfMCIsInByaW1pdGl2ZXMiOlt7ImF0dHJpYnV0ZXMiOnsiTk9STUFMIjoxLCJQT1NJVElPTiI6MCwiVEVYQ09PUkRfMCI6Mn0sImluZGljZXMiOjMsIm1hdGVyaWFsIjowLCJtb2RlIjo0fV19XSwibm9kZXMiOlt7ImNoaWxkcmVuIjpbMV0sIm1hdHJpeCI6WzEuMCwwLjAsMC4wLDAuMCwwLjAsMi4yMjA0NDYwNDkyNTAzMTNlLTE2LC0xLjAsMC4wLDAuMCwxLjAsMi4yMjA0NDYwNDkyNTAzMTNlLTE2LDAuMCwwLjAsMC4wLDAuMCwxLjBdLCJuYW1lIjoiU2tldGNoZmFiX21vZGVsIn0seyJjaGlsZHJlbiI6WzJdLCJuYW1lIjoiNmNiNjNhNjliMGM4NGFlYTlhYTU5MzZiMWZmNDVkZDQub2JqLmNsZWFuZXIubWF0ZXJpYWxtZXJnZXIuZ2xlcyJ9LHsibWVzaCI6MCwibmFtZSI6Ik9iamVjdF8yIn1dLCJzY2VuZSI6MCwic2NlbmVzIjpbeyJuYW1lIjoiU2tldGNoZmFiX1NjZW5lIiwibm9kZXMiOlswXX1dfSAgIGgCAABCSU4AAAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAFAAAADgAAAA8AAAAQAAAA2puAwtQrO0GHdoDCGYQQQlgpkMMZhBBCzhl7QvqtokLOGXtCQuClQT1qj0OqwqpCJyCEQtnqcj65fKNCvMVYwuWglUPZ6nI+XZx0Ql+4gEIE53RCmrcfQjufjkNfuIBCzhl7QqgGFkPOGXtCTNeyQoXre8OYDiRDip8JwgZB20LNzJXBmA4kQ65Px0SPigdFAAAlRK5Px0R7IAFFAACfROyr40WPigdFAACfRK5Px0R7IAFFAACfRK5Px0QMqgNEAACfROyr40WPigdFAACfRK5Px0QMqgNEAACfRK5Px0QfbfVEAICVROyr40WPigdFAACfRK5Px0R79A1FAACfRK5Px0SPigdFAAAlROyr40WPigdFAACfRK5Px0SPKm5FAACfRK5Px0R79A1FAACfROyr40WPigdFAACfRK5Px0SPXhRFAICVRK5Px0SPKm5FAACfRO+qkbxcb3w/T1IpPu+qkbxcb3w/T1IpPu+qkbxcb3w/T1IpPgAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAP2uteTzZVli96Zx/v2uteTzZVli96Zx/v2uteTzZVli96Zx/v++qkbxcb3y/T1IpPu+qkbxcb3y/T1IpPu+qkbxcb3y/T1IpPgAAAAAAAAAAAACAPwAAAAAAAAAAAACAP2uteTzZVlg96Zx/v2uteTzZVlg96Zx/v2uteTzZVlg96Zx/vw==";
