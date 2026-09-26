@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090a0d">
-<title>Kiet Anh Nguyen — Portfolio V31</title>
+<title>Kiet Anh Nguyen — Portfolio V33</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1734,9 +1734,10 @@ p{line-height:1.72}
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .reveal-left,.reveal-right,.reveal-image,
+  .reveal-left,.reveal-right,.reveal-copy,.reveal-image,
   .motion-ready .reveal-left:not(.is-visible),
   .motion-ready .reveal-right:not(.is-visible),
+  .motion-ready .reveal-copy:not(.is-visible),
   .motion-ready .reveal-image:not(.is-visible){
     transition:none!important;
     opacity:1!important;
@@ -1744,6 +1745,312 @@ p{line-height:1.72}
     filter:none!important;
     clip-path:none!important;
   }
+}
+
+
+
+/* =========================================================
+   V33 — LAYOUT + MOTION SAFETY + CONTACT SLIDESHOW
+   ========================================================= */
+
+/* Prevent moving glyphs from being clipped at container edges. */
+.story-body,
+.about-compact,
+.film-gallery-section,
+.contact,
+.miraculous-editorial,
+.tien-gallery-wrap{overflow:visible!important}
+
+/* Text motion: no blur/filter, no clipping. Large headings move sideways;
+   supporting copy simply fades upward a little. */
+.motion-ready .reveal-left:not(.is-visible){
+  opacity:0;
+  transform:translate3d(-64px,0,0);
+  filter:none!important;
+}
+.motion-ready .reveal-right:not(.is-visible){
+  opacity:0;
+  transform:translate3d(64px,0,0);
+  filter:none!important;
+}
+.motion-ready .reveal-copy:not(.is-visible){
+  opacity:0;
+  transform:translate3d(0,22px,0);
+  filter:none!important;
+}
+.reveal-left,.reveal-right,.reveal-copy{
+  transition:opacity .82s var(--ease),transform .95s var(--ease);
+  will-change:opacity,transform;
+  overflow:visible!important;
+}
+.reveal-left.is-visible,.reveal-right.is-visible,.reveal-copy.is-visible{
+  opacity:1;
+  transform:none;
+  filter:none!important;
+}
+
+/* Give small copy an internal safe edge so first/last glyphs never touch a crop boundary. */
+.kicker,.story-no,.next,.meta,.film-gallery-note,.hero-lede,
+.about-copy p,.miraculous-copy p,.trip-detail-copy p,.tien-role p,.contact-invite,
+.about-meta-grid span,.about-meta-grid small,.stat span{
+  padding-left:4px;
+  padding-right:4px;
+  box-sizing:border-box;
+}
+
+/* ABOUT — make the motion more visible and preserve breathing room. */
+.about-title{padding-left:6px}
+.about-copy{padding-left:6px;padding-right:8px}
+.about-photo{overflow:visible}
+
+/* MIRACULOUS — remove the dead vertical block and use a balanced magazine spread. */
+.miraculous-editorial{
+  display:block;
+  background:#111b14;
+  padding:112px max(48px,calc((100vw - var(--wide))/2)) 132px;
+}
+.miraculous-top{
+  display:grid;
+  grid-template-columns:1.12fr .88fr;
+  gap:30px;
+  align-items:start;
+}
+.miraculous-main img{
+  width:100%;
+  height:auto;
+  aspect-ratio:3 / 2;
+  object-fit:cover;
+  border-radius:28px;
+}
+.miraculous-copy{
+  padding:18px 0 0;
+  min-width:0;
+}
+.miraculous-copy h3{
+  max-width:9ch;
+  font-size:clamp(40px,4.7vw,72px);
+  line-height:.94;
+  margin:0 0 24px;
+}
+.miraculous-copy p{max-width:520px}
+.miraculous-bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  margin-top:28px;
+}
+.miraculous-bottom .frame{background:transparent}
+.miraculous-bottom .frame img{
+  width:100%;
+  height:auto;
+  aspect-ratio:16 / 9;
+  object-fit:cover;
+  border-radius:24px;
+}
+.miraculous-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:48px;
+}
+
+/* FILM + FLYING HEART — horizontal photo essays rather than static mosaics. */
+.film-grid,.trip-grid{
+  display:flex!important;
+  gap:18px;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scroll-snap-type:x mandatory;
+  overscroll-behavior-x:contain;
+  padding:4px 0 16px;
+  min-height:0!important;
+  scrollbar-width:thin;
+}
+.film-grid.hidden,.trip-grid.hidden{display:none!important}
+.film-grid .frame,.trip-grid .frame{
+  flex:0 0 auto;
+  scroll-snap-align:start;
+  border-radius:22px;
+  overflow:hidden;
+  background:rgba(255,255,255,.035);
+}
+.film-grid .frame img,.trip-grid .frame img{
+  display:block;
+  width:auto!important;
+  height:52vh!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  border-radius:22px;
+  background:#111;
+}
+.film-grid.bts .frame img{height:48vh!important}
+.trip-grid .frame img{height:48vh!important}
+.trip-grid .frame:first-child img{height:56vh!important}
+.gallery-scroll-hint{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-top:10px;
+  color:#918b86;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.gallery-scroll-hint .arrows{font-size:15px;letter-spacing:.22em}
+
+/* TIEN THUONG TUAN DU — respect the portrait photo instead of forcing a landscape crop. */
+.tien-gallery{
+  width:min(var(--max),calc(100% - 96px));
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.05fr .72fr;
+  gap:20px;
+  align-items:stretch;
+}
+.tien-landscape-stack{display:grid;grid-template-rows:auto auto;gap:20px}
+.tien-landscape-stack .frame img{
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius:22px;
+}
+.tien-portrait{display:flex;align-items:center;justify-content:center;background:#161211;border-radius:24px;overflow:hidden}
+.tien-portrait img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border-radius:24px;
+}
+
+/* Fix 300+ label collision completely. */
+.tien-role .big-number{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  gap:22px!important;
+  line-height:1!important;
+}
+.tien-role .big-number strong{
+  display:block;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(92px,12vw,176px);
+  line-height:.82;
+  font-weight:400;
+  letter-spacing:-.055em;
+}
+.tien-role .big-number span{
+  display:block!important;
+  margin:0!important;
+  position:static!important;
+  font-size:11px!important;
+  line-height:1.2!important;
+  letter-spacing:.15em!important;
+  text-transform:uppercase;
+}
+
+/* CONTACT — simple invitation + slideshow + clickable social icons. */
+.contact{
+  background:
+    radial-gradient(circle at 14% 14%,rgba(53,92,118,.15),transparent 34%),
+    #070a10;
+  padding:118px 0 64px;
+}
+.contact-inner{
+  width:min(var(--max),calc(100% - 96px));
+  min-height:62vh;
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  gap:6vw;
+  align-items:center;
+}
+.contact-copy h2{margin-bottom:24px}
+.contact-invite{
+  max-width:470px;
+  color:#b9c1cb;
+  font-size:16px;
+  line-height:1.75;
+  margin:0 0 30px;
+}
+.social-icons{display:flex;gap:14px;align-items:center}
+.social-icon{
+  width:48px;height:48px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:#f1f3f5;
+  background:rgba(255,255,255,.03);
+  transition:transform .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease);
+}
+.social-icon:hover{transform:translateY(-3px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.32)}
+.social-icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.social-icon svg.fill{fill:currentColor;stroke:none}
+.social-icon.needs-link{opacity:.5;cursor:not-allowed}
+
+.project-slideshow{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 10;
+  border-radius:30px;
+  overflow:hidden;
+  background:#0d1118;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 30px 80px rgba(0,0,0,.28);
+}
+.project-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity 1.1s ease;
+}
+.project-slide.active{opacity:1}
+.project-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.project-slide::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.74) 100%);
+}
+.slide-caption{
+  position:absolute;
+  left:24px;right:24px;bottom:20px;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  color:#fff;
+}
+.slide-caption strong{font-family:Georgia,"Times New Roman",serif;font-size:clamp(23px,2.5vw,34px);font-weight:400}
+.slide-caption span{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#d3d6db}
+.slideshow-progress{
+  position:absolute;
+  left:0;bottom:0;
+  height:3px;
+  width:0;
+  background:#fff;
+  z-index:3;
+}
+.project-slideshow.is-running .slideshow-progress{animation:slideProgress 30s linear infinite}
+@keyframes slideProgress{from{width:0}to{width:100%}}
+
+@media(max-width:900px){
+  .miraculous-top{grid-template-columns:1fr}
+  .miraculous-bottom{grid-template-columns:1fr 1fr}
+  .tien-gallery{grid-template-columns:1fr}
+  .tien-portrait{max-width:520px;margin:auto}
+  .contact-inner{grid-template-columns:1fr;gap:44px}
+}
+@media(max-width:760px){
+  .miraculous-editorial{padding:72px 16px 96px}
+  .miraculous-bottom{grid-template-columns:1fr}
+  .miraculous-stats{grid-template-columns:1fr 1fr}
+  .film-grid .frame img,.trip-grid .frame img{height:38vh!important}
+  .trip-grid .frame:first-child img{height:42vh!important}
+  .contact-inner{width:calc(100% - 32px)}
+  .project-slideshow{aspect-ratio:4 / 3}
 }
 
 </style>
@@ -1823,15 +2130,16 @@ p{line-height:1.72}
     </section>
 
     <section class="miraculous-editorial">
-      <div class="frame miraculous-main"><img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session"></div>
-
-      <div class="miraculous-copy">
-        <p class="kicker">What stayed with me</p>
-        <h3>What I remember most happened between the photos.</h3>
-        <p>I helped run activities and spent time talking with the children about their dreams. That experience later shaped how I wrote <em>The Window Without a Horizon</em>: the child had to come before the diagnosis.</p>
+      <div class="miraculous-top">
+        <div class="frame miraculous-main"><img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session"></div>
+        <div class="miraculous-copy">
+          <p class="kicker">What stayed with me</p>
+          <h3>What I remember most happened between the photos.</h3>
+          <p>I helped run activities and spent time talking with the children about their dreams. That experience later shaped how I wrote <em>The Window Without a Horizon</em>: the child had to come before the diagnosis.</p>
+        </div>
       </div>
 
-      <div class="miraculous-evidence">
+      <div class="miraculous-bottom">
         <div class="frame"><img src="assets/miraculous-graduation.jpg" alt="Miraculous Moments graduation project"></div>
         <div class="frame"><img src="assets/miraculous-studio.jpg" alt="Children in the Miraculous Moments photography session"></div>
       </div>
@@ -1898,6 +2206,7 @@ p{line-height:1.72}
           <div class="frame"><img src="assets/film-bts-4.jpg" alt="Camera crew behind the scenes"></div>
         </div>
 
+        <div class="gallery-scroll-hint"><span>Drag or scroll through the photos</span><span class="arrows">← →</span></div>
         <div class="film-gallery-note" id="filmGalleryNote">Best Short Film · Golden Frame Awards 2026</div>
       </div>
     </section>
@@ -1951,6 +2260,8 @@ p{line-height:1.72}
           <div class="frame"><img src="assets/flying-dongnai-2.jpg" alt="Essential supplies for families in Dong Nai"></div>
           <div class="frame"><img src="assets/flying-dongnai-3.jpg" alt="Mid-Autumn support in Dong Nai"></div>
         </div>
+
+        <div class="gallery-scroll-hint"><span>Drag or scroll through each location</span><span class="arrows">← →</span></div>
 
         <div class="trip-detail" data-trip-detail="daklak">
           <h4>Dak Lak · Mid-Autumn with 100+ children</h4>
@@ -2035,17 +2346,17 @@ p{line-height:1.72}
       </div>
     </section>
 
-    <section class="story-body">
-      <div class="body-inner media-3">
-        <div class="frame"><img src="assets/tien-1.jpg" alt=""></div>
-        <div class="media-stack">
-          <div class="frame"><img src="assets/tien-2.jpg" alt=""></div>
-          <div class="frame"><img src="assets/tien-3.jpg" alt=""></div>
+    <section class="story-body tien-gallery-wrap">
+      <div class="tien-gallery">
+        <div class="tien-landscape-stack">
+          <div class="frame"><img src="assets/tien-1.jpg" alt="Participants at Tien Thuong Tuan Du"></div>
+          <div class="frame"><img src="assets/tien-2.jpg" alt="Heritage parade at Tien Thuong Tuan Du"></div>
         </div>
+        <div class="frame tien-portrait"><img src="assets/tien-3.jpg" alt="Portrait-oriented photo from Tien Thuong Tuan Du"></div>
       </div>
 
       <div class="tien-role">
-        <div class="big-number">300+<span>participants</span></div>
+        <div class="big-number"><strong>300+</strong><span>participants</span></div>
         <div>
           <p class="kicker">Behind the procession</p>
           <h3>My role was behind the procession.</h3>
@@ -2069,23 +2380,29 @@ p{line-height:1.72}
 <footer class="contact" id="contact">
   <div class="contact-inner">
     <div class="contact-copy">
-      <p class="kicker">08 / Find me elsewhere</p>
-      <h2>Let's connect.</h2>
-      <p>I am open to creative collaborations, internships, and community or cultural storytelling projects that need care, clarity, and a strong sense of people.</p>
+      <p class="kicker">08 / Let&apos;s connect</p>
+      <h2>Let&apos;s connect.</h2>
+      <p class="contact-invite">If a project, idea, or conversation feels worth building together, I&apos;d be happy to hear from you.</p>
+      <div class="social-icons" aria-label="Contact links">
+        <a class="social-icon" href="mailto:nguyenanhkiet10072006@gmail.com" aria-label="Send email">
+          <svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/><path d="m3 6 9 7 9-7"/></svg>
+        </a>
+        <a class="social-icon needs-link" href="#" data-social-placeholder="facebook" aria-label="Facebook profile link pending">
+          <svg class="fill" viewBox="0 0 24 24"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V4a23 23 0 0 0-2.4-.1c-2.4 0-4 1.4-4 4v2.2H8V13h2.6v8h3.1Z"/></svg>
+        </a>
+        <a class="social-icon needs-link" href="#" data-social-placeholder="instagram" aria-label="Instagram profile link pending">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="contact-panel">
-      <a class="contact-mail" href="mailto:nguyenanhkiet10072006@gmail.com">nguyenanhkiet10072006@gmail.com</a>
-      <div class="contact-meta">
-        <div><small>Based in</small><span>Ho Chi Minh City</span></div>
-        <div><small>Works across</small><span>Film · Culture · Community</span></div>
-        <div><small>Looking for</small><span>Internships · Collaborations</span></div>
-      </div>
-      <div class="contact-links">
-        <a href="mailto:nguyenanhkiet10072006@gmail.com">Email</a>
-        <span>Instagram</span>
-        <span>Facebook</span>
-        <span>YouTube</span>
-      </div>
+
+    <div class="project-slideshow is-running" id="projectSlideshow" aria-label="Selected project slideshow">
+      <div class="project-slide active"><img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments"><div class="slide-caption"><strong>Miraculous Moments</strong><span>Community · Photography</span></div></div>
+      <div class="project-slide"><img src="assets/screening-emotion.jpg" alt="The Window Without a Horizon"><div class="slide-caption"><strong>The Window Without a Horizon</strong><span>Short Film · Screenwriting</span></div></div>
+      <div class="project-slide"><img src="assets/flying-daklak-4.jpg" alt="Flying Heart"><div class="slide-caption"><strong>Flying Heart</strong><span>Community Outreach</span></div></div>
+      <div class="project-slide"><img src="assets/cham-1.jpg" alt="Embrace Vietnamese Traditional Attire"><div class="slide-caption"><strong>Embrace Vietnamese Traditional Attire</strong><span>Cultural Communication</span></div></div>
+      <div class="project-slide"><img src="assets/tien-2.jpg" alt="Tien Thuong Tuan Du"><div class="slide-caption"><strong>Tien Thuong Tuan Du</strong><span>Culture in Public Space</span></div></div>
+      <div class="slideshow-progress" aria-hidden="true"></div>
     </div>
   </div>
 </footer>
@@ -2103,9 +2420,10 @@ p{line-height:1.72}
   };
 
   addReveal('.about-title, .story-hero .display, .transition-title, .switch-head h3, .gallery-head .body-title, .miraculous-copy h3, .sparse-note h3, .tien-role h3, .next-compact h2, .trip-detail h4, .contact-copy h2','reveal-left');
-  addReveal('.about-copy, .story-hero .hero-lede, .story-hero .story-no, .transition .hand, .switch-tabs, .gallery-head .tabs, .miraculous-copy p:not(.kicker), .tien-role p, .next-compact p, .trip-detail-copy, .contact-copy p, .contact-links, .contact-meta, .contact-panel','reveal-right','reveal-delay-1');
-  addReveal('.about-photo, .frame, .film-poster','reveal-image');
-  addReveal('.stats, .miraculous-stats, .about-meta-grid','reveal-right','reveal-delay-2');
+  addReveal('.switch-tabs, .gallery-head .tabs, .transition .hand','reveal-right','reveal-delay-1');
+  addReveal('.about-copy, .story-hero .hero-lede, .story-hero .story-no, .miraculous-copy p:not(.kicker), .tien-role p, .next-compact p, .trip-detail-copy, .contact-invite, .social-icons','reveal-copy','reveal-delay-1');
+  addReveal('.about-photo, .frame, .film-poster, .project-slideshow','reveal-image');
+  addReveal('.stats, .miraculous-stats, .about-meta-grid','reveal-copy','reveal-delay-2');
 
   const revealObserver=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
@@ -2145,6 +2463,29 @@ p{line-height:1.72}
     });
     if(filmNote) filmNote.textContent=filmNotes[btn.dataset.filmTab]||'';
   }));
+
+
+  /* Contact slideshow — one project image every 30 seconds */
+  const slides=[...document.querySelectorAll('.project-slide')];
+  let slideIndex=0;
+  if(slides.length>1){
+    setInterval(()=>{
+      slides[slideIndex].classList.remove('active');
+      slideIndex=(slideIndex+1)%slides.length;
+      slides[slideIndex].classList.add('active');
+      const progress=document.querySelector('.slideshow-progress');
+      if(progress){
+        progress.style.animation='none';
+        void progress.offsetWidth;
+        progress.style.animation='slideProgress 30s linear infinite';
+      }
+    },30000);
+  }
+
+  /* Facebook / Instagram need the user's exact profile URLs before activation. */
+  document.querySelectorAll('[data-social-placeholder]').forEach(link=>{
+    link.addEventListener('click',e=>e.preventDefault());
+  });
 
   /* Embedded GLB / raw WebGL — same stable engine, no external dependency */
   const GLB_B64="Z2xURgIAAACsCQAAKAcAAEpTT057ImFjY2Vzc29ycyI6W3siYnVmZmVyVmlldyI6MiwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjE3LCJtYXgiOls3Mjg1LjQ5MDIzNDM3NSwzODEwLjY1OTkxMjEwOTM3NSwxMjcyLjBdLCJtaW4iOlsxNTk0LjQ4OTk5MDIzNDM3NSw1MjYuNjU2OTgyNDIxODc1LDY2MC4wXSwidHlwZSI6IlZFQzMifSx7ImJ1ZmZlclZpZXciOjIsImJ5dGVPZmZzZXQiOjIwNCwiY29tcG9uZW50VHlwZSI6NTEyNiwiY291bnQiOjE3LCJtYXgiOlswLjAxNTIzOTA5OTk3MTk1MDA1NCwwLjk4NjA3NDIwOTIxMzI1NjgsMS4wXSwibWluIjpbLTAuMDE3NzgxNzAyODAxNTg1MTk3LC0wLjk4NjA3NDIwOTIxMzI1NjgsLTAuOTk4NDg4MDA4OTc1OTgyN10sInR5cGUiOiJWRUMzIn0seyJidWZmZXJWaWV3IjoxLCJjb21wb25lbnRUeXBlIjo1MTI2LCJjb3VudCI6MTcsIm1heCI6WzI5OS4yNTY5ODg1MjUzOTA2LDE2NC4wNTcwMDY4MzU5Mzc1XSwibWluIjpbLTI4OC4zMjI5OTgwNDY4NzUsLTU0LjE5MzA5OTk3NTU4NTk0XSwidHlwZSI6IlZFQzIifSx7ImJ1ZmZlclZpZXciOjAsImNvbXBvbmVudFR5cGUiOjUxMjUsImNvdW50IjoxOCwidHlwZSI6IlNDQUxBUiJ9XSwiYXNzZXQiOnsiZXh0cmFzIjp7ImF1dGhvciI6IlRyb2NrayAoaHR0cHM6Ly9za2V0Y2hmYWIuY29tL1RpbXJvY2trKSIsImxpY2Vuc2UiOiJDQy1CWS00LjAgKGh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LzQuMC8pIiwic291cmNlIjoiaHR0cHM6Ly9za2V0Y2hmYWIuY29tLzNkLW1vZGVscy9wYXBlci1wbGFuZS1hc3NldC04YTVmNmEyYTA3YjY0NTIyYmY0YjkwNGQ0YTA1N2RmYiIsInRpdGxlIjoiUGFwZXIgUGxhbmUgQXNzZXQifSwiZ2VuZXJhdG9yIjoiU2tldGNoZmFiLTEzLjE2LjAiLCJ2ZXJzaW9uIjoiMi4wIn0sImJ1ZmZlclZpZXdzIjpbeyJidWZmZXIiOjAsImJ5dGVMZW5ndGgiOjcyLCJuYW1lIjoiZmxvYXRCdWZmZXJWaWV3cyIsInRhcmdldCI6MzQ5NjN9LHsiYnVmZmVyIjowLCJieXRlTGVuZ3RoIjoxMzYsImJ5dGVPZmZzZXQiOjcyLCJieXRlU3RyaWRlIjo4LCJuYW1lIjoiZmxvYXRCdWZmZXJWaWV3cyIsInRhcmdldCI6MzQ5NjJ9LHsiYnVmZmVyIjowLCJieXRlTGVuZ3RoIjo0MDgsImJ5dGVPZmZzZXQiOjIwOCwiYnl0ZVN0cmlkZSI6MTIsIm5hbWUiOiJmbG9hdEJ1ZmZlclZpZXdzIiwidGFyZ2V0IjozNDk2Mn1dLCJidWZmZXJzIjpbeyJieXRlTGVuZ3RoIjo2MTZ9XSwibWF0ZXJpYWxzIjpbeyJkb3VibGVTaWRlZCI6dHJ1ZSwibmFtZSI6IkNvbG9yX00wMCIsInBick1ldGFsbGljUm91Z2huZXNzIjp7Im1ldGFsbGljRmFjdG9yIjowLjAsInJvdWdobmVzc0ZhY3RvciI6MC42fX1dLCJtZXNoZXMiOlt7Im5hbWUiOiJPYmplY3RfMCIsInByaW1pdGl2ZXMiOlt7ImF0dHJpYnV0ZXMiOnsiTk9STUFMIjoxLCJQT1NJVElPTiI6MCwiVEVYQ09PUkRfMCI6Mn0sImluZGljZXMiOjMsIm1hdGVyaWFsIjowLCJtb2RlIjo0fV19XSwibm9kZXMiOlt7ImNoaWxkcmVuIjpbMV0sIm1hdHJpeCI6WzEuMCwwLjAsMC4wLDAuMCwwLjAsMi4yMjA0NDYwNDkyNTAzMTNlLTE2LC0xLjAsMC4wLDAuMCwxLjAsMi4yMjA0NDYwNDkyNTAzMTNlLTE2LDAuMCwwLjAsMC4wLDAuMCwxLjBdLCJuYW1lIjoiU2tldGNoZmFiX21vZGVsIn0seyJjaGlsZHJlbiI6WzJdLCJuYW1lIjoiNmNiNjNhNjliMGM4NGFlYTlhYTU5MzZiMWZmNDVkZDQub2JqLmNsZWFuZXIubWF0ZXJpYWxtZXJnZXIuZ2xlcyJ9LHsibWVzaCI6MCwibmFtZSI6Ik9iamVjdF8yIn1dLCJzY2VuZSI6MCwic2NlbmVzIjpbeyJuYW1lIjoiU2tldGNoZmFiX1NjZW5lIiwibm9kZXMiOlswXX1dfSAgIGgCAABCSU4AAAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAFAAAADgAAAA8AAAAQAAAA2puAwtQrO0GHdoDCGYQQQlgpkMMZhBBCzhl7QvqtokLOGXtCQuClQT1qj0OqwqpCJyCEQtnqcj65fKNCvMVYwuWglUPZ6nI+XZx0Ql+4gEIE53RCmrcfQjufjkNfuIBCzhl7QqgGFkPOGXtCTNeyQoXre8OYDiRDip8JwgZB20LNzJXBmA4kQ65Px0SPigdFAAAlRK5Px0R7IAFFAACfROyr40WPigdFAACfRK5Px0R7IAFFAACfRK5Px0QMqgNEAACfROyr40WPigdFAACfRK5Px0QMqgNEAACfRK5Px0QfbfVEAICVROyr40WPigdFAACfRK5Px0R79A1FAACfRK5Px0SPigdFAAAlROyr40WPigdFAACfRK5Px0SPKm5FAACfRK5Px0R79A1FAACfROyr40WPigdFAACfRK5Px0SPXhRFAICVRK5Px0SPKm5FAACfRO+qkbxcb3w/T1IpPu+qkbxcb3w/T1IpPu+qkbxcb3w/T1IpPgAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAP2uteTzZVli96Zx/v2uteTzZVli96Zx/v2uteTzZVli96Zx/v++qkbxcb3y/T1IpPu+qkbxcb3y/T1IpPu+qkbxcb3y/T1IpPgAAAAAAAAAAAACAPwAAAAAAAAAAAACAP2uteTzZVlg96Zx/v2uteTzZVlg96Zx/v2uteTzZVlg96Zx/vw==";
