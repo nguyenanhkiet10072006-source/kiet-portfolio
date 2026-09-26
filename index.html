@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090a0d">
-<title>Kiet Anh Nguyen — Portfolio V41</title>
+<title>Kiet Anh Nguyen — Portfolio V42</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -3105,6 +3105,88 @@ p{line-height:1.72}
     object-fit:contain;
     background:#111;
   }
+}
+
+
+/* =========================================================
+   V42 — MOBILE HERO FIX
+   On phones the cover image is 4:3. The old hero stayed 100svh tall,
+   leaving a large black gap before the copy. Let the page flow naturally:
+   image first, then copy directly below it.
+   ========================================================= */
+@media(max-width:760px){
+  .landing{
+    min-height:0!important;
+    height:auto!important;
+    display:block!important;
+    position:relative;
+    padding:calc(75vw + 54px) 0 70px!important;
+    background:#090a0c!important;
+    overflow:hidden;
+  }
+
+  .landing::after{
+    top:0!important;
+    right:0!important;
+    bottom:auto!important;
+    left:0!important;
+    width:100%!important;
+    height:75vw!important; /* 2048×1536 image = 4:3 */
+    background-image:url("assets/hero-community.jpg")!important;
+    background-size:100% 100%!important;
+    background-position:center center!important;
+    background-repeat:no-repeat!important;
+    transform:none!important;
+  }
+
+  .landing::before{
+    top:0!important;
+    right:0!important;
+    bottom:auto!important;
+    left:0!important;
+    height:calc(75vw + 90px)!important;
+    background:
+      linear-gradient(90deg,
+        rgba(5,7,10,.58) 0%,
+        rgba(5,7,10,.25) 30%,
+        rgba(5,7,10,.03) 54%,
+        rgba(5,7,10,0) 75%),
+      linear-gradient(180deg,
+        rgba(9,10,12,0) 0%,
+        rgba(9,10,12,0) 70%,
+        rgba(9,10,12,.70) 84%,
+        #090a0c 100%)!important;
+  }
+
+  .landing-inner{
+    position:relative!important;
+    top:auto!important;
+    left:auto!important;
+    width:calc(100% - 32px)!important;
+    max-width:none!important;
+    margin:0 auto!important;
+    padding:0!important;
+  }
+
+  .landing .kicker{
+    margin-bottom:18px!important;
+    max-width:100%!important;
+    font-size:10px!important;
+    line-height:1.55!important;
+  }
+
+  .landing h1{
+    max-width:100%!important;
+    margin-bottom:18px!important;
+    font-size:clamp(47px,12.6vw,67px)!important;
+    line-height:.92!important;
+  }
+
+  .landing-mark{
+    margin-top:20px!important;
+  }
+
+  .scroll-note{display:none!important;}
 }
 
 </style>
