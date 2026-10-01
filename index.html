@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090a0d">
-<title>Kiet Anh Nguyen — Portfolio V47</title>
+<title>Kiet Anh Nguyen — Portfolio V48</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -3451,6 +3451,51 @@ html,body{
   #flightCanvas,#trailSvg{
     transform:translateZ(0);
     backface-visibility:hidden;
+  }
+}
+
+
+/* =========================================================
+   V48 — FLYING HEART MOBILE TAB FIX
+   Keep the heading and the three location tabs in separate rows.
+   ========================================================= */
+@media(max-width:760px){
+  #flying .gallery-head{
+    display:block!important;
+    width:100%!important;
+    margin-bottom:32px!important;
+  }
+
+  #flying .gallery-head > div:first-child{
+    width:100%!important;
+  }
+
+  #flying .gallery-head .body-title{
+    width:100%!important;
+    max-width:100%!important;
+    margin-bottom:28px!important;
+  }
+
+  #flying .tabs{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    width:100%!important;
+    max-width:100%!important;
+    gap:7px!important;
+    margin:0!important;
+    overflow:visible!important;
+    white-space:normal!important;
+  }
+
+  #flying .tabs button{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    padding:10px 6px!important;
+    font-size:12px!important;
+    line-height:1.15!important;
+    text-align:center!important;
+    white-space:nowrap!important;
   }
 }
 
