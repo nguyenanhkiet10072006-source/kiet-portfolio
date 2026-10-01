@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090a0d">
-<title>Kiet Anh Nguyen — Portfolio V46</title>
+<title>Kiet Anh Nguyen — Portfolio V47</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -3329,6 +3329,131 @@ p{line-height:1.72}
   }
 }
 
+
+/* =========================================================
+   V47 — MOBILE SCROLL STABILITY + CLEARER LINKS + TAB ROW
+   ========================================================= */
+
+/* Prevent tiny sideways overflow from creating a 'shaky' mobile scroll. */
+html,body{
+  max-width:100%;
+  overscroll-behavior-x:none;
+}
+@supports (overflow:clip){
+  html,body{overflow-x:clip!important}
+}
+
+/* Link hierarchy: these are actions, so they should read clearly. */
+.film-watch-label{
+  font-size:11px!important;
+  padding:11px 16px!important;
+  letter-spacing:.11em!important;
+  font-weight:600;
+}
+.external-proof{
+  font-size:10px!important;
+}
+.external-proof a{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  font-size:12px!important;
+  line-height:1.25;
+  letter-spacing:.08em!important;
+  font-weight:600;
+}
+
+/* Flying Heart: all three locations stay in one row. */
+#flying .tabs{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  white-space:nowrap;
+}
+#flying .tabs button{
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+}
+
+/* Mobile stability:
+   - avoid changing viewport-height geometry while browser chrome hides/shows
+   - use fade-only reveal instead of GPU-heavy scale/clip animations
+   - keep horizontal galleries from affecting page width */
+@media(max-width:760px){
+  html{
+    scroll-behavior:auto!important;
+    -webkit-text-size-adjust:100%;
+  }
+  body{
+    width:100%;
+    touch-action:pan-y pinch-zoom;
+  }
+
+  .story-hero{min-height:84svh!important}
+  .transition{height:64svh!important}
+  .trip-grid{
+    max-width:100%!important;
+    overscroll-behavior-x:contain!important;
+    scroll-snap-type:x proximity!important;
+  }
+  .trip-grid .frame img,
+  .trip-grid .frame:first-child img{
+    height:38svh!important;
+    max-height:360px!important;
+    min-height:250px!important;
+  }
+
+  #flying .tabs{
+    width:100%!important;
+    justify-content:flex-start!important;
+    gap:7px!important;
+    overflow:visible!important;
+  }
+  #flying .tabs button{
+    padding:9px 12px!important;
+    font-size:13px!important;
+  }
+
+  .film-watch-label{
+    left:13px!important;
+    bottom:13px!important;
+    font-size:10px!important;
+    padding:10px 13px!important;
+  }
+  .external-proof{
+    gap:10px 14px!important;
+    font-size:9px!important;
+  }
+  .external-proof a{
+    font-size:11px!important;
+  }
+
+  /* Fade only on phones: no scale/clip transforms while scrolling. */
+  .motion-ready .reveal-image:not(.is-visible){
+    opacity:0!important;
+    transform:none!important;
+    clip-path:none!important;
+    filter:none!important;
+  }
+  .reveal-image{
+    transition:opacity .55s ease!important;
+    transform:none!important;
+    clip-path:none!important;
+    filter:none!important;
+    will-change:auto!important;
+  }
+  .reveal-left,.reveal-right,.reveal-copy{
+    will-change:auto!important;
+  }
+
+  #flightCanvas,#trailSvg{
+    transform:translateZ(0);
+    backface-visibility:hidden;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -3806,7 +3931,7 @@ p{line-height:1.72}
       <h2>Let&apos;s connect.</h2>
       <p class="contact-invite">If something here resonates, I&apos;d be glad to hear from you.</p>
       <div class="social-icons" aria-label="Contact links">
-        <a class="social-icon" href="mailto:nguyenanhkiet10072006@gmail.com" aria-label="Send email to Kiet Anh Nguyen">
+        <a class="social-icon" href="https://mail.google.com/mail/?view=cm&fs=1&to=nguyenanhkiet10072006@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Compose an email to Kiet Anh Nguyen in Gmail">
           <svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/><path d="m3 6 9 7 9-7"/></svg>
         </a>
         <a class="social-icon" href="https://www.facebook.com/nguyenanh.kiet.39750" target="_blank" rel="noopener noreferrer" aria-label="Kiet Anh Nguyen on Facebook">
@@ -4041,7 +4166,7 @@ p{line-height:1.72}
   let aspect=1,projection=I();
 
   function resize(){
-    const dpr=Math.min(devicePixelRatio||1,2),w=Math.max(1,Math.floor(innerWidth*dpr)),h=Math.max(1,Math.floor(innerHeight*dpr));
+    const dpr=innerWidth<=760?1:Math.min(devicePixelRatio||1,2),w=Math.max(1,Math.floor(innerWidth*dpr)),h=Math.max(1,Math.floor(innerHeight*dpr));
     if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
     gl.viewport(0,0,w,h);
     aspect=innerWidth/innerHeight;
